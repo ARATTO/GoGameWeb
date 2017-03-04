@@ -4,16 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class _ extends Model
+class Actividad extends Model
 {
-    protected $table = '';
+    protected $table = 'ACTIVIDAD';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'ID',
+        'IDACTIVIDAD',
+        'IDTIPOACTIVIDAD',
+        'IDDETALLEPUNTO',
+        'IDGRUPO',
+        'NOMBREACTIVIDAD',
         
     ];
 
