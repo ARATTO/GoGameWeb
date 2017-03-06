@@ -29,4 +29,29 @@ class Ciclo extends Model
     protected $hidden = [
        
     ];
+
+    /**
+    * Eliminar timestamps del modelo
+    */
+    public $timestamps = false;
+    
+    /**
+    * Relaciones
+    */
+    /*
+    public function _s()
+    {
+        return $this->hasMany('App\_');
+    }
+    */
+
+    /**
+    * Relaciones RETORNOS
+    */
+    
+    public function materiaImpartida()
+    {
+        return $this->belongsTo('App\MateriaImpartida','IDCICLO');
+    }
+    
 }

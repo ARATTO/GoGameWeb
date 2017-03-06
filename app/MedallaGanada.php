@@ -32,4 +32,26 @@ class MedallaGanada extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function medallas()
+    {
+        return $this->hasMany('App\Medalla','IDMEDALLA');
+    }
+    public function users()
+    {
+        return $this->hasMany('App\User','IDPERFIL');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

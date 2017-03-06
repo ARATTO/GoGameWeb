@@ -32,4 +32,28 @@ class Estudiante extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    /*
+    public function _s()
+    {
+        return $this->hasMany('App\_');
+    }
+    */
+
+    /**
+    * Relaciones RETORNOS
+    */
+    
+    public function inscripcion()
+    {
+        return $this->belongsTo('App\Inscripcion', 'IDESTUDIANTE');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'IDESTUDIANTE');
+    }
+    
 }

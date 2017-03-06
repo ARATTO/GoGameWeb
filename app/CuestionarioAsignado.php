@@ -32,4 +32,24 @@ class CuestionarioAsignado extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function users()
+    {
+        return $this->hasMany('App\User', 'IDPERFIL');
+    }
+    public function cuestionarios()
+    {
+        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function opcionSeleccionada()
+    {
+        return $this->belongsTo('App\OpcionSeleccionada','IDCUESTIONARIOASIGNADO');
+    }
 }

@@ -32,4 +32,26 @@ class Inscripcion extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function estudiantes()
+    {
+        return $this->hasMany('App\Estudiante', 'IDESTUDIANTE');
+    }
+    public function grupos()
+    {
+        return $this->hasMany('App\Grupo', 'IDGRUPO');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

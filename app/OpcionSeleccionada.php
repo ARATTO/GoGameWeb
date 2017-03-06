@@ -33,4 +33,30 @@ class OpcionSeleccionada extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function cuestionariosAsignados()
+    {
+        return $this->hasMany('App\CuestionarioAsignado','IDCUESTIONARIOASIGNADO');
+    }
+    public function respuestas()
+    {
+        return $this->hasMany('App\Respuesta','IDRESPUESTA');
+    }
+    public function preguntas()
+    {
+        return $this->hasMany('App\Pregunta','IDPREGUNTA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

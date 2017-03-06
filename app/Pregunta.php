@@ -33,4 +33,28 @@ class Pregunta extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function categorias()
+    {
+        return $this->hasMany('App\Categoria','IDCATEGORIA');
+    }
+    public function tipoPreguntas()
+    {
+        return $this->hasMany('App\TipoPregunta','IDTIPOPREGUNTA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function opcionSeleccionada()
+    {
+        return $this->belongsTo('App\OpcionSeleccionada','IDPREGUNTA');
+    }
+    public function respuesta()
+    {
+        return $this->belongsTo('App\Respuesta','IDPREGUNTA');
+    }
 }

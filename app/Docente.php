@@ -32,4 +32,28 @@ class Docente extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    /*
+    public function _s()
+    {
+        return $this->hasMany('App\_');
+    }
+    */
+
+    /**
+    * Relaciones RETORNOS
+    */
+    
+    public function grupo()
+    {
+        return $this->belongsTo('App\Grupo','IDDOCENTE');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User','IDDOCENTE');
+    }
+    
 }

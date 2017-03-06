@@ -34,4 +34,24 @@ class DetallePunto extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function tipoPuntos()
+    {
+        return $this->hasMany('App\TipoPuntos', 'IDTIPOPUNTO');
+    }
+    public function materiasImpartidas()
+    {
+        return $this->hasMany('App\MateriaImpartida', 'IDMATERIAIMPARTIDA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function actividad()
+    {
+        return $this->belongsTo('App\Actividad', 'IDDETALLEPUNTO');
+    }
 }

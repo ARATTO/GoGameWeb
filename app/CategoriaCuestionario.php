@@ -34,4 +34,26 @@ class CategoriaCuestionario extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function cuestionarios()
+    {
+        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+    }
+    public function categorias()
+    {
+        return $this->hasMany('App\Categoria', 'IDCATEGORIA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

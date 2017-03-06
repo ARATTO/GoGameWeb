@@ -34,4 +34,32 @@ class Grupo extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function docentes()
+    {
+        return $this->hasMany('App\Docente','IDDOCENTE');
+    }
+    public function tipoGrupos()
+    {
+        return $this->hasMany('App\TipoGrupo','IDTIPOGRUPO');
+    }
+    public function materiasImpartidas()
+    {
+        return $this->hasMany('App\MateriaImpartida','IDMATERIAIMPARTIDA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function actividad()
+    {
+        return $this->belongsTo('App\Actividad', 'IDGRUPO');
+    }
+    public function inscripcion()
+    {
+        return $this->belongsTo('App\Inscripcion', 'IDGRUPO');
+    }
 }

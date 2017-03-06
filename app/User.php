@@ -31,4 +31,37 @@ class User extends Authenticatable
         'PASSWORD',
         'remember_token',
     ];
+
+    /**
+    * Eliminar timestamps del modelo
+    */
+    public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function estudiantes()
+    {
+        return $this->hasMany('App\Estudiante', 'IDESTUDIANTE');
+    }
+    public function docentes()
+    {
+        return $this->hasMany('App\Docente', 'IDDOCENTE');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function cuestionarioAsignado()
+    {
+        return $this->belongsTo('App\CuestionarioAsignado', 'IDPERFIL');
+    }
+    public function detallePuntoActividad()
+    {
+        return $this->belongsTo('App\DetallePuntoActividad', 'IDPERFIL');
+    }
+    public function medallaGanada()
+    {
+        return $this->belongsTo('App\MedallaGanada', 'IDPERFIL');
+    }
 }

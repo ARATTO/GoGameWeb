@@ -34,4 +34,30 @@ class Actividad extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function tipoActividades()
+    {
+        return $this->hasMany('App\TipoActividad', 'IDTIPOACTIVIDAD');
+    }
+    public function detallePuntos()
+    {
+        return $this->hasMany('App\DetallePunto', 'IDDETALLEPUNTO');
+    }
+    public function grupos()
+    {
+        return $this->hasMany('App\Grupo', 'IDGRUPO');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+
+    public function detallePuntoActividad()
+    {
+        return $this->belongsTo('App\DetallePuntoActividad','IDACTIVIDAD');
+    }
+    
 }

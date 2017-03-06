@@ -33,4 +33,26 @@ class DetalleMedalla extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function materias()
+    {
+        return $this->hasMany('App\Materia', 'IDMATERIA');
+    }
+    public function medallas()
+    {
+        return $this->hasMany('App\Medalla', 'IDMEDALLA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

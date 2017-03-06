@@ -31,4 +31,24 @@ class TipoActividad extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    /*
+    public function _s()
+    {
+        return $this->hasMany('App\_');
+    }
+    */
+
+    /**
+    * Relaciones RETORNOS
+    */
+    
+    public function actividad()
+    {
+        return $this->belongsTo('App\Actividad');
+    }
+    
 }

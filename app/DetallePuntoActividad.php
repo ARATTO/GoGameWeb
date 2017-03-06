@@ -33,4 +33,26 @@ class DetallePuntoActividad extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function users()
+    {
+        return $this->hasMany('App\User', 'IDPERFIL');
+    }
+    public function actividades()
+    {
+        return $this->hasMany('App\Actividad', 'IDACTIVIDAD');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }

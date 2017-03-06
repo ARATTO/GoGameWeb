@@ -34,4 +34,26 @@ class Materia extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    /*
+    public function _s()
+    {
+        return $this->hasMany('App\_');
+    }
+    */
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function detalleMedalla()
+    {
+        return $this->belongsTo('App\DetalleMedalla', 'IDMATERIA');
+    }
+    public function materiaImpartida()
+    {
+        return $this->belongsTo('App\MateriaImpartida', 'IDMATERIA');
+    }
 }

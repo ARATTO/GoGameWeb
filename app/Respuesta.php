@@ -33,4 +33,20 @@ class Respuesta extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function preguntas()
+    {
+        return $this->hasMany('App\Pregunta','IDPREGUNTA');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    public function opcionSeleccionada()
+    {
+        return $this->belongsTo('App\OpcionSeleccionada','IDRESPUESTA');
+    }
 }

@@ -32,4 +32,26 @@ class CuestionarioMateria extends Model
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+
+    /**
+    * Relaciones
+    */
+    public function materiasImpartidas()
+    {
+        return $this->hasMany('App\MateriaImpartida', 'IDMATERIAIMPARTIDA');
+    }
+    public function cuestionarios()
+    {
+        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+    }
+
+    /**
+    * Relaciones RETORNOS
+    */
+    /*
+    public function _()
+    {
+        return $this->belongsTo('App\_');
+    }
+    */
 }
