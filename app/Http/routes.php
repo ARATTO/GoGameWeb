@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    //return bcrypt('dariomotto');
     return view('welcome');
 });
 

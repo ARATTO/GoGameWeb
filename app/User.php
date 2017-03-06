@@ -17,6 +17,7 @@ class User extends Authenticatable
         'IDESTUDIANTE',
         'IDDOCENTE',
         'NOMBREPERFIL',
+        'EMAIL',
         'IMAGENPERFIL',
         'DESCRIPCIONPERFIL',
         'APODO',
