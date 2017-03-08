@@ -13,7 +13,7 @@ class DetallePunto extends Model
      * @var array
      */
     protected $fillable = [
-        'IDDETALLEPUNTO',
+        'id',
         'IDTIPOPUNTO',
         'IDMATERIAIMPARTIDA',
         'ESTAACTIVOPUNTO',
@@ -40,11 +40,11 @@ class DetallePunto extends Model
     */
     public function tipoPuntos()
     {
-        return $this->hasMany('App\TipoPuntos', 'IDTIPOPUNTO');
+        return $this->hasMany('App\TipoPuntos');
     }
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida', 'IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\MateriaImpartida');
     }
 
     /**

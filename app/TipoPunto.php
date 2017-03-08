@@ -13,7 +13,7 @@ class TipoPunto extends Model
      * @var array
      */
     protected $fillable = [
-        'IDTIPOPUNTO',
+        'id',
         'NOMBREPARAMETRO',
         
     ];
@@ -47,6 +47,6 @@ class TipoPunto extends Model
     */
     public function detallePunto()
     {
-        return $this->belongsTo('App\DetallePunto','IDTIPOPUNTO');
+        return $this->belongsTo('App\DetallePunto');
     }
 }

@@ -14,7 +14,7 @@ class Categoria extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCATEGORIA',
+        'id',
         'NOMBRECATEGORIA',
         
     ];
@@ -49,11 +49,11 @@ class Categoria extends Model
     
     public function categoriaCuestionario()
     {
-        return $this->belongsTo('App\CategoriaCuestionario', 'IDCATEGORIA');
+        return $this->belongsTo('App\CategoriaCuestionario');
     }
     public function pregunta()
     {
-        return $this->belongsTo('App\Pregunta', 'IDCATEGORIA');
+        return $this->belongsTo('App\Pregunta');
     }
     
 }

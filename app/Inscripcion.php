@@ -13,7 +13,7 @@ class Inscripcion extends Model
      * @var array
      */
     protected $fillable = [
-        'IDINSCRIPCION',
+        'id',
         'IDESTUDIANTE',
         'IDGRUPO',
         
@@ -38,11 +38,11 @@ class Inscripcion extends Model
     */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante', 'IDESTUDIANTE');
+        return $this->hasMany('App\Estudiante');
     }
     public function grupos()
     {
-        return $this->hasMany('App\Grupo', 'IDGRUPO');
+        return $this->hasMany('App\Grupo');
     }
 
     /**

@@ -13,7 +13,7 @@ class Docente extends Model
      * @var array
      */
     protected $fillable = [
-        'IDDOCENTE',
+        'id',
         'NOMBREDOCENTE',
         'CARNETDOCENTE',
         
@@ -49,11 +49,11 @@ class Docente extends Model
     
     public function grupo()
     {
-        return $this->belongsTo('App\Grupo','IDDOCENTE');
+        return $this->belongsTo('App\Grupo');
     }
     public function user()
     {
-        return $this->belongsTo('App\User','IDDOCENTE');
+        return $this->belongsTo('App\User');
     }
     
 }

@@ -13,7 +13,7 @@ class CuestionarioAsignado extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCUESTIONARIOASIGNADO',
+        'id',
         'IDPERFIL',
         'IDCUESTIONARIO',
         
@@ -38,11 +38,11 @@ class CuestionarioAsignado extends Model
     */
     public function users()
     {
-        return $this->hasMany('App\User', 'IDPERFIL');
+        return $this->hasMany('App\User');
     }
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+        return $this->hasMany('App\Cuestionario');
     }
 
     /**
@@ -50,6 +50,6 @@ class CuestionarioAsignado extends Model
     */
     public function opcionSeleccionada()
     {
-        return $this->belongsTo('App\OpcionSeleccionada','IDCUESTIONARIOASIGNADO');
+        return $this->belongsTo('App\OpcionSeleccionada');
     }
 }

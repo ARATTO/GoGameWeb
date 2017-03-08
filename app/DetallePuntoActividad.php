@@ -13,7 +13,7 @@ class DetallePuntoActividad extends Model
      * @var array
      */
     protected $fillable = [
-        'IDDETALLEPUNTOACTIVIDAD',
+        'id',
         'IDPERFIL',
         'IDACTIVIDAD',
         'PUNTAJEGANADO',
@@ -39,11 +39,11 @@ class DetallePuntoActividad extends Model
     */
     public function users()
     {
-        return $this->hasMany('App\User', 'IDPERFIL');
+        return $this->hasMany('App\User');
     }
     public function actividades()
     {
-        return $this->hasMany('App\Actividad', 'IDACTIVIDAD');
+        return $this->hasMany('App\Actividad');
     }
 
     /**

@@ -13,7 +13,7 @@ class Grupo extends Model
      * @var array
      */
     protected $fillable = [
-        'IDGRUPO',
+        'id',
         'IDDOCENTE',
         'IDTIPOGRUPO',
         'IDMATERIAIMPARTIDA',
@@ -40,15 +40,15 @@ class Grupo extends Model
     */
     public function docentes()
     {
-        return $this->hasMany('App\Docente','IDDOCENTE');
+        return $this->hasMany('App\Docente');
     }
     public function tipoGrupos()
     {
-        return $this->hasMany('App\TipoGrupo','IDTIPOGRUPO');
+        return $this->hasMany('App\TipoGrupo');
     }
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida','IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\MateriaImpartida');
     }
 
     /**
@@ -56,10 +56,10 @@ class Grupo extends Model
     */
     public function actividad()
     {
-        return $this->belongsTo('App\Actividad', 'IDGRUPO');
+        return $this->belongsTo('App\Actividad');
     }
     public function inscripcion()
     {
-        return $this->belongsTo('App\Inscripcion', 'IDGRUPO');
+        return $this->belongsTo('App\Inscripcion');
     }
 }

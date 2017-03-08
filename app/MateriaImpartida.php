@@ -13,7 +13,7 @@ class MateriaImpartida extends Model
      * @var array
      */
     protected $fillable = [
-        'IDMATERIAIMPARTIDA',
+        'id',
         'IDCICLO',
         'IDMATERIA',
         
@@ -39,11 +39,11 @@ class MateriaImpartida extends Model
     
     public function ciclos()
     {
-        return $this->hasMany('App\Ciclo','IDCICLO');
+        return $this->hasMany('App\Ciclo');
     }
     public function materias()
     {
-        return $this->hasMany('App\Materia','IDMATERIA');
+        return $this->hasMany('App\Materia');
     }  
     
 

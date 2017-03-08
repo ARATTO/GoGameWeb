@@ -13,7 +13,7 @@ class MedallaGanada extends Model
      * @var array
      */
     protected $fillable = [
-        'IDMEDALLAGANADA',
+        'id',
         'IDMEDALLA',
         'IDPERFIL',
         
@@ -38,11 +38,11 @@ class MedallaGanada extends Model
     */
     public function medallas()
     {
-        return $this->hasMany('App\Medalla','IDMEDALLA');
+        return $this->hasMany('App\Medalla');
     }
     public function users()
     {
-        return $this->hasMany('App\User','IDPERFIL');
+        return $this->hasMany('App\User');
     }
 
     /**

@@ -13,7 +13,7 @@ class TipoActividad extends Model
      * @var array
      */
     protected $fillable = [
-        'IDTIPOACTIVIDAD',
+        'id',
         'NOMBRETIPOACTIVIDAD',
         
     ];

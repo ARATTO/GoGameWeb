@@ -13,7 +13,7 @@ class Ciclo extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCICLO',
+        'id',
         'CODIGOCICLO',
         'FECHAINICIO',
         'FECHAFIN',
@@ -51,7 +51,7 @@ class Ciclo extends Model
     
     public function materiaImpartida()
     {
-        return $this->belongsTo('App\MateriaImpartida','IDCICLO');
+        return $this->belongsTo('App\MateriaImpartida');
     }
     
 }

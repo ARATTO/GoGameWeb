@@ -13,7 +13,7 @@ class Medalla extends Model
      * @var array
      */
     protected $fillable = [
-        'IDMEDALLA',
+        'id',
         'NOMBREMEDALLA',
         'DESCRIPCIONMEDALLA',
         'ESCUANTITATIVA',
@@ -50,10 +50,10 @@ class Medalla extends Model
     */
     public function detalleMedalla()
     {
-        return $this->belongsTo('App\DetalleMedalla', 'IDMEDALLA');
+        return $this->belongsTo('App\DetalleMedalla');
     }
     public function medallaGanada()
     {
-        return $this->belongsTo('App\MedallaGanada', 'IDMEDALLA');
+        return $this->belongsTo('App\MedallaGanada');
     }
 }

@@ -13,7 +13,7 @@ class Estudiante extends Model
      * @var array
      */
     protected $fillable = [
-        'IDESTUDIANTE',
+        'id',
         'NOMBREESTUDIANTE',
         'CARNETESTUDIANTE',
         
@@ -49,11 +49,11 @@ class Estudiante extends Model
     
     public function inscripcion()
     {
-        return $this->belongsTo('App\Inscripcion', 'IDESTUDIANTE');
+        return $this->belongsTo('App\Inscripcion');
     }
     public function user()
     {
-        return $this->belongsTo('App\User', 'IDESTUDIANTE');
+        return $this->belongsTo('App\User');
     }
     
 }

@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'IDPERFIL',
+        'id',
         'IDESTUDIANTE',
         'IDDOCENTE',
         'NOMBREPERFIL',
@@ -43,11 +43,11 @@ class User extends Authenticatable
     */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante', 'IDESTUDIANTE');
+        return $this->hasMany('App\Estudiante');
     }
     public function docentes()
     {
-        return $this->hasMany('App\Docente', 'IDDOCENTE');
+        return $this->hasMany('App\Docente');
     }
 
     /**
@@ -55,14 +55,14 @@ class User extends Authenticatable
     */
     public function cuestionarioAsignado()
     {
-        return $this->belongsTo('App\CuestionarioAsignado', 'IDPERFIL');
+        return $this->belongsTo('App\CuestionarioAsignado');
     }
     public function detallePuntoActividad()
     {
-        return $this->belongsTo('App\DetallePuntoActividad', 'IDPERFIL');
+        return $this->belongsTo('App\DetallePuntoActividad');
     }
     public function medallaGanada()
     {
-        return $this->belongsTo('App\MedallaGanada', 'IDPERFIL');
+        return $this->belongsTo('App\MedallaGanada');
     }
 }

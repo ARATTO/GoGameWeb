@@ -13,7 +13,7 @@ class OpcionSeleccionada extends Model
      * @var array
      */
     protected $fillable = [
-        'IDOPCIONSELECCIONADA',
+        'id',
         'IDCUESTIONARIOASIGNADO',
         'IDRESPUESTA',
         'IDPREGUNTA',
@@ -39,15 +39,15 @@ class OpcionSeleccionada extends Model
     */
     public function cuestionariosAsignados()
     {
-        return $this->hasMany('App\CuestionarioAsignado','IDCUESTIONARIOASIGNADO');
+        return $this->hasMany('App\CuestionarioAsignado');
     }
     public function respuestas()
     {
-        return $this->hasMany('App\Respuesta','IDRESPUESTA');
+        return $this->hasMany('App\Respuesta');
     }
     public function preguntas()
     {
-        return $this->hasMany('App\Pregunta','IDPREGUNTA');
+        return $this->hasMany('App\Pregunta');
     }
 
     /**

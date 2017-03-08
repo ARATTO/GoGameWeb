@@ -13,7 +13,7 @@ class CuestionarioMateria extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCUESTIONARIOMATERIA',
+        'id',
         'IDMATERIAIMPARTIDA',
         'IDCUESTIONARIO',
         
@@ -38,11 +38,11 @@ class CuestionarioMateria extends Model
     */
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida', 'IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\MateriaImpartida');
     }
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+        return $this->hasMany('App\Cuestionario');
     }
 
     /**

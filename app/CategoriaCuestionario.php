@@ -13,7 +13,7 @@ class CategoriaCuestionario extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCATEGORIACUESTIONARIO',
+        'id',
         'IDCUESTIONARIO',
         'IDCATEGORIA',
         'CANTIDADPREGUNTAS',
@@ -40,11 +40,11 @@ class CategoriaCuestionario extends Model
     */
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario', 'IDCUESTIONARIO');
+        return $this->hasMany('App\Cuestionario');
     }
     public function categorias()
     {
-        return $this->hasMany('App\Categoria', 'IDCATEGORIA');
+        return $this->hasMany('App\Categoria');
     }
 
     /**

@@ -13,7 +13,7 @@ class Actividad extends Model
      * @var array
      */
     protected $fillable = [
-        'IDACTIVIDAD',
+        'id',
         'IDTIPOACTIVIDAD',
         'IDDETALLEPUNTO',
         'IDGRUPO',
@@ -40,15 +40,15 @@ class Actividad extends Model
     */
     public function tipoActividades()
     {
-        return $this->hasMany('App\TipoActividad', 'IDTIPOACTIVIDAD');
+        return $this->hasMany('App\TipoActividad');
     }
     public function detallePuntos()
     {
-        return $this->hasMany('App\DetallePunto', 'IDDETALLEPUNTO');
+        return $this->hasMany('App\DetallePunto');
     }
     public function grupos()
     {
-        return $this->hasMany('App\Grupo', 'IDGRUPO');
+        return $this->hasMany('App\Grupo');
     }
 
     /**
@@ -57,7 +57,7 @@ class Actividad extends Model
 
     public function detallePuntoActividad()
     {
-        return $this->belongsTo('App\DetallePuntoActividad','IDACTIVIDAD');
+        return $this->belongsTo('App\DetallePuntoActividad');
     }
     
 }

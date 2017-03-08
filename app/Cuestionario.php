@@ -13,7 +13,7 @@ class Cuestionario extends Model
      * @var array
      */
     protected $fillable = [
-        'IDCUESTIONARIO',
+        'id',
         'IDDOCENTE',
         'FECHACUESTIONARIO',
         'HORAINICIOCUESTIONARIO',
@@ -41,7 +41,7 @@ class Cuestionario extends Model
     */
     public function docentes()
     {
-        return $this->hasMany('App\Docente','IDDOCENTE');
+        return $this->hasMany('App\Docente');
     }
 
     /**
@@ -50,14 +50,14 @@ class Cuestionario extends Model
     
     public function categoriaCuestionario()
     {
-        return $this->belongsTo('App\CategoriaCuestionario', 'IDCUESTIONARIO');
+        return $this->belongsTo('App\CategoriaCuestionario');
     }
     public function cuestionarioAsignado()
     {
-        return $this->belongsTo('App\CuestionarioAsignado', 'IDCUESTIONARIO');
+        return $this->belongsTo('App\CuestionarioAsignado');
     }
     public function cuestionarioMateria()
     {
-        return $this->belongsTo('App\CuestionarioMateria', 'IDCUESTIONARIO');
+        return $this->belongsTo('App\CuestionarioMateria');
     }
 }

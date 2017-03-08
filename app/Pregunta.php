@@ -13,7 +13,7 @@ class Pregunta extends Model
      * @var array
      */
     protected $fillable = [
-        'IDPREGUNTA',
+        'id',
         'IDCATEGORIA',
         'IDTIPOPREGUNTA',
         'PREGUNTA',
@@ -39,11 +39,11 @@ class Pregunta extends Model
     */
     public function categorias()
     {
-        return $this->hasMany('App\Categoria','IDCATEGORIA');
+        return $this->hasMany('App\Categoria');
     }
     public function tipoPreguntas()
     {
-        return $this->hasMany('App\TipoPregunta','IDTIPOPREGUNTA');
+        return $this->hasMany('App\TipoPregunta');
     }
 
     /**
@@ -51,10 +51,10 @@ class Pregunta extends Model
     */
     public function opcionSeleccionada()
     {
-        return $this->belongsTo('App\OpcionSeleccionada','IDPREGUNTA');
+        return $this->belongsTo('App\OpcionSeleccionada');
     }
     public function respuesta()
     {
-        return $this->belongsTo('App\Respuesta','IDPREGUNTA');
+        return $this->belongsTo('App\Respuesta');
     }
 }

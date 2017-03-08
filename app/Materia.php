@@ -13,7 +13,7 @@ class Materia extends Model
      * @var array
      */
     protected $fillable = [
-        'IDMATERIA',
+        'id',
         'CODIGOMATERIA',
         'NOMBREMATERIA',
         'ESTECNICAELECTIVA',
@@ -50,10 +50,10 @@ class Materia extends Model
     */
     public function detalleMedalla()
     {
-        return $this->belongsTo('App\DetalleMedalla', 'IDMATERIA');
+        return $this->belongsTo('App\DetalleMedalla');
     }
     public function materiaImpartida()
     {
-        return $this->belongsTo('App\MateriaImpartida', 'IDMATERIA');
+        return $this->belongsTo('App\MateriaImpartida');
     }
 }

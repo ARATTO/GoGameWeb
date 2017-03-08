@@ -13,7 +13,7 @@ class TipoGrupo extends Model
      * @var array
      */
     protected $fillable = [
-        'IDTIPOGRUPO',
+        'id',
         'NOMBRETIPOGRUPO',
         
     ];
@@ -47,6 +47,6 @@ class TipoGrupo extends Model
     */
     public function grupo()
     {
-        return $this->belongsTo('App\Grupo','IDTIPOGRUPO');
+        return $this->belongsTo('App\Grupo');
     }
 }

@@ -13,7 +13,7 @@ class TipoPregunta extends Model
      * @var array
      */
     protected $fillable = [
-        'IDTIPOPREGUNTA',
+        'id',
         'NOMBRETIPOPREGUNTA',
         
     ];
@@ -47,6 +47,6 @@ class TipoPregunta extends Model
     */
     public function pregunta()
     {
-        return $this->belongsTo('App\Pregunta','IDTIPOPREGUNTA');
+        return $this->belongsTo('App\Pregunta');
     }
 }
