@@ -50,9 +50,9 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         /*Middleware Personalizado*/
-        'admin' => \Illuminate\Routing\Middleware\MddwareAdministrador::class,
-        'docente' => \Illuminate\Routing\Middleware\MddwareDocente::class,
-        'estudiante' => \Illuminate\Routing\Middleware\MddwareEstudiante::class,
+        'admin' => \App\Http\Middleware\MddwareAdministrador::class,
+        'docente' => \App\Http\Middleware\MddwareDocente::class,
+        'estudiante' => \App\Http\Middleware\MddwareEstudiante::class,
         /**/
     ];
 }

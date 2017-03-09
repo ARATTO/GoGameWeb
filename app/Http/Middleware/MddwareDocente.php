@@ -14,30 +14,12 @@ class MddwareDocente {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        /*
-        switch ($request->user()->tipoUsuario()) { //Mddwr para Docente
-            case 1: //Se debe quitar
-                return $next($request);
-                break;
-            case 2:
-                return $next($request);
-                break;
-            case 3:
-                return $next($request);
-                break;
-            case 4:
-                return $next($request);
-                break;
-            case 5:
-                return $next($request);
-                break;
-            case 7:
-                return $next($request);
-                break;
-            default :
-                abort(401);
+        if( !is_null($request->user()->IDDOCENTE) )  { //Mddwr para IDDocente != NULL entonces es Docente
+            return $next($request);
+        }else {
+            abort(401);
         }
-        */
+
     }
 
 }

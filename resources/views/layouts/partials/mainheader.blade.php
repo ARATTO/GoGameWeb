@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>G</b>G</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE Laravel </span>
+        <span class="logo-lg"><b>Go</b>Game </span>
     </a>
 
     <!-- Header Navbar -->
@@ -119,14 +119,14 @@
                             <!-- The user image in the navbar-->
                             <img src="{{asset('/img/user2-160x160.jpg')}}" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            <span class="hidden-xs">{{ Auth::user()->NOMBREPERFIL }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
                                 <p>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->NOMBREPERFIL }}
                                     <small>{{ trans('adminlte_lang::message.login') }} Nov. 2012</small>
                                 </p>
                             </li>

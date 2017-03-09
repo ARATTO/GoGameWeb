@@ -17,7 +17,13 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-    Route::get('/admin', 'HomeController@index');
- 
+
+    Route::group(['middleware' => 'admin'], function () {
+        Route::auth();
+    
+        Route::get('/admin', 'HomeController@index');
+    });
+
+    
+
 });
