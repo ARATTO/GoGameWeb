@@ -12,6 +12,14 @@ return [
     | 
     |
     */
+    'LosEternos'     => 'Los_Eternos',
+    'GoGame'         => 'GoGame',
+
+    /*
+    *  Header Generales Pages
+    */
+    'Inicio'                => 'Inicio',
+    
 
     /*
     *  Inicio Slide Bar
@@ -55,5 +63,13 @@ return [
     *  Fin SlideBar
     */
     
+    /*
+    *  Inicio Footer
+    */
+    'CodigoFuente'           => 'En Espera',
+    /*
+    *  Fin Footer
+    */
+
 
 ];
