@@ -15,11 +15,17 @@
       user experience. Slimscroll is required when using the
       fixed layout. -->
 
+<!-- Mensajes Flash -->
+<script>
+    $('#flash-overlay-modal').modal();
+</script>
+<!-- Fin Mansajes Flash -->
+
 <!-- JS PARA TABLAS -->
 
 <!-- Usuarios -->
 <script type="text/javascript">
 	$(document).ready(function() {
-            $('#example').DataTable();
+            $('#UsuarioLista').DataTable();
       });
 </script>

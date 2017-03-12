@@ -17,18 +17,18 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
-
+    Route::auth();
+    Route::get('/admin', 'HomeController@index');
     Route::group(['middleware' => 'admin'], function () {
-        Route::auth();
+        
         
         Route::resource('users','UserController');
-        Route::get('users/create','UserController@create');
         Route::get('users/{id}/destroy', [
             'as' => 'users.destroy',
             'uses' => 'UserController@destroy'
         ]);
 
-        Route::get('/admin', 'HomeController@index');
+        
     });
 
     

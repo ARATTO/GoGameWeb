@@ -18,7 +18,7 @@ class User extends Authenticatable
         'IDDOCENTE',
         'ESADMINISTRADOR',
         'NOMBREPERFIL',
-        'EMAIL',
+        'email',
         'IMAGENPERFIL',
         'DESCRIPCIONPERFIL',
         'APODO',
@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'PASSWORD',
+        'password',
         'remember_token',
     ];
 

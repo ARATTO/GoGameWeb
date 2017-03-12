@@ -7,19 +7,22 @@ return [
     | GoGame Lenguaje
     |--------------------------------------------------------------------------
     |
-    | Acontinuacion se presentan los manesajes para nuestra App 
-    | Bienvenido Papu. :v 
+    | Acontinuacion se presentan los 'trans' para nuestra PlataformaWeb
+    | Y algunas configuraciones basicas de texto.
     | 
-    |
+    | Bienvenido rufian. GG IZI
     */
-    'LosEternos'     => 'Los_Eternos',
-    'GoGame'         => 'GoGame',
+    'LosEternos'             => 'Los_Eternos',
+    'GoGame'                 => 'GoGame',
+    'correoInstitucional'    => '@ues.edu.sv',
 
     /*
     *  Header Generales Pages
     */
     'Inicio'                => 'Inicio',
-    
+    'Crear'                 => 'Crear',
+    'Borrar'                => 'Borrar',
+    'Cancelar'              => 'Cancelar',
 
     /*
     *  Inicio Slide Bar
@@ -52,6 +55,8 @@ return [
     'VerMateria'             => 'Ver Usuarios',
     'VerMedalla'             => 'Ver Medallas',
     'VerCiclo'               => 'Ver Ciclo',
+
+    'CrearUsuario'           =>'Crear Usuario',
     
 
     'NuevoCuestionario'      => 'CREAR CUESTIONARIO',
@@ -71,5 +76,13 @@ return [
     *  Fin Footer
     */
 
+    /*
+    *  TABLA
+    */
+    'SI'                     =>'SI',
+    'NO'                     =>'NO',
+    /*
+    *  Fin TABLA
+    */
 
 ];
