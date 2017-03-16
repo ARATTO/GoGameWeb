@@ -20,14 +20,23 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/admin', 'HomeController@index');
     Route::group(['middleware' => 'admin'], function () {
-        
-        
-        Route::resource('users','UserController');
-        Route::get('users/{id}/destroy', [
-            'as' => 'users.destroy',
-            'uses' => 'UserController@destroy'
-        ]);
 
+        /*
+        * Inicio Rutas para User
+        */
+        Route::resource('users','UserController');
+        Route::get('users/{id}/activar', [
+            'as' => 'users.activar',
+            'uses' => 'UserController@activar'
+        ]);
+        Route::get('users/{id}/inactivar', [
+            'as' => 'users.inactivar',
+            'uses' => 'UserController@inactivar'
+        ]);
+        /*
+        * Fin Rutas para User
+        */
+        
         
     });
 

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Docente;
 use App\Http\Requests;
-use Intervention\Image\Facades\Image as Image;
+use Image;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
@@ -22,9 +23,9 @@ class UserController extends Controller
    	}
 
     public function index()
-    {
+    {   
         $users = User::all();
-        //dd($users);
+        
         return view('user.index')->with(['users'=>$users]);
     }
 
@@ -48,7 +49,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        //dd($request->file);
+
+        //Imagen
+        if($request->file('fotoPerfil'))
+        {
+          $Foto = $request->file('fotoPerfil');
+          $nombreFoto = 'gogame' . time() . '.' . $Foto->getClientOriginalExtension();
+          $path = public_path() . "/gogame/FotoPerfil";
+          $Foto->move($path, $nombreFoto);
+        }else{
+          //Foto por Default
+          $nombreFoto = 'GGLogo.png';
+        }
 
         //Guardar Docente
         if($request->ESDOCENTE == 1){
@@ -64,6 +77,7 @@ class UserController extends Controller
         $User->NOMBREPERFIL = $firstname;
         $User->email = $request->CARNETDOCENTE . trans('gogamessage.correoInstitucional');
         $User->password = bcrypt($request->CARNETDOCENTE);
+        $User->IMAGENPERFIL = $nombreFoto;
         if($request->ESADMINISTRADOR == 1){
             $User->ESADMINISTRADOR = 1;
         }
@@ -71,13 +85,33 @@ class UserController extends Controller
             $User->IDDOCENTE = $Docente->id;
         }
 
+        $User->save();
+
+
+        /*
         // resize image
-        $big_image = Image::make(Input::file($request->file)->getRealPath())->resize(870, null, true, false);
-        $User->IMAGENPERFIL = $big_image;
+        // open an image file
+        $img = Image::make('/media/motto/ERGO/GIT/GoGameWeb/public/gogame/images/los_eternos_mini.jpg');
 
-        dd($User);
+        // now you are able to resize the instance
+        //$img->resize(320, 240);
+        $img->save('/media/motto/ERGO/GIT/GoGameWeb/public/gogame/images/los_eternos_mini.jpg');
+
+        //$big_image = Image::make(Input::file('public/gogame/images/l_ejpg.jpg')->getRealPath())->resize(870, null, true, false);
+        $User->IMAGENPERFIL = $img;
+
         
+        //dd($User);
+        */
+        
+        //flash('Usuario '.$User->NOMBREPERFIL.' creado con exito', 'success');
+        Flash::info("Se ha registrado ".$User->NOMBREPERFIL." de forma exitosa");
 
+        //dd($request);
+
+        return redirect()->route('users.index');
+
+        
 
     }
 
@@ -100,7 +134,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('user.editar')->with(['user'=>$user]);
     }
 
     /**
@@ -124,5 +160,34 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /*
+    *
+    * Mis Funciones
+    *
+    */
+    
+    public function activar($id){
+
+        $user = User::find($id);
+        $user->ESACTIVO = 1;
+        $user->save();
+
+        Flash::success("Se ha ACTIVADO ".$user->NOMBREPERFIL." de forma exitosa");
+
+        return redirect()->route('users.index');
+    }
+
+    public function inactivar($id){
+        
+        $user = User::find($id);
+        $user->ESACTIVO = null;
+        $user->save();
+
+        Flash::danger("Se ha INACTIVADO ".$user->NOMBREPERFIL." de forma exitosa");
+
+        return redirect()->route('users.index');
+
     }
 }

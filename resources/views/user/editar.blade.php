@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('gogamessage.Usuario') }}
+	{{ trans('gogamessage.Usuario'.'gogamessage.Editar') }}
 @endsection
         
 @section('main-content')
-    @include('layouts.partials.contentheader.crearUser_head')
+    @include('layouts.partials.contentheader.editarUser_head')
         <section class="content">
             <div class="container spark-screen">    
                 <div class="row">
@@ -19,7 +19,7 @@
 
                                         <div class="form-group">
                                             {!! form::label('CARNETDOCENTE','Carnet') !!}
-                                            {!! form::text('CARNETDOCENTE', null, ['class' => 'form-control', 'placeholder'=> 'Carnet de Usuario', 'required']) !!}
+                                            {!! form::text('CARNETDOCENTE', $user->CARNETDOCENTE, ['class' => 'form-control', 'placeholder'=> 'Carnet de Usuario', 'required']) !!}
                                         </div>
                                         <div class="form-group">
                                             {!! form::label('NOMBREDOCENTE','Nombre') !!}

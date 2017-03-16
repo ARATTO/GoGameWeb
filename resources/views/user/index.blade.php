@@ -14,8 +14,9 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ trans('gogamessage.Usuario') }}</div>
-
 					<div class="panel-body">
+						@include('bones-flash::bones.flash')
+						@include('layouts.partials.flash')
 							<table id="UsuarioLista" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								<thead>
 									<tr>
@@ -25,6 +26,8 @@
 										<th>Administrador</th>
 										<th>Docente</th>
 										<th>Estudiante</th>
+										<th>Activo</th>
+										<th>Accion</th>
 									</tr>
 								</thead>
 								<tfoot>
@@ -35,17 +38,19 @@
 										<th>Administrador</th>
 										<th>Docente</th>
 										<th>Estudiante</th>
+										<th>Activo</th>
+										<th>Accion</th>
 									</tr>
 								</tfoot>
 								<tbody>
 									@foreach($users as $user)
-									{{$user->IMAGENPERFIL}}
-									<img alt="foto perfil" src="data:image/jpeg;base64,base64_encode( $user->IMAGENPERFIL )"/>
 										<tr>
 											<td>
-												{{$imagen = $user->IMAGENPERFIL}}
-												{{--<img src="data:image/jpeg;base64,'.base64_encode( $user->IMAGENPERFIL  ).'"/>;--}}
-												<img alt="foto perfil" src="data:image/jpg;base64,'.base64_encode( $imagen ).'"/>
+												<ul class="nav navbar-nav">
+													<li class="dropdown user user-menu">
+													<img src="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" class="user-image" alt="User Image">
+													</li>
+												</ul>
 											</td>
 											<td>{{$user->NOMBREPERFIL}}</td>
 											<td>{{$user->email}}</td>
@@ -68,6 +73,31 @@
 													<span class="label label-success col-md-8"> {{trans('gogamessage.SI')}}</span>
 												@else
 													<span class="label label-danger col-md-8"> {{trans('gogamessage.NO')}}</span>
+												@endif
+											</td>
+											<td>
+												@if($user->ESACTIVO != null)
+													<span class="label label-success col-md-8"> {{trans('gogamessage.SI')}}</span>
+												@else
+													<span class="label label-danger col-md-8"> {{trans('gogamessage.NO')}}</span>
+												@endif
+											</td>
+											<td>
+												@if($user->ESADMINISTRADOR != null)
+														<a href="#" class="btn btn-info" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
+															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+														</a>
+												@else	
+													@if($user->ESACTIVO != null)
+														
+														<a href=" {{ route('users.inactivar' , $user->id) }} " class="btn btn-danger" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+														</a>
+													@else
+														<a href=" {{ route('users.activar' , $user->id) }} " class="btn btn-success" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
+															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+														</a>
+													@endif
 												@endif
 											</td>
 										</tr>
