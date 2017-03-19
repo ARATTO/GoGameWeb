@@ -5,7 +5,7 @@
 @endsection
         
 @section('main-content')
-    @include('layouts.partials.contentheader.crearUser_head')
+    @include('layouts.partials.contentheader.user.crear_head')
         <section class="content">
             <div class="container spark-screen">    
                 <div class="row">
@@ -26,21 +26,17 @@
                                             {!! form::text('NOMBREDOCENTE', null, ['class' => 'form-control', 'placeholder'=> 'Nombre de Usuario', 'required']) !!}
                                         </div>
                                         <div class="form-group">
-                                            <div class="checkbox">
-                                                <label>
-                                                <input type="checkbox" value="1" name="ESADMINISTRADOR">Es Administrador
-                                                </label>
+                                                <input type="checkbox" value="1" name="ESADMINISTRADOR" class="form-control">
+                                                {!! form::label('checkbox',' Es Administrador') !!}
                                         </div>
                                         <div class="form-group">
-                                            <div class="checkbox">
-                                                <label>
-                                                <input type="checkbox" value="1" name="ESDOCENTE">Es Docente
-                                                </label>
+                                                <input type="checkbox" value="1" name="ESDOCENTE" class="form-control">
+                                                {!! form::label('checkbox',' Es Docente') !!}
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputFoto">Foto de Perfil</label>
+                                            <label for="inputFoto"> {{trans('gogamessage.FotoPerfil')}} </label>
                                             <input type="file" name="fotoPerfil" id="inputFoto">
-                                            <p class="help-block">Foto perfil por Defecto.</p>
+                                            <p class="help-block"> {{trans('gogamessage.FotoPerfil')}} {{trans('gogamessage.PorDefecto')}}.</p>
                                         </div>
                                         <button type="submit" class="btn btn-success"> {{trans('gogamessage.Crear')}} </button>
                                         

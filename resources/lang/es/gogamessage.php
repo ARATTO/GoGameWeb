@@ -57,6 +57,7 @@ return [
     'VerCiclo'               => 'Ver Ciclo',
 
     'CrearUsuario'           =>'Crear Usuario',
+    'CrearCiclo'             =>'Crear Ciclo',
     
 
     'NuevoCuestionario'      => 'CREAR CUESTIONARIO',
@@ -83,6 +84,15 @@ return [
     'NO'                     =>'NO',
     /*
     *  Fin TABLA
+    */
+
+    /*
+    *  FORM
+    */
+    'FotoPerfil'             =>'Foto de Perfil',
+    'PorDefecto'             =>'por Defecto',
+    /*
+    *  Fin FORM
     */
 
 ];

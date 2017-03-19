@@ -8,6 +8,11 @@
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
 <!-- DataTable pluggin -->
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<!-- Include Date Range Picker Pluging RangosFechas-->
+<script type="text/javascript" src="{{ asset('/plugins/daterangepicker/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Include Plugin Checkbox-->
+<script src="{{ asset('/plugins/checkbox/bootstrap-checkbox.min.js') }}" defer></script>
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
@@ -23,9 +28,27 @@
 
 <!-- JS PARA TABLAS -->
 
-<!-- Usuarios -->
+<!-- TABLA -->
 <script type="text/javascript">
 	$(document).ready(function() {
-            $('#UsuarioLista').DataTable();
+            $('#TablaLista').DataTable();
       });
+</script>
+
+<!-- Include Date Range Picker Pluging RangosFechas -->
+<script type="text/javascript">
+       $(function() {
+            $('input[name="daterange"]').daterangepicker();
+       });
+</script>
+
+<!-- Include Plugin CheckBox -->
+<script>
+      $(function() {
+            $(':checkbox').checkboxpicker({
+                  html: true,
+                  offLabel: '<span class="glyphicon glyphicon-remove">',
+                  onLabel: '<span class="glyphicon glyphicon-ok">'
+            })
+      }); 
 </script>

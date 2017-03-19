@@ -65,8 +65,8 @@
                     <li class="treeview">
                         <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Ciclo') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="#">{{ trans('gogamessage.VerCiclo') }}</a></li>
-                            
+                            <li><a href="{{ route('ciclos.index') }}">{{ trans('gogamessage.VerCiclo') }}</a></li>
+                            <li><a href="{{ route('ciclos.create') }}">{{ trans('gogamessage.CrearCiclo') }}</a></li>
                         </ul>
                     </li>
                     <!-- Fin Menu Ciclos -->

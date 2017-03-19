@@ -5,7 +5,7 @@
 @endsection
         
 @section('main-content')
-    @include('layouts.partials.contentheader.indexUser_head')
+    @include('layouts.partials.contentheader.user.index_head')
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
@@ -17,7 +17,7 @@
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
-							<table id="UsuarioLista" class="table table-striped table-bordered" cellspacing="0" width="100%">
+							<table id="TablaLista" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								<thead>
 									<tr>
 										<th>Foto</th>
@@ -48,7 +48,7 @@
 											<td>
 												<ul class="nav navbar-nav">
 													<li class="dropdown user user-menu">
-													<img src="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" class="user-image" alt="User Image">
+													<img src="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" class="user-image" alt="Foto">
 													</li>
 												</ul>
 											</td>
@@ -84,17 +84,17 @@
 											</td>
 											<td>
 												@if($user->ESADMINISTRADOR != null)
-														<a href="#" class="btn btn-info" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
+														<a href="#" class="btn btn-info btn-block" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
 															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 														</a>
 												@else	
 													@if($user->ESACTIVO != null)
 														
-														<a href=" {{ route('users.inactivar' , $user->id) }} " class="btn btn-danger" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.inactivar' , $user->id) }} " class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
 														</a>
 													@else
-														<a href=" {{ route('users.activar' , $user->id) }} " class="btn btn-success" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.activar' , $user->id) }} " class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
 														</a>
 													@endif
