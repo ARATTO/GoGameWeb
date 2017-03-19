@@ -11,8 +11,8 @@
 <!-- Include Date Range Picker Pluging RangosFechas-->
 <script type="text/javascript" src="{{ asset('/plugins/daterangepicker/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Include Plugin Checkbox-->
-<script src="{{ asset('/plugins/checkbox/bootstrap-checkbox.min.js') }}" defer></script>
+<!-- Include Plugin Checkbox https://vsn4ik.github.io/bootstrap-checkbox -->
+<script src="{{ asset('/plugins/checkbox/bootstrap-checkbox.min.js') }}"></script>
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
