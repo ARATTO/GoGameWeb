@@ -24,7 +24,6 @@ class CicloController extends Controller
     {   
         $ciclos = Ciclo::orderBy('id')->get();
 
-
         return view('ciclo.index')->with(['ciclos'=>$ciclos]);
     }
 
@@ -46,7 +45,29 @@ class CicloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ciclo = new Ciclo;
+        $ciclo->CODIGOCICLO = $request->CODIGOCICLO;
+        //Crear Array con FechaInicio, - , FechaFin
+        $split = explode(" ", $request->daterange);
+        $ciclo->FECHAINICIO = $split[0];
+        $ciclo->FECHAFIN    = $split[2];
+        //Si desea el Usuario Activar el Ciclo
+        if($request->ESTAACTIVOCICLO == 1){
+            //Buscar ciclo activo e Inactivarlo
+            $CicloActivo = Ciclo::where('ESTAACTIVOCICLO',1)->first();
+            $CicloActivo->ESTAACTIVOCICLO = 0;
+            $CicloActivo->save();
+            //Activar
+            $ciclo->ESTAACTIVOCICLO = 1;
+            
+            Flash::warning("Se ha CREADO y ACTIVADO Ciclo: ".$ciclo->CODIGOCICLO." de forma exitosa");
+        }else{
+            Flash::success("Se ha CREADO Ciclo: ".$ciclo->CODIGOCICLO." de forma exitosa");
+        }
+        //Guardar Ciclo Creado
+        $ciclo->save();
+
+        return redirect()->route('ciclos.index');
     }
 
     /**
@@ -91,7 +112,22 @@ class CicloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Ciclo solicitado
+        $Ciclo = Ciclo::find($id);
+        //¿Nunca ha sido Utlizado?
+        if($Ciclo->ESTAACTIVOCICLO == null){
+            //ELiminar Ciclo
+            $Ciclo->delete();
+            Flash::info("Ciclo: ".$Ciclo->CODIGOCICLO." ELIMINADO exitosamente.");
+        }else{
+            //¿Esta Activo (1) o Ha estado Activo antes (0)?
+            if($Ciclo->ESTAACTIVOCICLO == 1){
+                Flash::warning("Lo sentimos, No podemos eliminar el Ciclo :".$Ciclo->CODIGOCICLO." pues, esta ACTIVO");
+            }else{
+                Flash::warning("Lo sentimos, No podemos eliminar el Ciclo :".$Ciclo->CODIGOCICLO." pues, ha sido utilizado antes.");
+            }
+        }
+        return redirect()->route('ciclos.index');
     }
 
     public function activar($id){

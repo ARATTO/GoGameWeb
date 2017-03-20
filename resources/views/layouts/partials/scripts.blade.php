@@ -38,7 +38,12 @@
 <!-- Include Date Range Picker Pluging RangosFechas -->
 <script type="text/javascript">
        $(function() {
-            $('input[name="daterange"]').daterangepicker();
+            $('input[name="daterange"]').daterangepicker({
+                  
+                        "format": "YYYY-MM-DD",
+                        "separator": " al ",
+                       
+            });
        });
 </script>
 

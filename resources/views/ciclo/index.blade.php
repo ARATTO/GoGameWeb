@@ -47,7 +47,6 @@
                                                         <a href="#" class="btn btn-info btn-block" disabled="disabled">
 															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 														</a>
-                                                        
 												@else		
 														<a href=" {{ route('ciclos.activar' , $ciclo->id) }} " class="btn btn-danger btn-block" onclick="return confirm('¿ Realmente desea Activar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>

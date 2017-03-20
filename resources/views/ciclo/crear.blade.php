@@ -23,7 +23,7 @@
                                             {!! form::label('CODIGOCICLO','Codigo Ciclo') !!}
                                             {!! form::text('CODIGOCICLO', null, ['class' => 'form-control', 'placeholder'=> 'codigo de Ciclo', 'required']) !!}
                                         </div>
-
+ 
                                         <div class="form-group">
                                             {!! form::label('daterange','Fechas de Ciclo') !!}
                                             {!! form::text('daterange', null, ['class' => 'form-control', 'required']) !!}

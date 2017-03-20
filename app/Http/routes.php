@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
     Route::get('/admin', 'HomeController@index');
     
@@ -46,9 +46,9 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'ciclos.activar',
             'uses' => 'CicloController@activar'
         ]);
-        Route::get('users/{id}/destroy', [
-            'as' => 'users.destroy',
-            'uses' => 'UserController@destroy'
+        Route::get('ciclos/destroy/{id}', [
+            'as' => 'ciclos.destroy',
+            'uses' => 'CicloController@destroy'
         ]);
         /*
         * Fin Rutas para Ciclo
@@ -59,4 +59,4 @@ Route::group(['middleware' => 'web'], function () {
 
     
 
-});
+
