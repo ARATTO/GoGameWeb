@@ -49,6 +49,7 @@ return [
     'VerLista'               => 'VER LISTA',
     'Nuevo'                  => 'NUEVO',
     'Editar'                 => 'EDITAR',
+    'Guardar'                => 'GUARDAR',
     'Eliminar'               => 'ELIMINAR',
 
     'VerUsuario'             => 'Ver Usuarios',

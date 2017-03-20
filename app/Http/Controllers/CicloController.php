@@ -89,7 +89,10 @@ class CicloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Ciclo = Ciclo::find($id);
+        $RangoFecha = $Ciclo->FECHAINICIO . " al " . $Ciclo->FECHAFIN;
+
+        return view('ciclo.editar')->with(['ciclo'=>$Ciclo, 'rangoFecha'=>$RangoFecha]);
     }
 
     /**
@@ -100,8 +103,19 @@ class CicloController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+
+        $ciclo = Ciclo::find($id);
+        $ciclo->fill($request->all());
+
+        //Crear Array con FechaInicio, - , FechaFin
+        $split = explode(" ", $request->daterange);
+        $ciclo->FECHAINICIO = $split[0];
+        $ciclo->FECHAFIN    = $split[2];
+
+        $ciclo->save();
+
+        return redirect()->route('ciclos.index');
     }
 
     /**
