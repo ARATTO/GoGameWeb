@@ -53,7 +53,7 @@ return [
     'Eliminar'               => 'ELIMINAR',
 
     'VerUsuario'             => 'Ver Usuarios',
-    'VerMateria'             => 'Ver Usuarios',
+    'VerMateria'             => 'Ver Materias',
     'VerMedalla'             => 'Ver Medallas',
     'VerCiclo'               => 'Ver Ciclo',
 

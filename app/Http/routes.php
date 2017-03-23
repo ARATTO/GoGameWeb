@@ -54,6 +54,18 @@ Route::get('/', function () {
         * Fin Rutas para Ciclo
         */
 
+        /*
+        * Inicio Rutas para Materia
+        */
+        Route::resource('materias','MateriaController');
+        Route::get('materias/destroy/{id}', [
+            'as' => 'materias.destroy',
+            'uses' => 'MateriaController@destroy'
+        ]);
+        /*
+        * Fin Rutas para Materia
+        */
+
         
     });
 
