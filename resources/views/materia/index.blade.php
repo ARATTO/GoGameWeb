@@ -42,7 +42,9 @@
 											<td>
 												<ul class="nav navbar-nav">
 													<li class="dropdown user user-menu">
-													<img src="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" class="user-image" alt="Materia">
+														<a href="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" rel="lightbox" data-tittle="{{$materia->NOMBREMATERIA}}">
+															<img src="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" class="user-image">
+														</a>
 													</li>
 												</ul>
 											</td>
@@ -50,13 +52,17 @@
 											<td>{{$materia->NOMBREMATERIA}}</td>
 											<td>
 												@if($materia->ESTECNICAELECTIVA != null && $materia->ESTECNICAELECTIVA == 1)
-                                                    <span class="label label-success col-md-12"> {{trans('gogamessage.SI')}} </span>
+													<a href="#" class="btn btn-success btn-block" disabled="disabled">
+												    	{{ trans('gogamessage.SI') }}
+													</a>
 												@else
-													<span class="label label-info col-md-12"> {{trans('gogamessage.NO')}} </span>
+													<a href="#" class="btn btn-info btn-block" disabled="disabled">
+												    	{{ trans('gogamessage.NO') }}
+													</a>
 												@endif
 											</td>
 											<td>
-												<a href="#" class="btn btn-warning btn-block">
+												<a href="{{ route('materias.edit' , $materia->id) }}" class="btn btn-warning btn-block">
 												    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 												</a>
 											</td>

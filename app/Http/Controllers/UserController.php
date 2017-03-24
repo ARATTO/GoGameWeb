@@ -60,7 +60,7 @@ class UserController extends Controller
           $Foto->move($path, $nombreFoto);
         }else{
           //Foto por Default
-          $nombreFoto = 'GGLogo.png';
+          $nombreFoto = '_PerfilDefault.png';
         }
 
         //Guardar Docente

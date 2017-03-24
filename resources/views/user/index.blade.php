@@ -48,7 +48,9 @@
 											<td>
 												<ul class="nav navbar-nav">
 													<li class="dropdown user user-menu">
-													<img src="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" class="user-image" alt="Foto">
+														<a href="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" rel="lightbox">
+															<img src="{{ asset('/gogame/FotoPerfil')}}/{{ $user->IMAGENPERFIL }}" class="user-image">
+														</a>
 													</li>
 												</ul>
 											</td>
@@ -89,7 +91,6 @@
 														</a>
 												@else	
 													@if($user->ESACTIVO != null)
-														
 														<a href=" {{ route('users.inactivar' , $user->id) }} " class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
 														</a>

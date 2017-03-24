@@ -59,6 +59,7 @@ return [
 
     'CrearUsuario'           =>'Crear Usuario',
     'CrearCiclo'             =>'Crear Ciclo',
+    'CrearMateria'           =>'Crear Materia',
     
 
     'NuevoCuestionario'      => 'CREAR CUESTIONARIO',
@@ -92,6 +93,7 @@ return [
     */
     'FotoPerfil'             =>'Foto de Perfil',
     'PorDefecto'             =>'por Defecto',
+    'Imagen'                 =>'Imagen',
     /*
     *  Fin FORM
     */

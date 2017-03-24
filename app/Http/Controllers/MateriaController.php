@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Materia;
+use Laracasts\Flash\Flash;
 
 class MateriaController extends Controller
 {
@@ -28,7 +29,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('materia.crear');
     }
 
     /**
@@ -39,7 +40,34 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Imagen
+        if($request->file('imgMateria'))
+        {
+          $Foto = $request->file('imgMateria');
+          $nombreFoto = 'gogame' . time() . '.' . $Foto->getClientOriginalExtension();
+          $path = public_path() . "/gogame/FotoMateria";
+          $Foto->move($path, $nombreFoto);
+        }else{
+          //Foto por Default
+          $nombreFoto = '_MateriaDefault.png';
+        }
+
+        //Crear Materia
+        $materia = new Materia();
+
+        
+        
+        $materia->CODIGOMATERIA = $request->CODIGOMATERIA;
+        $materia->NOMBREMATERIA = $request->NOMBREMATERIA;
+        if($request->ESTECNICAELECTIVA == 1){
+            $materia->ESTECNICAELECTIVA = 1;
+        }
+        $materia->IMAGENMATERIA = $nombreFoto;
+        
+        $materia->save();
+
+        Flash::info("Se ha registrado ".$materia->CODIGOMATERIA.": ".$materia->NOMBREMATERIA." de forma exitosa");
+        return redirect()->route('materias.index');
     }
 
     /**
@@ -61,7 +89,9 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $materia = Materia::find($id);
+
+        return view('materia.editar')->with(['materia'=>$materia]);
     }
 
     /**

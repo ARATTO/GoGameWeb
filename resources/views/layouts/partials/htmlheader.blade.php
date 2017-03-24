@@ -38,4 +38,8 @@
 
     <!-- Include Date Range Picker Pluging RangosFechas-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/daterangepicker/daterangepicker-bs3.css') }}" />
+    <!-- Include lightbox para Imagenes Pop-Up-->
+    <link href="{{ asset('/plugins/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet">
+    <!-- Include File-Upload Plugin -->
+    <link href="{{ asset('/plugins/file-input/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 </head>
