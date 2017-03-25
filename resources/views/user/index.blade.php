@@ -58,44 +58,60 @@
 											<td>{{$user->email}}</td>
 											<td>
 												@if($user->ESADMINISTRADOR != null || $user->ESADMINISTRADOR == 1)
-													<span class="label label-warning col-md-12"> {{trans('gogamessage.SI')}} </span>
+													<a href="#" class="btn btn-warning btn-block" disabled="disabled">
+												    	{{trans('gogamessage.SI')}}
+													</a>
 												@else
-													<span class="label label-danger col-md-12"> {{trans('gogamessage.NO')}} </span>
+													<a href="#" class="btn btn-danger btn-block" disabled="disabled">
+												    	{{trans('gogamessage.NO')}}
+													</a>
 												@endif
 											</td>
 											<td>
 												@if($user->IDDOCENTE != null)
-													<span class="label label-success col-md-10"> {{trans('gogamessage.SI')}} </span>
+													<a href="#" class="btn btn-success btn-block" disabled="disabled">
+												    	{{trans('gogamessage.SI')}}
+													</a>
 												@else
-													<span class="label label-danger col-md-10"> {{trans('gogamessage.NO')}}</span>
+												<a href="#" class="btn btn-danger btn-block" disabled="disabled">
+												    	{{trans('gogamessage.NO')}}
+													</a>
 												@endif
 											</td>
 											<td>
 												@if($user->IDESTUDIANTE != null)
-													<span class="label label-success col-md-8"> {{trans('gogamessage.SI')}}</span>
+													<a href="#" class="btn btn-success btn-block" disabled="disabled">
+												    	{{trans('gogamessage.SI')}}
+													</a>
 												@else
-													<span class="label label-danger col-md-8"> {{trans('gogamessage.NO')}}</span>
+													<a href="#" class="btn btn-danger btn-block" disabled="disabled">
+												    	{{trans('gogamessage.NO')}}
+													</a>
 												@endif
 											</td>
 											<td>
 												@if($user->ESACTIVO != null)
-													<span class="label label-success col-md-8"> {{trans('gogamessage.SI')}}</span>
+													<a href="#" class="btn btn-success btn-block" disabled="disabled">
+												    	{{trans('gogamessage.SI')}}
+													</a>
 												@else
-													<span class="label label-danger col-md-8"> {{trans('gogamessage.NO')}}</span>
+													<a href="#" class="btn btn-danger btn-block" disabled="disabled">
+												    	{{trans('gogamessage.NO')}}
+													</a>
 												@endif
 											</td>
 											<td>
 												@if($user->ESADMINISTRADOR != null)
-														<a href="#" class="btn btn-info btn-block" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
+														<a href="#" class="btn btn-info btn-block" title="{{$user->NOMBREPERFIL}} es Usuario Administrador" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
 															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 														</a>
 												@else	
 													@if($user->ESACTIVO != null)
-														<a href=" {{ route('users.inactivar' , $user->id) }} " class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.inactivar' , $user->id) }} " title="Activar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
 														</a>
 													@else
-														<a href=" {{ route('users.activar' , $user->id) }} " class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.activar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
 														</a>
 													@endif

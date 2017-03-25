@@ -34,10 +34,10 @@
                                                 {!! form::label('checkbox',' Es Docente') !!}
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputFoto"> {{trans('gogamessage.FotoPerfil')}} </label>
-                                            <input type="file" name="fotoPerfil" id="inputFoto">
-                                            <p class="help-block"> {{trans('gogamessage.FotoPerfil')}} {{trans('gogamessage.PorDefecto')}}.</p>
+                                            {!! form::label('#','Foto de Perfil') !!}    
+                                            <input id="input-id" type="file" name="fotoPerfil" >
                                         </div>
+                                        
                                         <button type="submit" class="btn btn-success"> {{trans('gogamessage.Crear')}} </button>
                                         
                                     {!! Form::close() !!}                                        

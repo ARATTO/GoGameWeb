@@ -48,7 +48,7 @@
 															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 														</a>
 												@else		
-														<a href=" {{ route('ciclos.activar' , $ciclo->id) }} " class="btn btn-danger btn-block" onclick="return confirm('¿ Realmente desea Activar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
+														<a href=" {{ route('ciclos.activar' , $ciclo->id) }} " title="Activar Ciclo: {{$ciclo->CODIGOCICLO}}" class="btn btn-danger btn-block" onclick="return confirm('¿ Realmente desea Activar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
 														</a>
 												@endif
@@ -58,7 +58,7 @@
                                                     <a href=" {{ route('ciclos.edit' , $ciclo->id) }} " class="btn btn-warning" onclick="return confirm('¿ Realmente desea Editar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     </a>
-                                                    <a href=" {{ route('ciclos.destroy' , $ciclo->id) }} " class="btn btn-danger" onclick="return confirm('¿ Realmente desea ELIMINAR CICLO : {{$ciclo->CODIGOCICLO}} ?')">
+                                                    <a href=" {{ route('ciclos.destroy' , $ciclo->id) }} " title="Eliminar Ciclo: {{$ciclo->CODIGOCICLO}}" class="btn btn-danger" onclick="return confirm('¿ Realmente desea ELIMINAR CICLO : {{$ciclo->CODIGOCICLO}} ?')">
 														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 													</a>
                                                 @else

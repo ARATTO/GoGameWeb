@@ -17,7 +17,7 @@
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
-							{!! Form::open(['route' => ['materias.update', $materia], 'method' => 'PUT']) !!}
+							{!! Form::open(['route' => ['materias.update', $materia], 'method' => 'PUT', 'files' => true]) !!}
                                         
                                          <div class="form-group">
                                             {!! form::label('CODIGOMATERIA','Codigo') !!}
@@ -38,18 +38,18 @@
                                                 {!! form::label('checkbox',' Es Electiva') !!}
                                             </div>
                                         @endif
-                                        <div class="form-group col-xs-6 col-md-4">
-                                          {!! form::label('#','Imagen Actual') !!}    
-                                          <a class="thumbnail" href="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" rel="lightbox" data-tittle="{{$materia->NOMBREMATERIA}}">
+                                        <div class="form-group">
+                                            {!! form::label('#','Actualizar Imagen de Materia') !!}    
+                                            <input id="input-id" type="file" name="imgMateria" title="Agregar Imagen">
+                                        </div>
+                                        {!! form::label('#','Imagen Actual') !!}
+                                        <div class="form-group ">
+                                          <a class="col-xs-6 col-md-4 thumbnail" href="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" rel="lightbox" data-tittle="{{$materia->NOMBREMATERIA}}">
                                              <img src="{{ asset('/gogame/FotoMateria')}}/{{ $materia->IMAGENMATERIA }}" class="img-user">
-                                          </a>
+                                          </a>    
                                         </div>   
                                         <div class="form-group col-xs-6 col-md-12">
-                                            {!! form::label('#','Actualizar Imagen de Materia') !!}    
-                                            <input id="input-id" type="file" name="imgMateria" >
-                                        </div>
-                                        <div class="form-group col-xs-6 col-md-12">
-                                            <button type="submit" class="btn btn-success"> {{trans('gogamessage.Guardar')}} </button>
+                                            <button type="submit" class="btn btn-warning"> {{trans('gogamessage.Actualizar')}} </button>
                                         </div>
                                         
                             {!! Form::close() !!}  

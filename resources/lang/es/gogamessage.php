@@ -51,6 +51,7 @@ return [
     'Editar'                 => 'EDITAR',
     'Guardar'                => 'GUARDAR',
     'Eliminar'               => 'ELIMINAR',
+    'Actualizar'             => 'ACTUALIZAR',
 
     'VerUsuario'             => 'Ver Usuarios',
     'VerMateria'             => 'Ver Materias',

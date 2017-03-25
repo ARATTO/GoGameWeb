@@ -30,9 +30,10 @@
                                                 {!! form::label('checkbox',' Es Electiva') !!}
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputFoto"> Imagen</label>
-                                            <input type="file" name="imgMateria" id="inputFoto">
+                                            {!! form::label('#','Imagen de Materia') !!}    
+                                            <input id="input-id" type="file" name="imgMateria" >
                                         </div>
+                                        
                                         <button type="submit" class="btn btn-success"> {{trans('gogamessage.Crear')}} </button>
                                         
                                     {!! Form::close() !!}                                        

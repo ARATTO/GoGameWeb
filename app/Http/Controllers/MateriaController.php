@@ -103,7 +103,32 @@ class MateriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $materia = Materia::find($id);
+
+        $Fvieja = $materia->IMAGENMATERIA;
+
+        $materia->fill($request->all());
+
+        if($request->file('imgMateria') != null)
+        {
+          $Foto = $request->file('imgMateria');
+          $nombreFoto = 'gogame' . time() . '.' . $Foto->getClientOriginalExtension();
+          $path = public_path() . "/gogame/FotoMateria";
+          $Foto->move($path, $nombreFoto);
+          //Borrar archivo viejo si no es Default
+          $rutaF = $path."/".$Fvieja; //Borra archivo viejo
+          if(file_exists($rutaF) & $Fvieja != "_MateriaDefault.png"){
+              unlink($rutaF); //Borra archivo de foto
+          }
+          //Guardar Nueva Imagen
+          $materia->IMAGENMATERIA = $nombreFoto;
+        }else{
+          $materia->IMAGENMATERIA = $Fvieja; //Guarda vieja foto
+        }
+        $materia->save();
+
+        Flash::warning("Se ha EDITADO  de forma exitosa ".$materia->CODIGOMATERIA.": ".$materia->NOMBREMATERIA);
+        return redirect()->route('materias.index');
     }
 
     /**

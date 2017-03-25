@@ -77,5 +77,7 @@
 <!-- Include Plugin FileShido -->
 <script>
       // defaults
-      $("#input-id").fileinput();       
+      $("#input-id").fileinput({
+            showUpload: false,
+      });       
 </script>
