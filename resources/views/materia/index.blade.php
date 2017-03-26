@@ -62,8 +62,11 @@
 												@endif
 											</td>
 											<td>
-												<a href="{{ route('materias.edit' , $materia->id) }}" class="btn btn-warning btn-block">
+												<a href="{{ route('materias.edit' , $materia->id) }}" class="btn btn-warning ">
 												    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+												</a>
+												<a href="{{ route('materias.destroy' , $materia->id) }}" title="Eliminar : {{$materia->NOMBREMATERIA}}" class="btn btn-danger" onclick="return confirm('¿Eliminar {{$materia->NOMBREMATERIA}} y TODOS sus datos relacionados ?')">
+												    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 												</a>
 											</td>
 										</tr>

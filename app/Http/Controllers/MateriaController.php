@@ -10,6 +10,7 @@ use Laracasts\Flash\Flash;
 
 class MateriaController extends Controller
 {
+    private $MateriaFotoDefault = "_MateriaDefault.png";
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +50,7 @@ class MateriaController extends Controller
           $Foto->move($path, $nombreFoto);
         }else{
           //Foto por Default
-          $nombreFoto = '_MateriaDefault.png';
+          $nombreFoto = $MateriaFotoDefault;
         }
 
         //Crear Materia
@@ -117,7 +118,7 @@ class MateriaController extends Controller
           $Foto->move($path, $nombreFoto);
           //Borrar archivo viejo si no es Default
           $rutaF = $path."/".$Fvieja; //Borra archivo viejo
-          if(file_exists($rutaF) & $Fvieja != "_MateriaDefault.png"){
+          if(file_exists($rutaF) & $Fvieja != $MateriaFotoDefault){
               unlink($rutaF); //Borra archivo de foto
           }
           //Guardar Nueva Imagen
@@ -139,6 +140,32 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $materia = Materia::find($id);
+        //Borrar Imagen Asociada
+        if($materia->IMAGENMATERIA != $MateriaFotoDefault)
+        {
+          $path = public_path() . "/gogame/FotoMateria";
+          //Borrar archivo viejo si no es Default
+          $rutaF = $path."/".$materia->IMAGENMATERIA; //Borra archivo viejo
+          if( file_exists($rutaF) ){
+              unlink($rutaF); //Borra archivo de foto
+          }
+        }
+        //Borra Registro
+        $materia->delete();
     }
+
+    /**
+     * Mis Acciones
+     *
+     * 
+     * 
+     */
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+     
 }

@@ -50,6 +50,14 @@ Route::get('/', function () {
             'as' => 'ciclos.destroy',
             'uses' => 'CicloController@destroy'
         ]);
+        Route::get('ciclos/asignar/{id}', [
+            'as' => 'ciclos.asignar',
+            'uses' => 'CicloController@asignar'
+        ]);
+        Route::post('ciclos/asignadas/{id}', [
+            'as' => 'ciclos.asignadas',
+            'uses' => 'CicloController@asignadas'
+        ]);
         /*
         * Fin Rutas para Ciclo
         */

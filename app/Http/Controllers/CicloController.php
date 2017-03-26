@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Ciclo;
+use App\Materia;
+use App\MateriaImpartida;
 use Laracasts\Flash\Flash;
 
 class CicloController extends Controller
@@ -158,6 +160,44 @@ class CicloController extends Controller
 
         Flash::info("Ciclo : ".$Ciclo->CODIGOCICLO." ACTIVADO de forma exitosa");
 
+        return redirect()->route('ciclos.index');
+    }
+
+    public function asignar($id){
+
+        $ciclo = Ciclo::find($id);
+        $materias = Materia::all();
+        $MateriaImpartida = MateriaImpartida::where('IDCICLO', $id)->get();
+
+        
+
+        return view('ciclo.asignar')->with(['ciclo'=>$ciclo, 
+                                            'materias'=>$materias, 
+                                            'MateriaImpartida'=>$MateriaImpartida]);
+    }
+    public function asignadas(Request $request, $id){
+        $ciclo = Ciclo::find($id);
+        //Recibe Array de Materias Seleccionadas para el Ciclo
+        if($request->MateriaSeleccionada){
+            foreach($request->MateriaSeleccionada as $materia){
+                //Consulta si ya existe en la Tabla
+                $existeMateriaImpartida = MateriaImpartida::where('IDCICLO', $id)
+                                        ->where('IDMATERIA', $materia)->first();
+                //Si, No esta Asociada al ciclo?
+                if(!$existeMateriaImpartida){
+                    //Crear Nueva Materia Impartida
+                    $materiaImpartida = new MateriaImpartida;
+
+                    $materiaImpartida->IDCICLO = $ciclo->id;
+                    $materiaImpartida->IDMATERIA = $materia;
+                    //Guardar Materia Impartida
+                    $materiaImpartida->save();
+                }
+                //Si esta Asociada No hace nada.
+            }
+        }
+        
+        Flash::info("Materias Asociadas al Ciclo : ".$ciclo->CODIGOCICLO." de forma exitosa");
         return redirect()->route('ciclos.index');
     }
 }

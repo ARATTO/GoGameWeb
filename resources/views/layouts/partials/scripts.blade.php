@@ -31,6 +31,9 @@
 <script src="{{ asset('/plugins/file-input/js/locales/es.js') }}"></script>
 <!-- FIN FileInput Shido http://plugins.krajee.com/file-input -->
 
+<!-- Include Plugin Chosen para MultiSelect https://github.com/harvesthq/chosen-package -->
+<script src="{{ asset('/plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -81,3 +84,13 @@
             showUpload: false,
       });       
 </script>
+
+<!-- Include Plugin Chosen -->
+<script>
+      // defaults
+      $("#chosen-select").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+</script>
+

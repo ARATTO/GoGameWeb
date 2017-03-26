@@ -52,6 +52,7 @@ return [
     'Guardar'                => 'GUARDAR',
     'Eliminar'               => 'ELIMINAR',
     'Actualizar'             => 'ACTUALIZAR',
+    'Asignar'                => 'ASIGNAR',
 
     'VerUsuario'             => 'Ver Usuarios',
     'VerMateria'             => 'Ver Materias',

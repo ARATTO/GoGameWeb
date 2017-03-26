@@ -55,6 +55,9 @@
 											</td>
                                             <td>
                                                 @if($ciclo->ESTAACTIVOCICLO == null)
+													<a href=" {{ route('ciclos.asignar' , $ciclo->id) }} " title="Asignar Materias a Ciclo: {{$ciclo->CODIGOCICLO}}" class="btn btn-success">
+														<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+													</a>
                                                     <a href=" {{ route('ciclos.edit' , $ciclo->id) }} " class="btn btn-warning" onclick="return confirm('¿ Realmente desea Editar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     </a>
@@ -62,9 +65,18 @@
 														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 													</a>
                                                 @else
-                                                    <a href=" {{ route('ciclos.edit' , $ciclo->id) }} " class="btn btn-warning btn-block" onclick="return confirm('¿ Realmente desea Editar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
+													@if($ciclo->ESTAACTIVOCICLO == 1)
+													<a href=" {{ route('ciclos.asignar' , $ciclo->id) }} " title="Asignar Materias a Ciclo: {{$ciclo->CODIGOCICLO}}" class="btn btn-success">
+														<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+													</a>
+                                                    <a href=" {{ route('ciclos.edit' , $ciclo->id) }} " class="btn btn-warning" onclick="return confirm('¿ Realmente desea Editar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                     </a>
+													@else
+													<a href=" {{ route('ciclos.edit' , $ciclo->id) }} " class="btn btn-warning btn-block" onclick="return confirm('¿ Realmente desea Editar CICLO : {{$ciclo->CODIGOCICLO}} ?')">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                    </a>
+													@endif
                                                 @endif
                                             </td>
 										</tr>

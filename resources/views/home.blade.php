@@ -17,7 +17,11 @@
 					<div class="panel-heading">{{ trans('gogamessage.Inicio') }}</div>
 
 					<div class="panel-body">
-						{{ trans('adminlte_lang::message.logged') }}
+						<!-- 16:9 aspect ratio -->
+						
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe width="1280" height="720" src="https://www.youtube.com/embed/KA2Rl_cKicQ" frameborder="0" allowfullscreen></iframe>
+						</div>
 					</div>
 				</div>
 			</div>
