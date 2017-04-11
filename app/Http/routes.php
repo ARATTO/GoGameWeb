@@ -78,9 +78,9 @@ Route::get('/', function () {
         * Inicio Rutas para Docente
         */
         Route::resource('grupos','GrupoController');
-        Route::get('grupos/asignar/{id}', [
-            'as' => 'materias.asignar',
-            'uses' => 'MateriaController@asignar'
+        Route::get('grupos/{id}/destroy', [
+                'as' => 'grupos.destroy',
+                'uses' => 'GrupoController@destroy'
         ]);
         /*
         * Fin Rutas para Materia

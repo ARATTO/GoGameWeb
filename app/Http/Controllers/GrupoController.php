@@ -102,7 +102,27 @@ class GrupoController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Traer Grupo a Editar
+        $grupo = Grupo::find($id);
+        //Obtener Docentes Activos
+        $docentes = User::where('IDDOCENTE','<>',NULL)
+                        ->where('ESACTIVO',1)->get();
+        //Tipo de Grupo GT , GL , GD
+        $tipoGrupos = TipoGrupo::all();
+        //Obtener las Materias impartidas en Este Ciclo
+        $ciclo = Ciclo::where('ESTAACTIVOCICLO', 1)->first();
+        $materiasImpartidas = MateriaImpartida::where('IDCICLO', $ciclo->id)->get();
+        //Recorrer para Obtener las Materias
+        $materiasImpartidas->each(function($materiasImpartidas){
+            $materiasImpartidas->materia = Materia::find($materiasImpartidas->IDMATERIA);
+        });
+
+        return view('grupo.editar')->with([
+            'grupo'=>$grupo,
+            'docentes'=>$docentes, 
+            'tipoGrupos'=>$tipoGrupos, 
+            'materiasImpartidas'=>$materiasImpartidas
+        ]);
     }
 
     /**
@@ -114,7 +134,12 @@ class GrupoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $grupo = Grupo::find($id);
+        $grupo->fill($request->all());
+        $grupo->save();
+        
+        Flash::warning("Se ha actualizado ".$grupo->CODIGOGRUPO." de forma exitosa");
+        return redirect()->route('grupos.index');
     }
 
     /**
@@ -125,11 +150,10 @@ class GrupoController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $grupo = Grupo::find($id);
+        $grupo->delete();
 
-    public function asignar($id)
-    {
-        //
+        Flash::danger("Se ha Eliminado ".$grupo->CODIGOGRUPO." de forma exitosa");
+        return redirect()->route('grupos.index');
     }
 }

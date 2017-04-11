@@ -21,30 +21,42 @@
 							<table id="TablaLista" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								<thead>
 									<tr>
+										<th>Ciclo</th>
 										<th>Codigo</th>
                                         <th>Materia</th>
 										<th>Tipo Grupo</th>
                                         <th>Docente</th>
-										<th>Ciclo</th>
+										<th>Accion</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
+										<th>Ciclo</th>
 										<th>Codigo</th>
                                         <th>Materia</th>
 										<th>Tipo Grupo</th>
                                         <th>Docente</th>
-										<th>Ciclo</th>
+										<th>Accion</th>
 									</tr>
 								</tfoot>
 								<tbody>
 									@foreach($grupos as $grupo)
 										<tr>
+											<td>{{$grupo->ciclo->CODIGOCICLO}}</td>
 											<td>{{$grupo->CODIGOGRUPO}}</td>
 											<td>{{$grupo->materia->NOMBREMATERIA}}</td>
                                             <td>{{$grupo->tipoGrupo->NOMBRETIPOGRUPO}}</td>
 											<td>{{$grupo->docente->NOMBREDOCENTE}}</td>
-											<td>{{$grupo->ciclo->CODIGOCICLO}}</td>
+											<td>
+												<div class="btn-group btn-group-sm" role="group" aria-label="...">
+													<a href=" {{ route('grupos.edit' , $grupo->id) }} " title="Editar Grupo: {{$grupo->CODIGOGRUPO}}" class="btn btn-warning">
+														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													</a>
+													<a href=" {{ route('grupos.destroy' , $grupo->id) }} " title="Eliminar Grupo: {{$grupo->CODIGOGRUPO}}" class="btn btn-danger" onclick="return confirm('¿Eliminar el Grupo: {{$grupo->ciclo->CODIGOCICLO}}_{{$grupo->CODIGOGRUPO}}:{{$grupo->materia->NOMBREMATERIA}} ?')">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</a>
+												</div>
+											</td>
 										</tr>
 									@endforeach
 								</tbody>
