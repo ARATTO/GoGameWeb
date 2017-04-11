@@ -51,7 +51,7 @@ class Ciclo extends Model
     
     public function materiaImpartida()
     {
-        return $this->belongsTo('App\MateriaImpartida');
+        return $this->hasMany('App\MateriaImpartida');
     }
     
 }

@@ -107,11 +107,11 @@
 														</a>
 												@else	
 													@if($user->ESACTIVO != null)
-														<a href=" {{ route('users.inactivar' , $user->id) }} " title="Activar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.inactivar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
 														</a>
 													@else
-														<a href=" {{ route('users.activar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
+														<a href=" {{ route('users.activar' , $user->id) }} " title="Activar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
 														</a>
 													@endif

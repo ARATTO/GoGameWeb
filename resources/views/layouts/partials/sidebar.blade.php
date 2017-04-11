@@ -70,6 +70,15 @@
                         </ul>
                     </li>
                     <!-- Fin Menu Ciclos -->
+                    <!-- Inicio Menu Grupos -->
+                    <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Grupo') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('grupos.index') }}">{{ trans('gogamessage.VerGrupo') }}</a></li>
+                            <li><a href="{{ route('grupos.create') }}">{{ trans('gogamessage.CrearGrupo') }}</a></li>
+                        </ul>
+                    </li>
+                    <!-- Fin Menu Grupos -->
                 </ul>
             </li>
             <!-- FIN MENU ADMINISTRADOR -->

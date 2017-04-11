@@ -38,11 +38,11 @@ class Inscripcion extends Model
     */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante');
+        return $this->belongsTo('App\Estudiante');
     }
     public function grupos()
     {
-        return $this->hasMany('App\Grupo');
+        return $this->belongsTo('App\Grupo');
     }
 
     /**

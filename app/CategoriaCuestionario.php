@@ -40,11 +40,11 @@ class CategoriaCuestionario extends Model
     */
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario');
+        return $this->belongsTo('App\Cuestionario');
     }
     public function categorias()
     {
-        return $this->hasMany('App\Categoria');
+        return $this->belongsTo('App\Categoria');
     }
 
     /**

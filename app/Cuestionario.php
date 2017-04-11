@@ -41,7 +41,7 @@ class Cuestionario extends Model
     */
     public function docentes()
     {
-        return $this->hasMany('App\Docente');
+        return $this->belongsTo('App\Docente');
     }
 
     /**
@@ -50,14 +50,14 @@ class Cuestionario extends Model
     
     public function categoriaCuestionario()
     {
-        return $this->belongsTo('App\CategoriaCuestionario');
+        return $this->hasMany('App\CategoriaCuestionario');
     }
     public function cuestionarioAsignado()
     {
-        return $this->belongsTo('App\CuestionarioAsignado');
+        return $this->hasMany('App\CuestionarioAsignado');
     }
     public function cuestionarioMateria()
     {
-        return $this->belongsTo('App\CuestionarioMateria');
+        return $this->hasMany('App\CuestionarioMateria');
     }
 }

@@ -45,11 +45,11 @@ class User extends Authenticatable
     */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante');
+        return $this->belongsTo('App\Estudiante');
     }
     public function docentes()
     {
-        return $this->hasMany('App\Docente');
+        return $this->belongsTo('App\Docente');
     }
 
     /**
@@ -57,14 +57,14 @@ class User extends Authenticatable
     */
     public function cuestionarioAsignado()
     {
-        return $this->belongsTo('App\CuestionarioAsignado');
+        return $this->hasMany('App\CuestionarioAsignado');
     }
     public function detallePuntoActividad()
     {
-        return $this->belongsTo('App\DetallePuntoActividad');
+        return $this->hasMany('App\DetallePuntoActividad');
     }
     public function medallaGanada()
     {
-        return $this->belongsTo('App\MedallaGanada');
+        return $this->hasMany('App\MedallaGanada');
     }
 }

@@ -47,6 +47,6 @@ class TipoPregunta extends Model
     */
     public function pregunta()
     {
-        return $this->belongsTo('App\Pregunta');
+        return $this->hasMany('App\Pregunta');
     }
 }

@@ -39,7 +39,7 @@ class Respuesta extends Model
     */
     public function preguntas()
     {
-        return $this->hasMany('App\Pregunta');
+        return $this->belongsTo('App\Pregunta');
     }
 
     /**
@@ -47,6 +47,6 @@ class Respuesta extends Model
     */
     public function opcionSeleccionada()
     {
-        return $this->belongsTo('App\OpcionSeleccionada');
+        return $this->hasMany('App\OpcionSeleccionada');
     }
 }

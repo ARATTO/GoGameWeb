@@ -47,6 +47,6 @@ class TipoPunto extends Model
     */
     public function detallePunto()
     {
-        return $this->belongsTo('App\DetallePunto');
+        return $this->hasMany('App\DetallePunto');
     }
 }

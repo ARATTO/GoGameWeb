@@ -40,15 +40,15 @@ class Actividad extends Model
     */
     public function tipoActividades()
     {
-        return $this->hasMany('App\TipoActividad');
+        return $this->belongsTo('App\TipoActividad');
     }
     public function detallePuntos()
     {
-        return $this->hasMany('App\DetallePunto');
+        return $this->belongsTo('App\DetallePunto');
     }
     public function grupos()
     {
-        return $this->hasMany('App\Grupo');
+        return $this->belongsTo('App\Grupo');
     }
 
     /**
@@ -57,7 +57,7 @@ class Actividad extends Model
 
     public function detallePuntoActividad()
     {
-        return $this->belongsTo('App\DetallePuntoActividad');
+        return $this->hasMany('App\DetallePuntoActividad');
     }
     
 }

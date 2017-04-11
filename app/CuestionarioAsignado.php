@@ -38,11 +38,11 @@ class CuestionarioAsignado extends Model
     */
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\User');
     }
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario');
+        return $this->belongsTo('App\Cuestionario');
     }
 
     /**
@@ -50,6 +50,6 @@ class CuestionarioAsignado extends Model
     */
     public function opcionSeleccionada()
     {
-        return $this->belongsTo('App\OpcionSeleccionada');
+        return $this->hasMany('App\OpcionSeleccionada');
     }
 }

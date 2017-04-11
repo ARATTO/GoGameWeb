@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection as Collection;
 
 use App\Http\Requests;
 use App\Ciclo;
@@ -167,13 +168,38 @@ class CicloController extends Controller
 
         $ciclo = Ciclo::find($id);
         $materias = Materia::all();
-        $MateriaImpartida = MateriaImpartida::where('IDCICLO', $id)->get();
+        $MateriasImpartidas = MateriaImpartida::where('IDCICLO', $id)->get();
 
-        
+        $MateriaAsociada = Collection::make();
+        $MateriaNoAsociada = Collection::make();
+
+        $MatAsociada = Collection::make();
+
+        if($MateriasImpartidas->count() == 0){
+            $MateriaAsociada = null;
+        }else{
+            foreach ($materias as $materia) {
+                foreach ($MateriasImpartidas as $materiaImp) {
+                    if($materia->id == $materiaImp->IDMATERIA){
+                        $MateriaAsociada->push($materias->shift());
+                    }
+                }
+            }
+        }
+        //Limpiar de Null
+        /*
+        foreach ($MateriaAsociada as $matAso) {
+            if($matAso != null){
+                $MatAsociada->push( $matAso );
+            }
+        }
+        */
+
+        //dd($materias->all() , $MateriaAsociada->all());
 
         return view('ciclo.asignar')->with(['ciclo'=>$ciclo, 
                                             'materias'=>$materias, 
-                                            'MateriaImpartida'=>$MateriaImpartida]);
+                                            'MateriaAsociada'=>$MateriaAsociada]);
     }
     public function asignadas(Request $request, $id){
         $ciclo = Ciclo::find($id);
@@ -181,7 +207,7 @@ class CicloController extends Controller
         if($request->MateriaSeleccionada){
             foreach($request->MateriaSeleccionada as $materia){
                 //Consulta si ya existe en la Tabla
-                $existeMateriaImpartida = MateriaImpartida::where('IDCICLO', $id)
+                $existeMateriaImpartida = MateriaImpartida::where('IDCICLO', $ciclo->id)
                                         ->where('IDMATERIA', $materia)->first();
                 //Si, No esta Asociada al ciclo?
                 if(!$existeMateriaImpartida){
@@ -196,8 +222,20 @@ class CicloController extends Controller
                 //Si esta Asociada No hace nada.
             }
         }
+        //Si quiere Borrar Materias de la Relacion
+        if($request->MateriaBorrar){
+            foreach($request->MateriaBorrar as $materia){
+                //Consulta si efectivamente ya existe en la Tabla
+                $existeMateriaImpartida = MateriaImpartida::where('IDCICLO', $ciclo->id)
+                                        ->where('IDMATERIA', $materia)->first();
+                //Si, No esta Asociada al ciclo?
+                if($existeMateriaImpartida){
+                    $existeMateriaImpartida->delete();
+                }
+            }
+        }
         
-        Flash::info("Materias Asociadas al Ciclo : ".$ciclo->CODIGOCICLO." de forma exitosa");
+        Flash::info("Materias Asociadas al Ciclo : ".$ciclo->CODIGOCICLO." realizado de forma exitosa");
         return redirect()->route('ciclos.index');
     }
 }

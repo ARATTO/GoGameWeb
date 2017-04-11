@@ -38,11 +38,11 @@ class MedallaGanada extends Model
     */
     public function medallas()
     {
-        return $this->hasMany('App\Medalla');
+        return $this->belongsTo('App\Medalla');
     }
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belognsTo('App\User');
     }
 
     /**

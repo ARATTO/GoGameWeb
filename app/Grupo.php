@@ -40,15 +40,15 @@ class Grupo extends Model
     */
     public function docentes()
     {
-        return $this->hasMany('App\Docente');
+        return $this->belongsTo('App\Docente');
     }
     public function tipoGrupos()
     {
-        return $this->hasMany('App\TipoGrupo');
+        return $this->belongsTo('App\TipoGrupo');
     }
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida');
+        return $this->belongsTo('App\MateriaImpartida');
     }
 
     /**
@@ -56,10 +56,10 @@ class Grupo extends Model
     */
     public function actividad()
     {
-        return $this->belongsTo('App\Actividad');
+        return $this->hasMany('App\Actividad');
     }
     public function inscripcion()
     {
-        return $this->belongsTo('App\Inscripcion');
+        return $this->hasMany('App\Inscripcion');
     }
 }

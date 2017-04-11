@@ -50,10 +50,10 @@ class Medalla extends Model
     */
     public function detalleMedalla()
     {
-        return $this->belongsTo('App\DetalleMedalla');
+        return $this->hasMany('App\DetalleMedalla');
     }
     public function medallaGanada()
     {
-        return $this->belongsTo('App\MedallaGanada');
+        return $this->hasMany('App\MedallaGanada');
     }
 }

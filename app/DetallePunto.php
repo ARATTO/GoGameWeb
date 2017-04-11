@@ -40,11 +40,11 @@ class DetallePunto extends Model
     */
     public function tipoPuntos()
     {
-        return $this->hasMany('App\TipoPuntos');
+        return $this->belongsTo('App\TipoPuntos');
     }
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida');
+        return $this->belongsTo('App\MateriaImpartida');
     }
 
     /**
@@ -52,6 +52,6 @@ class DetallePunto extends Model
     */
     public function actividad()
     {
-        return $this->belongsTo('App\Actividad', 'IDDETALLEPUNTO');
+        return $this->hasMany('App\Actividad', 'IDDETALLEPUNTO');
     }
 }

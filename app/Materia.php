@@ -50,10 +50,10 @@ class Materia extends Model
     */
     public function detalleMedalla()
     {
-        return $this->belongsTo('App\DetalleMedalla');
+        return $this->hasMany('App\DetalleMedalla');
     }
     public function materiaImpartida()
     {
-        return $this->belongsTo('App\MateriaImpartida');
+        return $this->hasMany('App\MateriaImpartida');
     }
 }

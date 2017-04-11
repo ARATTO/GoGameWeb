@@ -39,15 +39,15 @@ class OpcionSeleccionada extends Model
     */
     public function cuestionariosAsignados()
     {
-        return $this->hasMany('App\CuestionarioAsignado');
+        return $this->belongsTo('App\CuestionarioAsignado');
     }
     public function respuestas()
     {
-        return $this->hasMany('App\Respuesta');
+        return $this->belongsTo('App\Respuesta');
     }
     public function preguntas()
     {
-        return $this->hasMany('App\Pregunta');
+        return $this->belongsTo('App\Pregunta');
     }
 
     /**

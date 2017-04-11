@@ -39,11 +39,11 @@ class MateriaImpartida extends Model
     
     public function ciclos()
     {
-        return $this->hasMany('App\Ciclo');
+        return $this->belongsTo('App\Ciclo');
     }
     public function materias()
     {
-        return $this->hasMany('App\Materia');
+        return $this->belongsTo('App\Materia');
     }  
     
 
@@ -52,14 +52,14 @@ class MateriaImpartida extends Model
     */
     public function cuestionarioMateria()
     {
-        return $this->belongsTo('App\CuestionarioMateria', 'IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\CuestionarioMateria', 'IDMATERIAIMPARTIDA');
     }
     public function detallePunto()
     {
-        return $this->belongsTo('App\DetallePunto', 'IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\DetallePunto', 'IDMATERIAIMPARTIDA');
     }
     public function grupo()
     {
-        return $this->belongsTo('App\Grupo', 'IDMATERIAIMPARTIDA');
+        return $this->hasMany('App\Grupo', 'IDMATERIAIMPARTIDA');
     }
 }

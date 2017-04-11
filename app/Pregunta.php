@@ -39,11 +39,11 @@ class Pregunta extends Model
     */
     public function categorias()
     {
-        return $this->hasMany('App\Categoria');
+        return $this->belongsTo('App\Categoria');
     }
     public function tipoPreguntas()
     {
-        return $this->hasMany('App\TipoPregunta');
+        return $this->belongsTo('App\TipoPregunta');
     }
 
     /**
@@ -51,10 +51,10 @@ class Pregunta extends Model
     */
     public function opcionSeleccionada()
     {
-        return $this->belongsTo('App\OpcionSeleccionada');
+        return $this->hasMany('App\OpcionSeleccionada');
     }
     public function respuesta()
     {
-        return $this->belongsTo('App\Respuesta');
+        return $this->hasMany('App\Respuesta');
     }
 }

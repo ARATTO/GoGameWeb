@@ -48,7 +48,7 @@ class TipoActividad extends Model
     
     public function actividad()
     {
-        return $this->belongsTo('App\Actividad');
+        return $this->hasMany('App\Actividad');
     }
     
 }

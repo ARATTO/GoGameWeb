@@ -38,11 +38,11 @@ class CuestionarioMateria extends Model
     */
     public function materiasImpartidas()
     {
-        return $this->hasMany('App\MateriaImpartida');
+        return $this->belongsTo('App\MateriaImpartida');
     }
     public function cuestionarios()
     {
-        return $this->hasMany('App\Cuestionario');
+        return $this->belongsTo('App\Cuestionario');
     }
 
     /**

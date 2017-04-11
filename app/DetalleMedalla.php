@@ -39,11 +39,11 @@ class DetalleMedalla extends Model
     */
     public function materias()
     {
-        return $this->hasMany('App\Materia');
+        return $this->belongsTo('App\Materia');
     }
     public function medallas()
     {
-        return $this->hasMany('App\Medalla');
+        return $this->belongsTo('App\Medalla');
     }
 
     /**

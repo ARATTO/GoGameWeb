@@ -37,6 +37,8 @@ return [
     'Materia'                => 'MATERIAS',
     'Medalla'                => 'MEDALLAS',
     'Ciclo'                  => 'CICLO',
+    'Docente'                => 'DOCENTE',
+    'Grupo'                  => 'GRUPO',
     'Inscripcion'            => 'INSCRIPCION',
     'LeaderBoard'            => 'TABLA DE LIDERES',
     'Cuestionario'           => 'CUESTIONARIO',
@@ -58,10 +60,12 @@ return [
     'VerMateria'             => 'Ver Materias',
     'VerMedalla'             => 'Ver Medallas',
     'VerCiclo'               => 'Ver Ciclo',
+    'VerGrupo'               => 'Ver Grupo',
 
     'CrearUsuario'           =>'Crear Usuario',
     'CrearCiclo'             =>'Crear Ciclo',
     'CrearMateria'           =>'Crear Materia',
+    'CrearGrupo'             =>'Crear Grupo',
     
 
     'NuevoCuestionario'      => 'CREAR CUESTIONARIO',

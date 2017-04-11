@@ -19,23 +19,37 @@
 						@include('layouts.partials.flash')
                             {!! Form::open(['route' => ['ciclos.asignadas', $ciclo->id], 'method' => 'POST']) !!}
                                         <div class="form-group">    
-                                                {!! form::label('chosen-select','Seleccione las Materias para este Ciclo') !!}
-
+                                                <h4><span for="chosen-select" class="label label-info">Seleccione las Materias para este Ciclo.</span><h4>
                                                 @if($materias != null)
                                                     <select multiple name="MateriaSeleccionada[]" id="chosen-select" data-placeholder="Seleccione las materias a asignar...">
-                                                        @foreach ($materias as $materia)
-                                                            @if($MateriaImpartida->count() != 0)
-                                                                @foreach ($MateriaImpartida as $materiaImp)
-                                                                    @if($materia->id == $materiaImp->IDMATERIA) 
-                                                                        <option value="{{ $materia->id }}" selected>{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
-                                                                    @endif
-                                                                @endforeach
-                                                            @else
-                                                                <option value="{{ $materia->id }}" >{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
-                                                            @endif
+                                                        @if($MateriaAsociada)
+                                                            @foreach ($materias as $materia)
+                                                                    <option value="{{ $materia->id }}">{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
+                                                            @endforeach
+                                                            @foreach ($MateriaAsociada as $materia)
+                                                                    <option value="{{ $materia->id }}" selected>{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($materias as $materia)
+                                                                    <option value="{{ $materia->id }}">{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                @else
+                                                    {!! form::label('#','No existen materias en el Sistema') !!}
+                                                @endif
+                                                
+                                                
+                                                @if($MateriaAsociada)
+                                                    <hr>
+                                                    <h4><span for="chosen-select" class="label label-danger">Seleccione las Materias que desea ELIMINAR del CICLO.</span><h4>
+                                                    <select multiple name="MateriaBorrar[]" id="chosen-borrar" data-placeholder="Esto no podra Revertirse, tenga Cuidado...">
+                                                        @foreach ($MateriaAsociada as $materia)
+                                                             <option value="{{ $materia->id }}">{{$materia->CODIGOMATERIA}} : {{$materia->NOMBREMATERIA}}</option>
                                                         @endforeach
                                                     </select>
                                                 @endif
+                                                    
                                         </div>
                                         
                                         <button type="submit" class="btn btn-success"> {{trans('gogamessage.Asignar')}} </button>

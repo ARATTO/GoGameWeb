@@ -92,5 +92,17 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen-select1").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen-select2").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen-borrar").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
 </script>
 

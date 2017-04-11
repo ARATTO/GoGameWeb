@@ -49,11 +49,11 @@ class Estudiante extends Model
     
     public function inscripcion()
     {
-        return $this->belongsTo('App\Inscripcion');
+        return $this->hasMany('App\Inscripcion');
     }
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasMany('App\User');
     }
     
 }

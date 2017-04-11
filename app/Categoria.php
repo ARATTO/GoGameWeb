@@ -49,11 +49,11 @@ class Categoria extends Model
     
     public function categoriaCuestionario()
     {
-        return $this->belongsTo('App\CategoriaCuestionario');
+        return $this->hasMany('App\CategoriaCuestionario');
     }
     public function pregunta()
     {
-        return $this->belongsTo('App\Pregunta');
+        return $this->hasMany('App\Pregunta');
     }
     
 }

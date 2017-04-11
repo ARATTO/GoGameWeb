@@ -49,11 +49,11 @@ class Docente extends Model
     
     public function grupo()
     {
-        return $this->belongsTo('App\Grupo');
+        return $this->hasMany('App\Grupo');
     }
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasMany('App\User');
     }
     
 }

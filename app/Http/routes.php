@@ -74,6 +74,18 @@ Route::get('/', function () {
         * Fin Rutas para Materia
         */
 
+        /*
+        * Inicio Rutas para Docente
+        */
+        Route::resource('grupos','GrupoController');
+        Route::get('grupos/asignar/{id}', [
+            'as' => 'materias.asignar',
+            'uses' => 'MateriaController@asignar'
+        ]);
+        /*
+        * Fin Rutas para Materia
+        */
+
         
     });
 
