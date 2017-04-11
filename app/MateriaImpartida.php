@@ -62,4 +62,8 @@ class MateriaImpartida extends Model
     {
         return $this->hasMany('App\Grupo', 'IDMATERIAIMPARTIDA');
     }
+    public function coordinador()
+    {
+        return $this->hasMany('App\Coordinador');
+    }
 }

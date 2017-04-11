@@ -65,6 +65,8 @@ class CicloController extends Controller
             
             Flash::warning("Se ha CREADO y ACTIVADO Ciclo: ".$ciclo->CODIGOCICLO." de forma exitosa");
         }else{
+            //Valor 2 porque Aun no entra en Uso
+            $ciclo->ESTAACTIVOCICLO = 2;
             Flash::success("Se ha CREADO Ciclo: ".$ciclo->CODIGOCICLO." de forma exitosa");
         }
         //Guardar Ciclo Creado
@@ -158,6 +160,13 @@ class CicloController extends Controller
         $Ciclo = Ciclo::find($id);
         $Ciclo->ESTAACTIVOCICLO = 1;
         $Ciclo->save();
+
+        //Quitar Coordinacion de todos los Docentes
+        $docentes = Docente::all();
+        foreach($docentes as $docente){
+            $docente->ESCOORDINADOR = 0;
+            $docente->save();
+        }
 
         Flash::info("Ciclo : ".$Ciclo->CODIGOCICLO." ACTIVADO de forma exitosa");
 

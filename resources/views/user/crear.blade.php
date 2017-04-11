@@ -30,9 +30,24 @@
                                                 {!! form::label('checkbox',' Es Administrador') !!}
                                         </div>
                                         <div class="form-group">
-                                                <input type="checkbox" value="1" name="ESDOCENTE" class="form-control">
+                                                <input type="checkbox" value="1" name="ESDOCENTE" class="form-control" id="id_DOCENTE" onchange="javascript:showContentCoordinador()">
                                                 {!! form::label('checkbox',' Es Docente') !!}
                                         </div>
+                                        <div class="form-group" id="id_COORDINADOR" style='display:none;'>
+                                                <input type="checkbox" value="1" name="ESCOORDINADOR" class="form-control" id="id_ACT_COORDINADOR" onchange="javascript:showContentMateriaCoordinador()">
+                                                {!! form::label('checkbox',' Es Coordinador') !!}
+                                        </div>
+                                        <div class="form-group" id="id_MAT_COORDINADOR" style='display:none;'>
+                                                <h4><span for="chosen-select" class="label label-success">Seleccione la Materia a Coordinar.</span><h4>
+                                                <select name="IDMATERIAIMPARTIDA" id="chosen-select">
+                                                <option value="">Seleccione una Materia</option>
+                                                @foreach ($materiasImpartidas as $materiaImpartida)
+                                                    <option value="{{ $materiaImpartida->id }}">{{$materiaImpartida->materia->CODIGOMATERIA}}:{{$materiaImpartida->materia->NOMBREMATERIA}}</option>
+                                                @endforeach
+                                                </select>
+                                        </div>
+                                        
+
                                         <div class="form-group">
                                             {!! form::label('#','Foto de Perfil') !!}    
                                             <input id="input-id" type="file" name="fotoPerfil" >
@@ -48,3 +63,7 @@
                 </div>
         </section><!-- /.content -->
 @endsection
+
+
+
+

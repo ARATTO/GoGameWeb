@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Docente;
+use App\Ciclo;
+use App\MateriaImpartida;
+use App\Materia;
 use App\Http\Requests;
 use Image;
 use Laracasts\Flash\Flash;
@@ -36,9 +39,16 @@ class UserController extends Controller
      */
     public function create()
     {   
+        //Obtener las Materias impartidas en Este Ciclo
+        $ciclo = Ciclo::where('ESTAACTIVOCICLO', 1)->first();
+        $materiasImpartidas = MateriaImpartida::where('IDCICLO', $ciclo->id)->get();
+        //Recorrer para Obtener las Materias
+        $materiasImpartidas->each(function($materiasImpartidas){
+            $materiasImpartidas->materia = Materia::find($materiasImpartidas->IDMATERIA);
+        });
 
         //flash('Message', 'success');
-        return view('user.crear');
+        return view('user.crear')->with(['materiasImpartidas'=>$materiasImpartidas]);
     }
 
     /**
@@ -49,7 +59,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->file);
+        //dd($request->all());
 
         //Imagen
         if($request->file('fotoPerfil'))
@@ -65,54 +75,63 @@ class UserController extends Controller
 
         //Guardar Docente
         if($request->ESDOCENTE == 1){
-            $Docente = new Docente($request->all());
-            $Docente->save();    
+            //Crea Docente
+            $Docente = new Docente($request->all()); 
+        }
+        //Guardar Materia si es Coordinador
+        if($request->ESCOORDINADOR == 1){
+            //Comprobamos si la materia ya tiene Coordinador
+            $matImp = MateriaImpartida::find($request->MATERIAIMPARTIDA);
+            $coordinadorAll = Coordinador::all();
+            $tieneCoor = false;
+            foreach($coordinadorAll as $coor){
+                if($coor->IDMATERIAIMPARTIDA == $matImp->id){
+                    //Si ya tiene Coordinador 
+                    $docenteCoor = Docente::find($coor->id);
+                    $tieneCoor = true;
+                }
+            }
+            //Si ya tiene Coordinador
+            if($tieneCoor){
+                //Quitarle Coordinacion a Docente anterior 
+                $docenteCoor->ESCOORDINADOR = 0;
+                $docenteCoor->save();
+            }
+            //Guardamos el Nuevo Docente como Coordinador
+            $Docente->ESCOORDINADOR = 1;
+            $Docente->save();
+            //Guardamos el Coordinador con su materia
+            $coordinador = new Coordinador($request->all());
+            $coordinador->save();
+        }else{
+            //Sin o es Coordinador solo Guardamos el Docente
+            $Docente->save();
         }
 
         $User = new User();
-
+        //Extraemos Nombre
         $split = explode(" ", $request->NOMBREDOCENTE);
         $firstname = array_shift($split);
-        
+        //Credenciales de Usuario
         $User->NOMBREPERFIL = $firstname;
+        //Correo Institucional modificable
         $User->email = $request->CARNETDOCENTE . trans('gogamessage.correoInstitucional');
+        //El Pasword es el CARNET
         $User->password = bcrypt($request->CARNETDOCENTE);
         $User->IMAGENPERFIL = $nombreFoto;
+        //Si es Administrador
         if($request->ESADMINISTRADOR == 1){
             $User->ESADMINISTRADOR = 1;
         }
+        //Si es Docente
         if($request->ESDOCENTE == 1){
             $User->IDDOCENTE = $Docente->id;
         }
-
         $User->save();
-
-
-        /*
-        // resize image
-        // open an image file
-        $img = Image::make('/media/motto/ERGO/GIT/GoGameWeb/public/gogame/images/los_eternos_mini.jpg');
-
-        // now you are able to resize the instance
-        //$img->resize(320, 240);
-        $img->save('/media/motto/ERGO/GIT/GoGameWeb/public/gogame/images/los_eternos_mini.jpg');
-
-        //$big_image = Image::make(Input::file('public/gogame/images/l_ejpg.jpg')->getRealPath())->resize(870, null, true, false);
-        $User->IMAGENPERFIL = $img;
-
-        
-        //dd($User);
-        */
         
         //flash('Usuario '.$User->NOMBREPERFIL.' creado con exito', 'success');
         Flash::info("Se ha registrado ".$User->NOMBREPERFIL." de forma exitosa");
-
-        //dd($request);
-
         return redirect()->route('users.index');
-
-        
-
     }
 
     /**

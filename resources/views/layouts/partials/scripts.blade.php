@@ -106,3 +106,5 @@
       });
 </script>
 
+@include('layouts.partials.scripts_motto')
+

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Docente extends Model
+class Coordinador extends Model
 {
-    protected $table = 'DOCENTE';
+    protected $table = 'COORDINADOR';
     /**
      * The attributes that are mass assignable.
      *
@@ -14,9 +14,8 @@ class Docente extends Model
      */
     protected $fillable = [
         'id',
-        'NOMBREDOCENTE',
-        'CARNETDOCENTE',
-        'ESCOORDINADOR',
+        'IDDOCENTE',
+        'IDMATERIAIMPARTIDA',
         
     ];
 
@@ -37,28 +36,17 @@ class Docente extends Model
     /**
     * Relaciones
     */
-    /*
-    public function _s()
+    public function docentes()
     {
-        return $this->hasMany('App\_');
+        return $this->belongsTo('App\Docente');
     }
-    */
+    public function materiasImpartidas()
+    {
+        return $this->belongsTo('App\MateriaImpartida');
+    }
 
     /**
     * Relaciones RETORNOS
     */
-    
-    public function grupo()
-    {
-        return $this->hasMany('App\Grupo');
-    }
-    public function user()
-    {
-        return $this->hasMany('App\User');
-    }
-    public function coordinador()
-    {
-        return $this->hasMany('App\Coordinador');
-    }
     
 }
