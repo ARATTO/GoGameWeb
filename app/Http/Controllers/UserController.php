@@ -9,6 +9,7 @@ use App\Docente;
 use App\Ciclo;
 use App\MateriaImpartida;
 use App\Materia;
+use App\Coordinador;
 use App\Http\Requests;
 use Image;
 use Laracasts\Flash\Flash;
@@ -27,8 +28,19 @@ class UserController extends Controller
 
     public function index()
     {   
+
         $users = User::all();
         
+        foreach($users as $user){
+            if($user->IDDOCENTE){
+                $docente = Docente::find($user->IDDOCENTE);
+                if($docente->ESCOORDINADOR == 1){
+                    $user->docente = Docente::find($user->IDDOCENTE);
+                }
+            }
+        }
+         
+
         return view('user.index')->with(['users'=>$users]);
     }
 
@@ -154,8 +166,38 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $docente = Docente::find($user->IDDOCENTE);
+        //Obtener las Materias impartidas en Este Ciclo
+        $ciclo = Ciclo::where('ESTAACTIVOCICLO', 1)->first();
+        $materiasImpartidas = MateriaImpartida::where('IDCICLO', $ciclo->id)->get();
+        //Recorrer para Obtener las Materias
+        $materiasImpartidas->each(function($materiasImpartidas){
+            $materiasImpartidas->materia = Materia::find($materiasImpartidas->IDMATERIA);
+        });
 
-        return view('user.editar')->with(['user'=>$user]);
+        //Es Coordinador
+        $coordinadorAll = Coordinador::all();
+        $EsCoor = false;
+        foreach($coordinadorAll as $coor){
+            if($coor->IDDOCENTE == $user->IDDOCENTE){
+                //Si es Coordinador 
+                $materiaCoor = $coor->IDMATERIAIMPARTIDA;
+                $EsCoor = true;
+            }
+        }
+        //Si NO es Coordinador
+        if($EsCoor == false){
+            $materiaCoor = 0;
+        }
+        
+        //dd($EsCoor);
+        return view('user.editar')->with([
+            'user'=>$user,
+            'materiasImpartidas'=>$materiasImpartidas,
+            'docente'=>$docente,
+            'materiaCoor'=>$materiaCoor,
+            'EsCoor'=>$EsCoor
+        ]);
     }
 
     /**
@@ -167,7 +209,89 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $User = User::find($id);
+        //Guardar Docente
+       
+            //Crea Docente
+            if($User->IDDOCENTE){
+                $Docente =  Docente::find($User->IDDOCENTE); 
+            }else{
+                $Docente = new Docente($request->all());
+            }
+        
+        //dd($request->all());
+        //Guardar Materia si es Coordinador
+        if($request->ESCOORDINADOR == 1){
+            //Comprobamos si la materia ya tiene Coordinador
+            $matImp = MateriaImpartida::find($request->IDMATERIAIMPARTIDA);
+            $coordinadorAll = Coordinador::all();
+            $tieneCoor = false;
+            foreach($coordinadorAll as $coor){
+                //Si ya tiene Coordinador 
+                if($coor->IDMATERIAIMPARTIDA == $matImp->id){
+                    //Si es diferente del Actual
+                    if($coor->IDDOCENTE != $Docente->id){
+                        $docenteCoor = Docente::find($coor->id);
+                        $COO = Coordinador::find($coor->id);
+                        $COO->delete();
+                        $tieneCoor = true;
+                    }
+                }
+            }
+            //Si ya tiene Coordinador
+            if($tieneCoor){
+                //Quitarle Coordinacion a Docente anterior 
+                $docenteCoor->ESCOORDINADOR = 0;
+                $docenteCoor->save();
+            }
+            
+
+            //Guardamos el Nuevo Docente como Coordinador
+            $Docente->ESCOORDINADOR = 1;
+            $Docente->save();
+            //Guardamos el Coordinador con su materia
+            $coordinador = new Coordinador($request->all());
+            $coordinador->IDDOCENTE = $Docente->id;
+            $coordinador->save();
+        }else{
+            //Comprobamos si la materia era de este Docente
+            
+            $coordinadorAll = Coordinador::all();
+            $tieneCoor = false;
+            foreach($coordinadorAll as $coor){
+                if($coor->IDDOCENTE == $Docente->id){
+                    //Si era el Coordinador 
+                    $COO = Coordinador::find($coor->id);
+                    $COO->delete();
+                    $Docente->ESCOORDINADOR = 0;
+                }
+            }
+            //Sin o es Coordinador solo Guardamos el Docente
+            
+            $Docente->save();
+        }
+
+        
+        //Extraemos Nombre
+        $split = explode(" ", $request->NOMBREDOCENTE);
+        $firstname = array_shift($split);
+        //Credenciales de Usuario
+        $User->NOMBREPERFIL = $firstname;
+        //Correo Institucional modificable
+        $User->email = $request->CARNETDOCENTE . trans('gogamessage.correoInstitucional');
+        //Si es Administrador
+        if($request->ESADMINISTRADOR == 1){
+            $User->ESADMINISTRADOR = 1;
+        }
+        //Si es Docente
+        if($request->ESDOCENTE == 1){
+            $User->IDDOCENTE = $Docente->id;
+        }
+        $User->save();
+        
+        //flash('Usuario '.$User->NOMBREPERFIL.' creado con exito', 'success');
+        Flash::info("Se ha actualizado ".$User->NOMBREPERFIL." de forma exitosa");
+        return redirect()->route('users.index');
     }
 
     /**
@@ -204,8 +328,25 @@ class UserController extends Controller
         $user->ESACTIVO = null;
         $user->save();
 
-        Flash::danger("Se ha INACTIVADO ".$user->NOMBREPERFIL." de forma exitosa");
+        if($user->IDDOCENTE != null){
+            //Comprobamos si la materia era de este Docente
+            $coordinadorAll = Coordinador::all();
+            $tieneCoor = false;
+            foreach($coordinadorAll as $coor){
+                if($coor->IDDOCENTE == $user->IDDOCENTE){
+                    //Si era el Coordinador 
+                    $COO = Coordinador::find($coor->id);
+                    $COO->delete();
+                    $Docente = Docente::find($user->IDDOCENTE);
+                    $Docente->ESCOORDINADOR = 0;
+                    $Docente->save();
+                }
+            }
+            //Sin o es Coordinador solo Guardamos el Docente
+        }
+        
 
+        Flash::danger("Se ha INACTIVADO a ".$user->NOMBREPERFIL." de forma exitosa");
         return redirect()->route('users.index');
 
     }

@@ -29,6 +29,7 @@ return [
     */
     'MenuCabecera'           => 'MENU PRINCIPAL',
     'Admin'                  => 'ADMINISTRADOR',
+    'Coordinador'            => 'COORDINADOR',
     'Docente'                => 'DOCENTE',
     'Estudiante'             => 'ESTUDIANTE',
     

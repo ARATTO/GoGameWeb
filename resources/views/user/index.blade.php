@@ -11,7 +11,7 @@
             <!-- Your Page Content Here -->
 	<div class="container spark-screen">    
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-12 ">
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ trans('gogamessage.Usuario') }}</div>
 					<div class="panel-body">
@@ -25,6 +25,7 @@
 										<th>Correo</th>
 										<th>Administrador</th>
 										<th>Docente</th>
+										<th>Coordinador</th>
 										<th>Estudiante</th>
 										<th>Activo</th>
 										<th>Accion</th>
@@ -37,6 +38,7 @@
 										<th>Correo</th>
 										<th>Administrador</th>
 										<th>Docente</th>
+										<th>Coordinador</th>
 										<th>Estudiante</th>
 										<th>Activo</th>
 										<th>Accion</th>
@@ -79,6 +81,17 @@
 												@endif
 											</td>
 											<td>
+												@if($user->docente != null)
+													<a href="#" class="btn btn-success btn-block" disabled="disabled">
+												    	{{trans('gogamessage.SI')}}
+													</a>
+												@else
+												<a href="#" class="btn btn-danger btn-block" disabled="disabled">
+												    	{{trans('gogamessage.NO')}}
+													</a>
+												@endif
+											</td>
+											<td>
 												@if($user->IDESTUDIANTE != null)
 													<a href="#" class="btn btn-success btn-block" disabled="disabled">
 												    	{{trans('gogamessage.SI')}}
@@ -102,14 +115,25 @@
 											</td>
 											<td>
 												@if($user->ESADMINISTRADOR != null)
-														<a href="#" class="btn btn-info btn-block" title="{{$user->NOMBREPERFIL}} es Usuario Administrador" onclick="return alert('{{$user->NOMBREPERFIL}} es Usuario Administrador')">
+														<a href="#" class="btn btn-info btn-block" title="{{$user->NOMBREPERFIL}} es Usuario Administrador"  onclick="return alert('{{$user->NOMBREPERFIL}} ES UN ADMINISTRADOR')">
 															<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 														</a>
 												@else	
 													@if($user->ESACTIVO != null)
-														<a href=" {{ route('users.inactivar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
-															<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-														</a>
+														@if($user->IDDOCENTE != null)
+															<div class="btn-group btn-group-sm" role="group" aria-label="...">
+																<a href=" {{ route('users.inactivar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+																	<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+																</a>
+																<a href=" {{ route('users.edit' , $user->id) }} " title="Editar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-warning">
+																	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+																</a>
+															</div>
+														@else
+															<a href=" {{ route('users.inactivar' , $user->id) }} " title="Desactivar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-danger btn-block" onclick="return confirm('¿Hacer inactivo a {{$user->NOMBREPERFIL}} ?')">
+																<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+															</a>
+														@endif
 													@else
 														<a href=" {{ route('users.activar' , $user->id) }} " title="Activar Usuario: {{$user->NOMBREPERFIL}}" class="btn btn-success btn-block" onclick="return confirm('¿Activar a {{$user->NOMBREPERFIL}} ?')">
 															<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>

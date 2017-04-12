@@ -40,122 +40,23 @@
 
 
             <!-- MENU ADMINISTRADOR -->
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Admin') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <!-- Inicio Menu Usuario -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Usuario') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('users.index') }}">{{ trans('gogamessage.VerUsuario') }}</a></li>
-                            <li><a href="{{ route('users.create') }}">{{ trans('gogamessage.CrearUsuario') }}</a></li>
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Usuario -->
-                    <!-- Inicio Menu Materias -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Materia') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('materias.index') }}">{{ trans('gogamessage.VerMateria') }}</a></li>
-                            <li><a href="{{ route('materias.create') }}">{{ trans('gogamessage.CrearMateria') }}</a></li>
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Materias -->
-                    <!-- Inicio Menu Ciclos -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Ciclo') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('ciclos.index') }}">{{ trans('gogamessage.VerCiclo') }}</a></li>
-                            <li><a href="{{ route('ciclos.create') }}">{{ trans('gogamessage.CrearCiclo') }}</a></li>
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Ciclos -->
-                    <!-- Inicio Menu Grupos -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Grupo') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('grupos.index') }}">{{ trans('gogamessage.VerGrupo') }}</a></li>
-                            <li><a href="{{ route('grupos.create') }}">{{ trans('gogamessage.CrearGrupo') }}</a></li>
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Grupos -->
-                </ul>
-            </li>
+            @include('layouts.partials.nav.administrador')
             <!-- FIN MENU ADMINISTRADOR -->
 
+            <!-- MENU COORDINADOR -->
+            @include('layouts.partials.nav.coordinador')
+            <!-- FIN MENU COORDINADOR -->
+
             <!-- MENU DOCENTE -->
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Docente') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <!-- Inicio Menu Medallas -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Medalla') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">{{ trans('gogamessage.VerMedalla') }}</a></li>
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Medallas -->
-                    <!-- Inicio Menu Inscripcion Estudiante -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Inscripcion') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">{{ trans('gogamessage.InscripcionEstudiante') }}</a></li>
-                            
-                        </ul>
-                    </li>
-                    <!-- Fin Menu Inscripcion Estudiante -->
-                    <!-- Inicio Menu GG -->
-                    <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.GG') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            
-                            <!-- Inicio SubMenu Cuestionario -->
-                            <li class="treeview">
-                                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Cuestionario') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    
-                                    <li><a href="#">{{ trans('gogamessage.VerLista') }}</a></li>
-                                    <li><a href="#">{{ trans('gogamessage.Nuevo') }}</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <!-- Fin SubMenu Cuestionario -->
-                            <!-- Inicio SubMenu Categoria -->
-                            <li class="treeview">
-                                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Categoria') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    
-                                    <li><a href="#">{{ trans('gogamessage.VerLista') }}</a></li>
-                                    <li><a href="#">{{ trans('gogamessage.Nuevo') }}</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <!-- Fin SubMenu Categoria -->
-                        </ul>
-                    </li>
-                    <!-- Fin Menu GG -->
-                </ul>
-            </li>
+            @include('layouts.partials.nav.docente')
             <!-- FIN MENU DOCENTE -->
 
             <!-- MENU ESTUDIANTE -->
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Estudiante') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <!-- 
-                        * 
-                        * 
-                        *  AUN NO SE DEFINE NADA PARA ESTE MENU
-                        * 
-                        * 
-                        *
-                    -->
-                </ul>
-            </li>
+            @include('layouts.partials.nav.estudiante')
             <!-- FIN MENU ESTUDIANTE -->
 
             <!-- MENU TODOS -->
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.LeaderBoard') }}</span></a></li>
+            @include('layouts.partials.nav.todos')
             <!-- FIN MENU TODOS -->
 
         </ul><!-- /.sidebar-menu -->
