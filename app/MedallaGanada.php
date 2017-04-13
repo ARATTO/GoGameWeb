@@ -14,7 +14,7 @@ class MedallaGanada extends Model
      */
     protected $fillable = [
         'id',
-        'IDMEDALLA',
+        'IDDETALLEMEDALLA',
         'IDPERFIL',
         
     ];
@@ -36,9 +36,9 @@ class MedallaGanada extends Model
     /**
     * Relaciones
     */
-    public function medallas()
+    public function detalleMedallas()
     {
-        return $this->belongsTo('App\Medalla');
+        return $this->belongsTo('App\DetalleMedalla');
     }
     public function users()
     {

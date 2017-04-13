@@ -24,5 +24,4 @@
           }
           
       }
-      //FIN Funcion paraMostrar Coordinador al Poner como Docente
 </script>

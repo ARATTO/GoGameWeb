@@ -34,6 +34,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //dd( decrypt('$2y$10$oSJJ4GE6Dd5j4ku47hVgZOLcIrbu9RexYXLDf.SkiYEKI5/5s/d8u') );
+        //dd( bcrypt('AAAAA') );
+        
         return view('home');
     }
 }

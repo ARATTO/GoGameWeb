@@ -33,6 +33,8 @@
 
 <!-- Include Plugin Chosen para MultiSelect https://github.com/harvesthq/chosen-package -->
 <script src="{{ asset('/plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+<!-- Include Plugin para Number Mask http://www.jqueryscript.net/form/jQuery-Plugin-For-Number-Input-Formatting-Mask-Number.html -->
+<script src="{{ asset('/plugins/mask-number/jquery.masknumber.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
@@ -103,6 +105,14 @@
       $("#chosen-borrar").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
+      });
+</script>
+
+<!-- Include Plugin MaskNumber -->
+<script>
+      // defaults
+      $('#numeros').maskNumber({
+            integer: true,
       });
 </script>
 

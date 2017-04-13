@@ -66,4 +66,8 @@ class MateriaImpartida extends Model
     {
         return $this->hasMany('App\Coordinador');
     }
+    public function detalleMedalla()
+    {
+        return $this->hasMany('App\DetalleMedalla');
+    }
 }

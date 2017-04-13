@@ -52,8 +52,5 @@ class Medalla extends Model
     {
         return $this->hasMany('App\DetalleMedalla');
     }
-    public function medallaGanada()
-    {
-        return $this->hasMany('App\MedallaGanada');
-    }
+    
 }

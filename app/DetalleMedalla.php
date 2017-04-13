@@ -14,7 +14,7 @@ class DetalleMedalla extends Model
      */
     protected $fillable = [
         'id',
-        'IDMATERIA',
+        'IDMATERIAIMPARTIDA',
         'IDMEDALLA',
         'CANTIDADMINIMAPUNTOS',
         
@@ -37,9 +37,9 @@ class DetalleMedalla extends Model
     /**
     * Relaciones
     */
-    public function materias()
+    public function materiasImpartidas()
     {
-        return $this->belongsTo('App\Materia');
+        return $this->belongsTo('App\MateriaImpartida');
     }
     public function medallas()
     {
@@ -49,10 +49,10 @@ class DetalleMedalla extends Model
     /**
     * Relaciones RETORNOS
     */
-    /*
-    public function _()
+    
+    public function medallaGanada()
     {
-        return $this->belongsTo('App\_');
+        return $this->hasMany('App\MedallaGanada');
     }
-    */
+    
 }

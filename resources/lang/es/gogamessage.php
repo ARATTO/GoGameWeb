@@ -71,6 +71,7 @@ return [
 
     'NuevoCuestionario'      => 'CREAR CUESTIONARIO',
     'NuevoCategoria'         => 'Crear Categoria',
+    'NuevaMedalla'           => 'Nueva Medalla',
 
     'InscripcionEstudiante'  => 'Inscribir Estudiantes',
 
@@ -105,4 +106,11 @@ return [
     *  Fin FORM
     */
 
+    /*
+    *  MENSAJES ELSE
+    */
+    'NoRegistro'             =>'No existen Registros en el Sistema para mostrar.',
+    /*
+    *  Fin MENSAJES ELSE
+    */
 ];
