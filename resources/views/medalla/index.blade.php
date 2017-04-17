@@ -70,16 +70,29 @@
 												@endif
 											</td>
 											<td>{{$detalleM->CANTIDADMINIMAPUNTOS}}</td>
+											@if($detalleM->medalla->IMAGENMEDALLA != "_Asistencia.png" && $detalleM->medalla->IMAGENMEDALLA != "_Participacion.png")
 											<td>
 												<div class="btn-group btn-group-sm" role="group" aria-label="...">
 													<a href="{{ route('medallas.edit' , $detalleM->id) }}" class="btn btn-warning ">
 														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 													</a>
-													<a href="{{ route('medallas.destroy' , $detalleM->id) }}" title="Eliminar : {{$detalleM->medalla->NOMBREMEDALLA}}" class="btn btn-danger" onclick="return confirm('¿Eliminar {{$detalleM->medalla->NOMBREMEDALLA}} y TODOS sus datos relacionados ?')">
+													<a href="{{ route('medallas.destroy' , $detalleM->id) }}" title="Eliminar : {{$detalleM->medalla->NOMBREMEDALLA}}" class="btn btn-danger" onclick="return confirm('¿Eliminar Medalla: {{$detalleM->medalla->NOMBREMEDALLA}} ?')">
 														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 													</a>
 												</div>
 											</td>
+											@else
+											<td>
+												<div class="btn-group btn-group-sm" role="group" aria-label="...">
+													<a href=" # " class="btn btn-info" title="No es Editable">
+														<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+													</a>
+													<a href="#" class="btn btn-success" disabled="disabled">
+																NO ES EDITABLE
+													</a>
+												</div>
+											</td>
+											@endif
 										</tr>
 									@endforeach
 								</tbody>

@@ -12,6 +12,8 @@ use App\Coordinador;
 use App\Materia;
 use App\Ciclo;
 use App\MateriaImpartida;
+use App\MedallaGanada;
+use Laracasts\Flash\Flash;
 
 class MedallaController extends Controller
 {
@@ -164,7 +166,12 @@ class MedallaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detalleMedalla = DetalleMedalla::find($id);
+        $detalleMedalla->medalla = Medalla::find($detalleMedalla->IDMEDALLA);
+
+        return view('medalla.editar')->with([
+            'detalleMedalla' => $detalleMedalla
+        ]);
     }
 
     /**
@@ -176,7 +183,44 @@ class MedallaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        $detalleMedalla = DetalleMedalla::find($id);
+        $medalla = Medalla::find($detalleMedalla->IDMEDALLA);
+        $Fvieja = $medalla->IMAGENMEDALLA;
+        //Si no es asistencia o Participacion
+        if( $Fvieja != "_Asistencia.png" && $Fvieja != "_Participacion.png" ){
+            //Llenar Detalle de Medalla editado
+            $detalleMedalla->fill($request->all());
+            $detalleMedalla->IDMEDALLA = $medalla->id;
+            $detalleMedalla->save();
+            //Llenar Medalla editado
+            $medalla->fill($request->all());
+        
+            if($request->file('imgMedalla') != null)
+            {
+                $Foto = $request->file('imgMedalla');
+                $nombreFoto = 'gogame' . time() . '.' . $Foto->getClientOriginalExtension();
+                $path = public_path() . "/gogame/FotoMedalla";
+                $Foto->move($path, $nombreFoto);
+                //Borrar archivo viejo si no es Default
+                $rutaF = $path."/".$Fvieja; //Borra archivo viejo
+                if(file_exists($rutaF) ){
+                    unlink($rutaF); //Borra archivo de foto
+                }
+                //Guardar Nueva Imagen
+                $medalla->IMAGENMEDALLA = $nombreFoto;
+            }else{
+                $medalla->IMAGENMEDALLA = $Fvieja; //Guarda vieja foto
+            }
+
+            $medalla->save();
+            Flash::warning("Se ha EDITADO  de forma exitosa: ".$medalla->NOMBREMEDALLA);
+        }else{
+            //No se puede editar
+            Flash::danger("No puede editar esta Medalla".$medalla->NOMBREMEDALLA);
+        }
+        
+        return redirect()->route('medallas.index');
     }
 
     /**
@@ -187,7 +231,19 @@ class MedallaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detalleMedalla = DetalleMedalla::find($id);
+        $medalla = Medalla::find($detalleMedalla->IDMEDALLA);
+
+        $medallaGanada = MedallaGanada::where('IDDETALLEMEDALLA',$detalleMedalla->id)->first();
+
+        if($medallaGanada != null){
+            Flash::danger("No puede eliminar la Medalla: " . $medalla->NOMBREMEDALLA . " pues esta en uso");
+        }else{
+            $detalleMedalla->delete();
+            $medalla->delete();
+            Flash::danger("Medalla :".$medalla->NOMBREMEDALLA . ' Eliminada con exito');
+        }
+       return redirect()->route('medallas.index');
     }
 
     public function default(Request $request)
