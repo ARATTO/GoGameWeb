@@ -15,6 +15,9 @@ use App\MateriaImpartida;
 
 class MedallaController extends Controller
 {
+    private $MedallaFotoDefault = "_MedallaDefault.png";
+    private $MedallaAsistencia = "_Asistencia.png";
+    private $MedallaParticipacion = "_Participacion.png";
     /**
      * Display a listing of the resource.
      *
@@ -42,24 +45,23 @@ class MedallaController extends Controller
             }
         }
 
-        $detalleMedallasAll = DetalleMedalla::all();
+        $detalleMedalla = DetalleMedalla::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
         
-        if($detalleMedallasAll->count() > 0){
+        if($detalleMedalla->count() > 0){
             //Traer todos los detalleMedalla
-            $detalleMedalla = DetalleMedalla::where('IDMATERIAIMPARTIDA', $matImp->id)->first();
-            //Asignar la Medalla
-            $medalla = Medalla::find($detalleMedalla->IDMEDALLA);
+            foreach($detalleMedalla as $detalleM){
+                $detalleM->medalla = Medalla::find($detalleM->IDMEDALLA);
+            }
         }else{
             //Si no hay Medallas
             $detalleMedalla = null;
-            $medalla = null;
         }
         
-
+        //dd($detalleMedalla->all());
         return view('medalla.index')->with([
             'detalleMedalla'=>$detalleMedalla, 
             'materia'=>$materia, 
-            'medalla'=>$medalla
+            'matImp' =>$matImp
         ]);
     }
 
@@ -103,9 +105,44 @@ class MedallaController extends Controller
      */
     public function store(Request $request)
     {
-        //Seguir guardando la Medalle y Detalle Medalla
-        //no hartaganees maje xD
         dd($request->all());
+        //Imagen
+        if($request->file('imgMedalla'))
+        {
+          $Foto = $request->file('imgMedalla');
+          $nombreFoto = 'gogame' . time() . '.' . $Foto->getClientOriginalExtension();
+          $path = public_path() . "/gogame/FotoMedalla";
+          $Foto->move($path, $nombreFoto);
+        }else{
+          //Foto por Default
+          $nombreFoto = $MedallaFotoDefault;
+        }
+
+        //Creacion de Medallas
+        /*
+        // CREAR MEDALLA ASISTENICIA
+        */
+        $medalla = new Medalla;
+        $medalla->fill($request->all());
+        //*********
+        //Siempre es CUANTITATIVA !!! POR AHORA *********************
+        //*********
+        $medalla->ESCUANTITATIVA = 1;
+        $medalla->IMAGENMEDALLA = $nombreFoto;
+        //Guardar Medalla 
+        $medalla->save();
+        /*
+        //Detalle de Participacion
+        */
+        $detalleMedalla = new DetalleMedalla;
+        $detalleMedalla->fill($request->all());
+        $detalleMedalla->IDMEDALLA = $medalla->id;
+        //Guardar Detalle Medalla
+        $detalleMedalla->save();
+        /*
+        * FIN MEDALLA ASISTENCIA
+        */
+        return redirect()->route('medallas.index');
     }
 
     /**
@@ -151,5 +188,61 @@ class MedallaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function default(Request $request)
+    {
+        //dd($request->all());
+        $materiaImpartida = MateriaImpartida::find($request->IDMATERIAIMPARTIDA);
+        $materia = Materia::find($materiaImpartida->IDMATERIA);
+
+        //Creacion de Medallas de Participacion y Asistencia
+        /*
+        // CREAR MEDALLA ASISTENICIA
+        */
+        $medalla = new Medalla;
+        $medalla->NOMBREMEDALLA = 'Asistencia' . $materia->CODIGOMATERIA;
+        $medalla->DESCRIPCIONMEDALLA = 'Medalla de Asistencia para ' . $materia->CODIGOMATERIA;
+        $medalla->ESCUANTITATIVA = 1;
+        $medalla->IMAGENMEDALLA = "_Asistencia.png";
+        //Guardar Medalla 
+        $medalla->save();
+        /*
+        //Detalle de Participacion
+        */
+        $detalleMedalla = new DetalleMedalla;
+        $detalleMedalla->IDMATERIAIMPARTIDA = $materiaImpartida->id;
+        $detalleMedalla->IDMEDALLA = $medalla->id;
+        $detalleMedalla->CANTIDADMINIMAPUNTOS = 50;
+        //Guardar Detalle Medalla
+        $detalleMedalla->save();
+        /*
+        * FIN MEDALLA ASISTENCIA
+        */
+
+        /*
+        // CREAR MEDALLA PARTICIPACION
+        */
+        $medalla = new Medalla;
+        $medalla->NOMBREMEDALLA = 'Participacion' . $materia->CODIGOMATERIA;
+        $medalla->DESCRIPCIONMEDALLA = 'Medalla de Participacion para ' . $materia->CODIGOMATERIA;
+        $medalla->ESCUANTITATIVA = 1;
+        $medalla->IMAGENMEDALLA = "_Participacion.png";
+        //Guardar Medalla 
+        $medalla->save();
+        /*
+        //Detalle de Participacion
+        */
+        $detalleMedalla = new DetalleMedalla;
+        $detalleMedalla->IDMATERIAIMPARTIDA = $materiaImpartida->id;
+        $detalleMedalla->IDMEDALLA = $medalla->id;
+        $detalleMedalla->CANTIDADMINIMAPUNTOS = 2;
+        //Guardar Detalle Medalla
+        $detalleMedalla->save();
+        /*
+        * FIN MEDALLA PARTICIPACION
+        */
+        
+        return redirect()->route('medallas.index');
     }
 }

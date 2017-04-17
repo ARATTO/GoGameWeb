@@ -26,16 +26,17 @@
                                             {!! form::text('DESCRIPCIONMEDALLA', null, ['class' => 'form-control', 'placeholder'=> 'Descripcion ......', 'required']) !!}
                                         </div>
                                         <div class="form-group">
-                                                <input type="checkbox" value="1" name="ESCUANTITATIVA" class="form-control">
+                                                <input type="checkbox" value="1" name="ESCUANTITATIVA" class="form-control" disabled checked>
                                                 {!! form::label('checkbox',' Es Cuantitativa') !!}
                                         </div>
                                         <div class="form-group">
-                                                <input class="form-control" type="number" id="numeros" name="CANTIDADMINIMAPUNTOS" min="0" step="1" data-thousands=","/>
+                                                {!! form::label('CANTIDADMINIMAPUNTOS',' Puntos Necesarios') !!}
+                                                <input class="form-control" type="number" id="numeros" name="CANTIDADMINIMAPUNTOS" min="1" step="1" placeholder="Puntos Minimos"/>
                                         </div>
                                         <input type="hidden" name="IDMATERIAIMPARTIDA" value="{{ $matImp->id }}">
                                         <div class="form-group">
-                                            {!! form::label('#','Imagen de Materia') !!}    
-                                            <input id="input-id" type="file" name="imgMateria" >
+                                            {!! form::label('#','Imagen de Medalla') !!}    
+                                            <input id="input-id" type="file" name="imgMedalla" >
                                         </div>
                                         
                                         <button type="submit" class="btn btn-success"> {{trans('gogamessage.Crear')}} </button>

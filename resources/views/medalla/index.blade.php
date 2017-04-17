@@ -13,7 +13,15 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('gogamessage.Medalla') }} : {{$materia->NOMBREMATERIA}}</div>
+					@if($detalleMedalla == null)
+						<div class="panel-heading">{{ trans('gogamessage.Medalla') }} : {{$materia->NOMBREMATERIA}}</div>
+					@else
+						<div class="panel-heading">{{ trans('gogamessage.Medalla') }} : {{$materia->NOMBREMATERIA}}
+                        <a href="{{ route('medallas.create') }}" class="btn btn-success btn-xs pull-right" title="{{trans('gogamessage.NuevaMedalla')}}">
+						    <span class="glyphicon glyphicon-plus" aria-hidden="true"> {{trans('gogamessage.Crear')}}</span>
+						</a>
+						</div>
+					@endif
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
@@ -25,7 +33,7 @@
 										<th>Nombre</th>
 										<th>Cuantitativa</th>
 										<th>Puntos Min.</th>
-										<th>Materia</th>
+										<th>Accion</th>
 									</tr>
 								</thead>
 								<tfoot>
@@ -34,7 +42,7 @@
 										<th>Nombre</th>
 										<th>Cuantitativa</th>
 										<th>Puntos Min.</th>
-										<th>Materia</th>
+										<th>Accion</th>
 									</tr>
 								</tfoot>
 								<tbody>
@@ -62,21 +70,32 @@
 												@endif
 											</td>
 											<td>{{$detalleM->CANTIDADMINIMAPUNTOS}}</td>
-											<td>{{$detalleM->materia->NOMBREMATERIA}}</td>
 											<td>
-												<a href="{{ route('medallas.edit' , $detalleM->id) }}" class="btn btn-warning ">
-												    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-												</a>
-												<a href="{{ route('medallas.destroy' , $detalleM->id) }}" title="Eliminar : {{$detalleM->materia->NOMBREMATERIA}}" class="btn btn-danger" onclick="return confirm('¿Eliminar {{$detalleM->materia->NOMBREMATERIA}} y TODOS sus datos relacionados ?')">
-												    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-												</a>
+												<div class="btn-group btn-group-sm" role="group" aria-label="...">
+													<a href="{{ route('medallas.edit' , $detalleM->id) }}" class="btn btn-warning ">
+														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													</a>
+													<a href="{{ route('medallas.destroy' , $detalleM->id) }}" title="Eliminar : {{$detalleM->medalla->NOMBREMEDALLA}}" class="btn btn-danger" onclick="return confirm('¿Eliminar {{$detalleM->medalla->NOMBREMEDALLA}} y TODOS sus datos relacionados ?')">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</a>
+												</div>
 											</td>
 										</tr>
 									@endforeach
 								</tbody>
 							</table>
 						@else
-							{{ trans('gogamessage.NoRegistro') }}
+							<div class="form-group">
+								{{ trans('gogamessage.NoRegistro') }}
+                            </div>
+							<div class="form-group">
+							{!! Form::open(['route' => 'medallas.default', 'method' => 'POST']) !!}
+							   <input type="hidden" name="IDMATERIAIMPARTIDA" value="{{ $matImp->id }}">
+                               <button type="submit" class="btn btn-success"> 
+							   		{{trans('gogamessage.Crear')}} Medallas por Default
+								</button>
+                            {!! Form::close() !!}  
+							</div>
 						@endif
 					</div>
 				</div>

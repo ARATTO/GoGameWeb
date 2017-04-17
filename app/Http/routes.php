@@ -92,15 +92,19 @@ Route::get('/', function () {
    //MddWARE COORDINADOR
 
         /*
-        * Inicio Rutas para User
+        * Inicio Rutas para Medalla
         */
         Route::resource('medallas','MedallaController');
         Route::get('medallas/{id}/destroy', [
                 'as' => 'medallas.destroy',
                 'uses' => 'MedallaController@destroy'
         ]);
+        Route::post('medallas/default', [
+                'as' => 'medallas.default',
+                'uses' => 'MedallaController@default'
+        ]);
         /*
-        * Fin Rutas para User
+        * Fin Rutas para Medalla
         */
 
 

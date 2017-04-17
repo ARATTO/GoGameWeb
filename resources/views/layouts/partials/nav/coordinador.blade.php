@@ -3,11 +3,7 @@
                 <ul class="treeview-menu">
                     <!-- Inicio Menu Medallas -->
                     <li class="treeview">
-                        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Medalla') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('medallas.index') }}">{{ trans('gogamessage.VerMedalla') }}</a></li>
-                            <li><a href="{{ route('medallas.create') }}">{{ trans('gogamessage.NuevaMedalla') }}</a></li>
-                        </ul>
+                        <a href="{{ route('medallas.index') }}"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Medalla') }}</span></a>
                     </li>
                     <!-- Fin Menu Medallas -->
                     <!-- Inicio Menu GG -->
