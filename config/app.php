@@ -176,7 +176,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         /*Paquete de Imagen a BD*/
 
-        
+        /*Paquete de Excel*/
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        /*Paquete de Excel*/
     ],
 
     /*
@@ -233,9 +235,13 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         /*Paquete HTML-FORM*/
 
-        'Image' => Intervention\Image\Facades\Image::class,
+        /*Paquete EXCEL*/
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        /*Paquete EXCEL*/
 
+        'Image' => Intervention\Image\Facades\Image::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+
         
     ],
 

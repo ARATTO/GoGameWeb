@@ -106,6 +106,34 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Medalla
         */
+    
+    //MddWARE DOCENTE
+
+        /*
+        * Inicio Rutas para Inscripcion
+        */
+        Route::get('inscripcion', [
+                'as' => 'inscripcion.index',
+                'uses' => 'InscripcionController@index'
+        ]);
+        
+        Route::post('inscripcion/inscribir/{id}', [
+                'as' => 'inscripcion.inscribir',
+                'uses' => 'InscripcionController@inscribir'
+        ]);
+
+        Route::get('inscripcion/inscritos/{id}', [
+                'as' => 'inscripcion.inscritos',
+                'uses' => 'InscripcionController@inscritos'
+        ]);
+
+        Route::get('inscripcion/desinscribir/{id}/{grupo}', [
+                'as' => 'inscripcion.desinscribir',
+                'uses' => 'InscripcionController@desinscribir'
+        ]);
+        /*
+        * Fin Rutas para Medalla
+        */
 
 
 

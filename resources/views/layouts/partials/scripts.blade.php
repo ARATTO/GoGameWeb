@@ -84,7 +84,7 @@
       // defaults
       $("#input-id").fileinput({
             showUpload: false,
-      });       
+      });         
 </script>
 
 <!-- Include Plugin Chosen -->

@@ -23,6 +23,7 @@ return [
     'Crear'                 => 'Crear',
     'Borrar'                => 'Borrar',
     'Cancelar'              => 'Cancelar',
+    'Importar'              => 'IMPORTAR DATOS',
 
     /*
     *  Inicio Slide Bar
@@ -73,8 +74,8 @@ return [
     'NuevoCategoria'         => 'Crear Categoria',
     'NuevaMedalla'           => 'Nueva Medalla',
 
-    'InscripcionEstudiante'  => 'Inscribir Estudiantes',
-
+    'Inscripciones'          => 'Inscripciones',
+    'Inscritos'              => 'INSCRITOS',
     /*
     *  Fin SlideBar
     */
@@ -110,6 +111,8 @@ return [
     *  MENSAJES ELSE
     */
     'NoRegistro'             =>'No existen Registros en el Sistema para mostrar.',
+    'NoTiene'                =>'No tiene Registros asociados en el Sistema.',
+    'Proximamente'           =>'Proximamente',
     /*
     *  Fin MENSAJES ELSE
     */

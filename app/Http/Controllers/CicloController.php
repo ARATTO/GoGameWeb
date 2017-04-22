@@ -204,7 +204,7 @@ class CicloController extends Controller
         }
         */
 
-        //dd($materias->all() , $MateriaAsociada->all());
+        //dd( $MateriaAsociada->all());
 
         return view('ciclo.asignar')->with(['ciclo'=>$ciclo, 
                                             'materias'=>$materias, 
