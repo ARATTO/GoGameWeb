@@ -90,7 +90,7 @@ Route::get('/', function () {
     });
 
    //MddWARE COORDINADOR
-
+   Route::group(['middleware' => 'coor'], function () {
         /*
         * Inicio Rutas para Medalla
         */
@@ -106,9 +106,10 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Medalla
         */
-    
+   });
+        
     //MddWARE DOCENTE
-
+    Route::group(['middleware' => 'docente'], function () {
         /*
         * Inicio Rutas para Inscripcion
         */
@@ -132,8 +133,10 @@ Route::get('/', function () {
                 'uses' => 'InscripcionController@desinscribir'
         ]);
         /*
-        * Fin Rutas para Medalla
+        * Fin Rutas para Inscripcion
         */
+    });
+        
 
 
 

@@ -134,8 +134,8 @@ class InscripcionController extends Controller
                             $User->NOMBREPERFIL = $firstname;
                             //Correo Institucional modificable
                             $User->email = strtolower( $fila->carnet ) . trans('gogamessage.correoInstitucional');
-                            //El Pasword es el CARNET
-                            $User->password = bcrypt($fila->carnet);
+                            //El Pasword es el CARNET en MINUSCULA
+                            $User->password = bcrypt( strtolower( $fila->carnet ) );
                             //Se puede modificar la imagen _default de los estudiantes modificando el nombre de esta imagen
                             $User->IMAGENPERFIL = '_PerfilDefault.png';
                             //Es Estudiante

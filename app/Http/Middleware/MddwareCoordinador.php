@@ -29,8 +29,10 @@ class MddwareCoordinador {
         }   
 
         if( $EsCoor )  { //Mddwr para Coordinador if() ESCOORDINADOR == 1 
+            session()->put('coordinador', 'coordinador');
             return $next($request);
         }else {
+            session()->put('coordinador', '');
             abort(401);
         }
 

@@ -16,8 +16,10 @@ class MddwareEstudiante {
     public function handle($request, Closure $next) {
         
         if( !is_null($request->user()->IDESTUDIANTE) )  { //Mddwr para IDESTUDIANTE != NULL entonces es Estudiante
+            session()->put('estudiante', 'estudiante');
             return $next($request);
         }else {
+            session()->put('estudiante', '');
             abort(401);
         }
 

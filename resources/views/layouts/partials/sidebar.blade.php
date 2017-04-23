@@ -38,22 +38,29 @@
             <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             -->
 
+            @if( session()->get('admin') == 'admin')
+                <!-- MENU ADMINISTRADOR -->
+                @include('layouts.partials.nav.administrador')
+                <!-- FIN MENU ADMINISTRADOR -->
+            @endif
 
-            <!-- MENU ADMINISTRADOR -->
-            @include('layouts.partials.nav.administrador')
-            <!-- FIN MENU ADMINISTRADOR -->
+            @if( session()->get('coordinador') == 'coordinador')
+                <!-- MENU COORDINADOR -->
+                @include('layouts.partials.nav.coordinador')
+                <!-- FIN MENU COORDINADOR -->
+            @endif
 
-            <!-- MENU COORDINADOR -->
-            @include('layouts.partials.nav.coordinador')
-            <!-- FIN MENU COORDINADOR -->
+            @if( session()->get('docente') == 'docente')
+                <!-- MENU DOCENTE -->
+                @include('layouts.partials.nav.docente')
+                <!-- FIN MENU DOCENTE -->
+            @endif
 
-            <!-- MENU DOCENTE -->
-            @include('layouts.partials.nav.docente')
-            <!-- FIN MENU DOCENTE -->
-
-            <!-- MENU ESTUDIANTE -->
-            @include('layouts.partials.nav.estudiante')
-            <!-- FIN MENU ESTUDIANTE -->
+            @if( session()->get('estudiante') == 'estudiante')
+                <!-- MENU ESTUDIANTE -->
+                @include('layouts.partials.nav.estudiante')
+                <!-- FIN MENU ESTUDIANTE -->
+            @endif
 
             <!-- MENU TODOS -->
             @include('layouts.partials.nav.todos')

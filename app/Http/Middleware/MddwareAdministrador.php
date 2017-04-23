@@ -15,14 +15,12 @@ class MddwareAdministrador {
      */
     public function handle($request, Closure $next) {
         //dd($request->user());
-        switch ($request->user()->ESADMINISTRADOR) { //Mddwr para Administrador = 1 entonces es Administrador
-
-            case 1: 
-                return $next($request);
-                break;
-
-            default :
-                abort(401);
+        if($request->user()->ESADMINISTRADOR == 1) { //Mddwr para Administrador = 1 entonces es Administrador
+            session()->put('admin', 'admin');
+            return $next($request);
+        }else{
+            session()->put('admin', '');
+            abort(401);
         }
     }
 }
