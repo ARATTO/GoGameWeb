@@ -8,10 +8,10 @@
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
+                    <img src="{{asset('gogame/FotoPerfil')}}/{{ Auth::user()->IMAGENPERFIL }}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>{{ Auth::user()->name }}</p>
+                    <p>{{ Auth::user()->NOMBREPERFIL }}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
                 </div>
@@ -31,17 +31,41 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
+            <li class="header">{{ trans('gogamessage.MenuCabecera') }}</li>
             <!-- Optionally, you can add icons to the links -->
+            <!--
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                </ul>
-            </li>
+            -->
+
+            @if( session()->get('admin') == 'admin')
+                <!-- MENU ADMINISTRADOR -->
+                @include('layouts.partials.nav.administrador')
+                <!-- FIN MENU ADMINISTRADOR -->
+            @endif
+
+            @if( session()->get('coordinador') == 'coordinador')
+                <!-- MENU COORDINADOR -->
+                @include('layouts.partials.nav.coordinador')
+                <!-- FIN MENU COORDINADOR -->
+            @endif
+
+            @if( session()->get('docente') == 'docente')
+                <!-- MENU DOCENTE -->
+                @include('layouts.partials.nav.docente')
+                <!-- FIN MENU DOCENTE -->
+            @endif
+
+            @if( session()->get('estudiante') == 'estudiante')
+                <!-- MENU ESTUDIANTE -->
+                @include('layouts.partials.nav.estudiante')
+                <!-- FIN MENU ESTUDIANTE -->
+            @endif
+
+            <!-- MENU TODOS -->
+            @include('layouts.partials.nav.todos')
+            <!-- FIN MENU TODOS -->
+
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
