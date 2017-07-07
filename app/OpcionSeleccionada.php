@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OpcionSeleccionada extends Model
 {
-    protected $table = 'OPCIONSELECCIONADA';
+    protected $table = 'opcionseleccionada';
     /**
      * The attributes that are mass assignable.
      *
