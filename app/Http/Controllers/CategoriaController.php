@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Http\Requests;
 use App\Categoria;
 use App\Coordinador;
@@ -22,7 +23,12 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $matImp = new MateriaImpartida();
+        $matImp = $this->buscarMateriaImpartida();
+
+        $categorias = Categoria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
+
+        return view('categoria.index')->with('categorias', $categorias);
     }
 
     /**
@@ -89,5 +95,27 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buscarMateriaImpartida(){
+        $idDocente = Auth::user()->IDDOCENTE;
+        //dd($idDocente);
+        /*CUESTIONARIO-MATERIA*/
+        //Obtener las Materias impartidas en Este Ciclo
+        $ciclo = Ciclo::where('ESTAACTIVOCICLO', 1)->first();
+        //
+        $coordinador = Coordinador::where('IDDOCENTE', $idDocente)->get();
+        $coordinador->each(function($coordinador){
+            $coordinador->materiaImpartida = MateriaImpartida::find($coordinador->IDMATERIAIMPARTIDA);
+        });
+        
+        foreach($coordinador as $coor){
+            if($coor->materiaImpartida->IDCICLO == $ciclo->id){
+                //Materia que Coordina el Docente
+                $matImp = MateriaImpartida::find($coor->materiaImpartida->id);
+            }
+        }
+
+        return $matImp;
     }
 }

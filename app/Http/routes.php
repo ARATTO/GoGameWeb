@@ -114,6 +114,14 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Cuestionario
         */
+
+        /*
+        * Inicio Rutas para Categoria
+        */
+        Route::resource('categorias','CategoriaController');
+        /*
+        * Fin Rutas para Categoria
+        */
    });
         
     //MddWARE DOCENTE
