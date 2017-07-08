@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Respuesta extends Model
 {
-    protected $table = 'RESPUESTA';
+    protected $table = 'respuesta';
     /**
      * The attributes that are mass assignable.
      *

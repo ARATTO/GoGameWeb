@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetallePunto extends Model
 {
-    protected $table = 'DETALLEPUNTO';
+    protected $table = 'detallepunto';
     /**
      * The attributes that are mass assignable.
      *

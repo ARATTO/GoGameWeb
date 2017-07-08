@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MateriaImpartida extends Model
 {
-    protected $table = 'MATERIAIMPARTIDA';
+    protected $table = 'materiaimpartida';
     /**
      * The attributes that are mass assignable.
      *

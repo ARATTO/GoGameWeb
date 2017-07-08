@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grupo extends Model
 {
-    protected $table = 'GRUPO';
+    protected $table = 'grupo';
     /**
      * The attributes that are mass assignable.
      *

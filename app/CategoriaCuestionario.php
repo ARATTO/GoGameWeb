@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoriaCuestionario extends Model
 {
-    protected $table = 'CATEGORIACUESTIONARIO';
+    protected $table = 'categoriacuestionario';
     /**
      * The attributes that are mass assignable.
      *

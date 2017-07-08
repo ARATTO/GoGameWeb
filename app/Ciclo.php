@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ciclo extends Model
 {
-    protected $table = 'CICLO';
+    protected $table = 'ciclo';
     /**
      * The attributes that are mass assignable.
      *

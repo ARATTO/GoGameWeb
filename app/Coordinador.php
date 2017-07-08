@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coordinador extends Model
 {
-    protected $table = 'COORDINADOR';
+    protected $table = 'coordinador';
     /**
      * The attributes that are mass assignable.
      *
