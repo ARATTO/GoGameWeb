@@ -106,6 +106,14 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Medalla
         */
+
+        /*
+        * Inicio Rutas para Cuestionario
+        */
+        Route::resource('cuestionarios','CuestionarioController');
+        /*
+        * Fin Rutas para Cuestionario
+        */
    });
         
     //MddWARE DOCENTE
