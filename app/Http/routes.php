@@ -10,6 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::post('/loginapp', [
+                'as' => 'loginapp.usuarios',
+                'uses' => 'LoginController@store'
+        ]);
+        
+
 
 Route::get('/', function () {
     //return bcrypt('dariomotto');
@@ -136,7 +142,6 @@ Route::get('/', function () {
         * Fin Rutas para Inscripcion
         */
     });
-        
 
 
 
