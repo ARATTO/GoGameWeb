@@ -91,7 +91,7 @@ class perfilController extends Controller
 
         dd($correo);
 
-        $perfil = User::where('email','aa14010@ues.edu.sv')->get()->toJson();
+        $perfil = User::where('email',$correo)->get()->toJson();
 
         $vector =  json_decode($perfil);
 
