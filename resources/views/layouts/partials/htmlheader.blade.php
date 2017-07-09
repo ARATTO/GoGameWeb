@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{ asset('/gogame/FotoPerfil/GGLogo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('/gogame/images/GGLogo.png') }}">
     <title> {{ trans('gogamessage.GoGame') }} - @yield('htmlheader_title', 'Your title here') </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
@@ -44,4 +44,6 @@
     <link href="{{ asset('/plugins/file-input/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <!-- Include Chosen Plugin -->
     <link href="{{ asset('/plugins/chosen/chosen.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Include TimePiker Plugin -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/timepicker/bootstrap-timepicker.min.css') }}"/>
 </head>
