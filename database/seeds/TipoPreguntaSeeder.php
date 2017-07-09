@@ -13,13 +13,10 @@ class TipoPreguntaSeeder extends Seeder
     {
         //
         DB::table('TIPOPREGUNTA')->insert([
-            'NOMBRETIPOPREGUNTA' => "PRINCIPIANTE",
+            'NOMBRETIPOPREGUNTA' => "Opcion Multiple",
         ]);
         DB::table('TIPOPREGUNTA')->insert([
-            'NOMBRETIPOPREGUNTA' => "INTERMEDIO",
-        ]);
-        DB::table('TIPOPREGUNTA')->insert([
-            'NOMBRETIPOPREGUNTA' => "AVANZADO",
+            'NOMBRETIPOPREGUNTA' => "Verdadero-Falso",
         ]);
     }
 }
