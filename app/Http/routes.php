@@ -112,6 +112,22 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Medalla
         */
+
+        /*
+        * Inicio Rutas para Cuestionario
+        */
+        Route::resource('cuestionarios','CuestionarioController');
+        /*
+        * Fin Rutas para Cuestionario
+        */
+
+        /*
+        * Inicio Rutas para Categoria
+        */
+        Route::resource('categorias','CategoriaController');
+        /*
+        * Fin Rutas para Categoria
+        */
    });
         
     //MddWARE DOCENTE
@@ -143,8 +159,13 @@ Route::get('/', function () {
         */
     });
 
-
-
-    
+        
+/*RUTAS RODRIGO APP*/
+    Route::get('perfil/{id}',[
+        'as' => 'perfil',
+        'uses' => 'perfilController@buscarPerfil'
+        ]);
+/*RUTAS RODRIGO APP*/
+   
 
 

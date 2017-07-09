@@ -16,8 +16,8 @@
                                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Cuestionario') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     
-                                    <li><a href="#">{{ trans('gogamessage.VerLista') }}</a></li>
-                                    <li><a href="#">{{ trans('gogamessage.Nuevo') }}</a></li>
+                                    <li><a href="{{ route('cuestionarios.index') }}">{{ trans('gogamessage.VerLista') }}</a></li>
+                                    <li><a href="{{ route('cuestionarios.create') }}">{{ trans('gogamessage.Nuevo') }}</a></li>
                                     
                                 </ul>
                             </li>
@@ -27,7 +27,7 @@
                                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('gogamessage.Categoria') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     
-                                    <li><a href="#">{{ trans('gogamessage.VerLista') }}</a></li>
+                                    <li><a href="{{ route('categorias.index') }}">{{ trans('gogamessage.VerLista') }}</a></li>
                                     <li><a href="#">{{ trans('gogamessage.Nuevo') }}</a></li>
                                     
                                 </ul>

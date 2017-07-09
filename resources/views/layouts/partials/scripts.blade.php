@@ -36,6 +36,13 @@
 <!-- Include Plugin para Number Mask http://www.jqueryscript.net/form/jQuery-Plugin-For-Number-Input-Formatting-Mask-Number.html -->
 <script src="{{ asset('/plugins/mask-number/jquery.masknumber.js') }}" type="text/javascript"></script>
 
+<!-- Include Plugin TimePIker http://jdewit.github.io/bootstrap-timepicker/ -->
+<script type="text/javascript" src="{{ asset('/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+
+<!-- Include Plugin Datepair http://jdewit.github.io/bootstrap-timepicker/ -->
+<script type="text/javascript" src="{{ asset('/plugins/datepair/datepair.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/plugins/datepair/jquery.datepair.js') }}"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -62,8 +69,17 @@
             $('input[name="daterange"]').daterangepicker({
                   
                         "format": "YYYY-MM-DD",
+                        "separator": " al ",                      
+            });
+       });
+       $(function() {
+            $('input[name="daterange_"]').daterangepicker({
+                  
+                        "format": "YYYY-MM-DD HH:MM:SS",
+                        "timePickerIncrement": 10,
                         "separator": " al ",
-                       
+                        "minDate": new Date(),
+                        "timePicker": true,                       
             });
        });
 </script>
@@ -114,6 +130,31 @@
       $('#numeros').maskNumber({
             integer: true,
       });
+</script>
+
+<!-- Include Plugin TimePiker -->
+<script>
+      $('#timepicker').timepicker({
+            'showMeridian':false,
+            'defaultTime':'01:00:00',
+            'secondStep':10,
+            'minuteStep':10,
+            'showSeconds':true,
+      });
+      $('#timepicker_').timepicker();
+      $('#timepicker__').timepicker();
+</script>
+
+<!-- Include Plugin DatePair -->
+<script>
+      $('#timeOnlyExample .time').timepicker({
+            'showDuration': true,
+            'timeFormat': 'g:ia'
+      });
+
+      var timeOnlyExampleEl = document.getElementById('timeOnlyExample');
+      var timeOnlyDatepair = new Datepair(timeOnlyExampleEl);
+
 </script>
 
 @include('layouts.partials.scripts_motto')

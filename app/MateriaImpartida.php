@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MateriaImpartida extends Model
 {
-    protected $table = 'MATERIAIMPARTIDA';
+    protected $table = 'materiaimpartida';
     /**
      * The attributes that are mass assignable.
      *
@@ -69,5 +69,9 @@ class MateriaImpartida extends Model
     public function detalleMedalla()
     {
         return $this->hasMany('App\DetalleMedalla');
+    }
+    public function categoria()
+    {
+        return $this->hasMany('App\Categoria');
     }
 }

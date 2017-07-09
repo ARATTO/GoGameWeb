@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    protected $table = 'CATEGORIA';
+    protected $table = 'categoria';
     
     /**
      * The attributes that are mass assignable.
@@ -15,7 +15,9 @@ class Categoria extends Model
      */
     protected $fillable = [
         'id',
+        'IDMATERIAIMPARTIDA',
         'NOMBRECATEGORIA',
+        'DESCRIPCIONCATEGORIA',
         
     ];
 
@@ -36,12 +38,12 @@ class Categoria extends Model
     /**
     * Relaciones
     */
-    /*
-    public function _s()
+    
+    public function materiasImpartidas()
     {
-        return $this->hasMany('App\_');
+        return $this->hasMany('App\MateriaImpartida');
     }
-    */
+    
 
     /**
     * Relaciones RETORNOS

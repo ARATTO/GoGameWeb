@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoPunto extends Model
 {
-    protected $table = 'TIPOPUNTO';
+    protected $table = 'tipopunto';
     /**
      * The attributes that are mass assignable.
      *
