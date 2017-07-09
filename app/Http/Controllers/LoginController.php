@@ -10,23 +10,23 @@ use App\User;
 
 class LoginController extends Controller
 {
-    public function store(Requests $request)
+    public function store(Request $request)
     {
 
-        $usuario = User::Where('email',$request->email)->get()->toJson();
+        $usuario = User::Where('email', $request->email)->get()->toJson();
 
         if($usuario!=null){
 
             $usuariojson=json_decode($usuario);
         
-            if(\Hash::check($request->password,$usuariojson[0]->password)){
+            if(\Hash::check($request->password ,$usuariojson[0]->password)){
 
-                if($usuariojson->IDESTUDIANTE!=NULL){
+                if($usuariojson[0]->IDESTUDIANTE!=NULL){
                     
                     $numero=1;
                     return $numero;
 
-                } else if ($usuariojson->IDDOCENTE!=NULL){
+                } elseif ($usuariojson[0]->IDDOCENTE!=NULL){
 
                     $numero=2;
                     return $numero;
