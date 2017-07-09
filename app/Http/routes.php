@@ -143,8 +143,13 @@ Route::get('/', function () {
         */
     });
 
-
-
-    
+        
+/*RUTAS RODRIGO APP*/
+    Route::get('perfil/{id}',[
+        'as' => 'perfil',
+        'uses' => 'perfilController@buscarPerfil'
+        ]);
+/*RUTAS RODRIGO APP*/
+   
 
 
