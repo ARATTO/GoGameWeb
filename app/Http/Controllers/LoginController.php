@@ -23,10 +23,10 @@ class LoginController extends Controller
                 $numero=1;
                 return $numero;
 
-            } else if ($usuariojson->IDDOCENTE!=NULL){
+            } elseif ($usuariojson->IDDOCENTE!=NULL){
                 $numero=2;
                 return $numero;
-            } else {
+            } elseif ($usuariojson->IDADMINISTRADOR!=NULL){
                 $numero=3;
                 return $numero;
             }
