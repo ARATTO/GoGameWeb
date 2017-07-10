@@ -58,7 +58,7 @@
 												<td>
 													<div class="btn-group btn-group-sm" role="group" aria-label="...">
 															
-															<a href="#" class="btn btn-info" title="Ver Preguntas">
+															<a href="{{ route('preguntas.verPreguntas', $cat->id) }}" class="btn btn-info" title="Ver Preguntas">
 																<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 															</a>
 															<a href="#" class="btn btn-info" disabled="disabled">

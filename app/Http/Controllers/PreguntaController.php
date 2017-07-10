@@ -99,11 +99,16 @@ class PreguntaController extends Controller
 
     public function verPreguntas($id){
         
+        $categoria = Categoria::find($id);
+
         $preguntasCategoria = DB::table('CATEGORIA')
                             ->join('PREGUNTA', 'PREGUNTA.IDCATEGORIA', '=', 'CATEGORIA.id')
                             ->where('CATEGORIA.id', $id)
+                            ->select('PREGUNTA.PREGUNTA')
                             ->get();
+        
 
-        return view('pregunta.verPreguntas')->with('preguntasCategoria', $preguntasCategoria);
+        return view('pregunta.verPreguntas')->with('preguntasCategoria', $preguntasCategoria)
+                                            ->with('categoria', $categoria);
     }
 }
