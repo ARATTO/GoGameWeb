@@ -15,6 +15,7 @@ class VerifyCsrfToken extends BaseVerifier
 
         'loginapp*',
         'logapp*',
+        'materiasExistentes*',
         'perfil*'
 
     ];

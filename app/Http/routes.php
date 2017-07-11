@@ -14,6 +14,11 @@ Route::post('/loginapp', [
                 'as' => 'loginapp.usuarios',
                 'uses' => 'LoginController@store'
         ]);
+
+Route::post('/materiasExistentes', [
+                'as' => 'materiasExistentes.usuarios',
+                'uses' => 'MateriasExistentesController@store'
+        ]);
         
 
 
