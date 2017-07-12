@@ -28,7 +28,8 @@
                                 <ul class="treeview-menu">
                                     
                                     <li><a href="{{ route('categorias.index') }}">{{ trans('gogamessage.VerLista') }}</a></li>
-                                    <li><a href="#">{{ trans('gogamessage.Nuevo') }}</a></li>
+                                    <li><a href="{{ route('categorias.create') }}">{{ trans('gogamessage.Nuevo') }}</a></li>
+
                                     
                                 </ul>
                             </li>

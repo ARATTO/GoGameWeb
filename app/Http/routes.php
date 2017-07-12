@@ -137,6 +137,9 @@ Route::get('/', function () {
         * Fin Rutas para Medalla
         */
 
+        //////////////////////////////////////
+        //////////CUESTIONARIO
+        //////////////////////////////////////
         /*
         * Inicio Rutas para Cuestionario
         */
@@ -149,9 +152,29 @@ Route::get('/', function () {
         * Inicio Rutas para Categoria
         */
         Route::resource('categorias','CategoriaController');
+
+        Route::post('categorias/pregunta/{id}', [
+                'as' => 'categoria.importarPreguntas',
+                'uses' => 'CategoriaController@importarPreguntas'
+        ]);
         /*
         * Fin Rutas para Categoria
         */
+
+        /*
+        * Inicio Rutas para Preguntas
+        */
+        Route::resource('preguntas','PreguntaController');
+        Route::get('preguntas/verpreguntas/{id}', [
+                'as' => 'preguntas.verPreguntas',
+                'uses' => 'PreguntaController@verPreguntas'
+        ]);
+        /*
+        * Fin Rutas para Preguntas
+        */
+        //////////////////////////////////////
+        //////////FIN CUESTIONARIO
+        //////////////////////////////////////
    });
         
     //MddWARE DOCENTE

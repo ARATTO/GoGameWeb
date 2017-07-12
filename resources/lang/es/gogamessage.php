@@ -45,6 +45,7 @@ return [
     'LeaderBoard'            => 'TABLA DE LIDERES',
     'Cuestionario'           => 'CUESTIONARIO',
     'Categoria'              => 'CATEGORIA',
+    'Pregunta'               => 'PREGUNTA',
     'GG'                     => 'GG',
 
     /* SubMenu */
