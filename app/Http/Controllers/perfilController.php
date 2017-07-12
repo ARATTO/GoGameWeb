@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use DB;
 
 class perfilController extends Controller
 {
@@ -16,9 +17,7 @@ class perfilController extends Controller
      */
     public function index()
     {
-        $perfil = User::where('id',27)->toJson();
 
-        return $perfil;
     }
 
     /**
@@ -89,9 +88,9 @@ class perfilController extends Controller
 
     public function buscarPerfil($correo){
 
-        dd($correo);
 
-        $perfil = User::where('email','aa14010@ues.edu.sv')->get()->toJson();
+
+        $perfil = User::where('email',$correo)->get()->toJson();
 
         $vector =  json_decode($perfil);
 
@@ -110,4 +109,28 @@ class perfilController extends Controller
 
         return $vector;
     }
+
+    public function obtenerMedallasPerfil($correo){
+        $perfil = User::where('email',$correo)
+        ->join('medallaganada','perfil.id','=','medallaganada.idperfil')
+        ->join('detallemedalla','detallemedalla.id','=','medallaganada.iddetallemedalla')
+        ->join('medalla','medalla.id','=','detallemedalla.idmedalla')
+        ->get()->toJson();
+
+        $vector = json_decode($perfil);
+
+        foreach ($vector as $medalla) {
+            
+            $medalla->IMAGENMEDALLA = base64_encode(file_get_contents(public_path()."/gogame/FotoMedalla/".$medalla->IMAGENMEDALLA));
+
+
+        }
+
+        $medallas = json_encode($vector);
+
+
+        return $medallas;
+    }
+
+
 }
