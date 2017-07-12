@@ -104,11 +104,36 @@ class PreguntaController extends Controller
         $preguntasCategoria = DB::table('CATEGORIA')
                             ->join('PREGUNTA', 'PREGUNTA.IDCATEGORIA', '=', 'CATEGORIA.id')
                             ->where('CATEGORIA.id', $id)
-                            ->select('PREGUNTA.PREGUNTA')
+                            ->select('PREGUNTA.PREGUNTA', 'PREGUNTA.id')
                             ->get();
         
 
         return view('pregunta.verPreguntas')->with('preguntasCategoria', $preguntasCategoria)
                                             ->with('categoria', $categoria);
+    }
+
+    public function borrarPregunta($id){
+        $pregunta = Pregunta::find($id);
+        $idcategoria = $pregunta->IDCATEGORIA;
+
+        $respuestas = Respuesta::where('IDPREGUNTA', $pregunta->id)->get();
+        
+        foreach($respuestas as $respuesta){
+            $respuesta->delete();
+        }
+        $pregunta->delete();
+        //// Ver Preguntas
+        $categoria = Categoria::find($idcategoria);
+
+        $preguntasCategoria = DB::table('CATEGORIA')
+                            ->join('PREGUNTA', 'PREGUNTA.IDCATEGORIA', '=', 'CATEGORIA.id')
+                            ->where('CATEGORIA.id', $idcategoria)
+                            ->select('PREGUNTA.PREGUNTA', 'PREGUNTA.id')
+                            ->get();
+        
+        Flash::info("Pregunta Eliminada de forma exitosa");
+        return view('pregunta.verPreguntas')->with('preguntasCategoria', $preguntasCategoria)
+                                            ->with('categoria', $categoria);
+        
     }
 }

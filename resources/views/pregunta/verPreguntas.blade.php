@@ -5,6 +5,7 @@
 @endsection
         
 @section('main-content')
+	@include('layouts.partials.contentheader.pregunta.verPreguntas_head')
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
@@ -40,6 +41,10 @@
 															<a href="#" class="btn btn-success" title="Ver">
 																<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 															</a>
+															<a href="{{ route('preguntas.borrarPregunta', $preCat->id) }}" class="btn btn-danger" title="Borrar" onclick="return confirm('¿Deseas Eliminar esta pregunta de Forma Permanente?')">
+																<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+															</a>
+															
 													</div>
 												</td>
 											</tr>

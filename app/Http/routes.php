@@ -125,6 +125,11 @@ Route::get('/', function () {
                 'as' => 'categoria.importarPreguntas',
                 'uses' => 'CategoriaController@importarPreguntas'
         ]);
+        Route::get('categorias/eliminarcategoria/{id}', [
+                'as' => 'categorias.eliminarCategoria',
+                'uses' => 'CategoriaController@eliminarCategoria'
+        ]);
+        
         /*
         * Fin Rutas para Categoria
         */
@@ -136,6 +141,10 @@ Route::get('/', function () {
         Route::get('preguntas/verpreguntas/{id}', [
                 'as' => 'preguntas.verPreguntas',
                 'uses' => 'PreguntaController@verPreguntas'
+        ]);
+        Route::get('preguntas/borrarpregunta/{id}', [
+                'as' => 'preguntas.borrarPregunta',
+                'uses' => 'PreguntaController@borrarPregunta'
         ]);
         /*
         * Fin Rutas para Preguntas
