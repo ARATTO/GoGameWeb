@@ -30,7 +30,7 @@ class AlumnosController extends Controller
 
         $recorrido = json_decode($conver);
         //dd($recorrido);
-        foreach($recorrido as $r){
+        /*foreach($recorrido as $r){
             
             try{
                 $r->imagenperfil=base64_encode( file_get_contents(public_path()."/gogame/FotoPerfil/".$r->imagenperfil));
@@ -38,7 +38,7 @@ class AlumnosController extends Controller
             }catch(Exception $e) {
                 error_log('NO HAY ALUMNOS');
             }
-        }
+        }*/
         $final = json_encode($recorrido);
         return $final;
     }
