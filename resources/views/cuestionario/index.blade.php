@@ -12,7 +12,13 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('gogamessage.Cuestionario') }}</div>
+					<div class="panel-heading">{{ trans('gogamessage.Cuestionario') }}
+						<div class="pull-right">
+							<a href="{{ route('cuestionarios.create') }}" class="btn btn-success" title="Nuevo Cuestionario">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
@@ -45,7 +51,7 @@
 												<td>{{$cuesMat->cuestionario->DURACIONCUESTIONARIO}}</td>
 												<td>
 													<div class="btn-group btn-group-sm" role="group" aria-label="...">
-															<a href="#" class="btn btn-success" title="Ver Categorias">
+															<a href="{{ route('cuestinarios.asignarCategorias', $cuesMat->cuestionario->id) }}" class="btn btn-success" title="Asignar Categorias">
 																<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 															</a>
 															<a href="#" class="btn btn-success" disabled="disabled">

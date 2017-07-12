@@ -164,4 +164,8 @@ class CuestionarioController extends Controller
     {
         //
     }
+
+    public function asignarCategorias($id){
+        dd('entra');
+    }
 }

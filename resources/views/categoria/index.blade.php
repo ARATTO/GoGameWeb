@@ -12,7 +12,13 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('gogamessage.Categoria') }} : {{$materia}}</div>
+					<div class="panel-heading">{{ trans('gogamessage.Categoria') }} : {{$materia}}  
+						<div class="pull-right">
+							<a href="{{ route('categorias.create') }}" class="btn btn-success" title="Nueva Categoria">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')

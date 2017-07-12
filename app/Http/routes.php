@@ -113,6 +113,10 @@ Route::get('/', function () {
         * Inicio Rutas para Cuestionario
         */
         Route::resource('cuestionarios','CuestionarioController');
+        Route::get('cuestinarios/asignarcategorias/{id}', [
+                'as' => 'cuestinarios.asignarCategorias',
+                'uses' => 'CuestionarioController@asignarCategorias'
+        ]);
         /*
         * Fin Rutas para Cuestionario
         */
@@ -129,6 +133,7 @@ Route::get('/', function () {
                 'as' => 'categorias.eliminarCategoria',
                 'uses' => 'CategoriaController@eliminarCategoria'
         ]);
+        
         
         /*
         * Fin Rutas para Categoria
