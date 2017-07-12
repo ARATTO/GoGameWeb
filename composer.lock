@@ -391,11 +391,7 @@
                 "thumbnail",
                 "watermark"
             ],
-<<<<<<< HEAD
             "time": "2017-07-03 15:50:40"
-=======
-            "time": "2017-07-03T15:50:40+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -767,11 +763,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
-<<<<<<< HEAD
             "time": "2017-05-21 18:02:21"
-=======
-            "time": "2017-05-21T18:02:21+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "league/flysystem",
@@ -854,11 +846,7 @@
                 "sftp",
                 "storage"
             ],
-<<<<<<< HEAD
             "time": "2017-04-28 10:15:08"
-=======
-            "time": "2017-04-28T10:15:08+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "maatwebsite/excel",
@@ -936,11 +924,7 @@
                 "import",
                 "laravel"
             ],
-<<<<<<< HEAD
             "time": "2017-07-02 07:00:56"
-=======
-            "time": "2017-07-02T07:00:56+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "monolog/monolog",
@@ -1018,11 +1002,7 @@
                 "logging",
                 "psr-3"
             ],
-<<<<<<< HEAD
             "time": "2017-06-19 01:22:40"
-=======
-            "time": "2017-06-19T01:22:40+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1498,11 +1478,7 @@
                 "mail",
                 "mailer"
             ],
-<<<<<<< HEAD
             "time": "2017-05-01 15:54:03"
-=======
-            "time": "2017-05-01T15:54:03+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "symfony/console",
@@ -1735,11 +1711,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-06-09 14:53:08"
-=======
-            "time": "2017-06-09T14:53:08+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "symfony/finder",
@@ -1982,11 +1954,7 @@
                 "portable",
                 "shim"
             ],
-<<<<<<< HEAD
             "time": "2017-06-09 14:24:12"
-=======
-            "time": "2017-06-09T14:24:12+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2042,11 +2010,7 @@
                 "portable",
                 "shim"
             ],
-<<<<<<< HEAD
             "time": "2017-06-09 08:25:21"
-=======
-            "time": "2017-06-09T08:25:21+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "symfony/polyfill-util",
@@ -2098,11 +2062,7 @@
                 "polyfill",
                 "shim"
             ],
-<<<<<<< HEAD
             "time": "2017-06-09 08:25:21"
-=======
-            "time": "2017-06-09T08:25:21+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "symfony/process",
@@ -3193,11 +3153,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
             "time": "2017-06-21 08:07:12"
-=======
-            "time": "2017-06-21T08:07:12+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3369,11 +3325,7 @@
             "keywords": [
                 "diff"
             ],
-<<<<<<< HEAD
             "time": "2017-05-22 07:24:03"
-=======
-            "time": "2017-05-22T07:24:03+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "sebastian/environment",
@@ -3740,11 +3692,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2017-06-15 12:58:50"
-=======
-            "time": "2017-06-15T12:58:50+00:00"
->>>>>>> 9631fa986dee0c79567bc1ea194e1a513d4e5acd
         },
         {
             "name": "webmozart/assert",
