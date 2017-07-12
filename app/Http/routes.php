@@ -33,6 +33,10 @@ Route::post('/actividadesapp', [
 Route::post('/cuestionariosapp', [
                 'as' => 'cuestionarios.materias.grupo',
                 'uses' => 'CuestionariosController@store'
+
+Route::post('/materiasExistentes', [
+                'as' => 'materiasExistentes.usuarios',
+                'uses' => 'MateriasExistentesController@store'
         ]);
         
 
