@@ -14,6 +14,26 @@ Route::post('/loginapp', [
                 'as' => 'loginapp.usuarios',
                 'uses' => 'LoginController@store'
         ]);
+
+Route::post('/alumnos', [
+                'as' => 'alumnos.materias.grupo',
+                'uses' => 'AlumnosController@store'
+        ]);
+
+Route::post('/medallasapp', [
+                'as' => 'medallasapp.materias',
+                'uses' => 'MedallasController@store'
+        ]);
+
+Route::post('/actividadesapp', [
+                'as' => 'actividades.materias.grupo',
+                'uses' => 'ActividadesController@store'
+        ]);
+
+Route::post('/cuestionariosapp', [
+                'as' => 'cuestionarios.materias.grupo',
+                'uses' => 'CuestionariosController@store'
+        ]);
         
 
 

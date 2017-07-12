@@ -21,13 +21,6 @@ class LoginController extends Controller
         
             if(\Hash::check($request->password ,$usuariojson[0]->password)){
 
-<<<<<<< HEAD
-            } elseif ($usuariojson->IDDOCENTE!=NULL){
-                $numero=2;
-                return $numero;
-            } elseif ($usuariojson->IDADMINISTRADOR!=NULL){
-                $numero=3;
-=======
                 if($usuariojson[0]->IDESTUDIANTE!=NULL){
                     
                     $numero=1;
@@ -48,7 +41,6 @@ class LoginController extends Controller
             }else {
 
                 $numero=4;
->>>>>>> 748a514b90ec585521ddb1589ac4ee41b9f01887
                 return $numero;
             }
     
@@ -64,3 +56,4 @@ class LoginController extends Controller
     }
 
 }
+

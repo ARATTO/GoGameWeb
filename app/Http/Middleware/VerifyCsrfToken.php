@@ -15,7 +15,11 @@ class VerifyCsrfToken extends BaseVerifier
 
         'loginapp*',
         'logapp*',
-        'perfil*'
+        'perfil*',
+        'alumnos*',
+        'medallasapp*',
+        'actividadesapp*',
+        'cuestionariosapp'
 
     ];
 }
