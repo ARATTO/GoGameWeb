@@ -14,6 +14,7 @@ use App\MateriaImpartida;
 use App\MedallaGanada;
 use App\Cuestionario;
 use App\CuestionarioMateria;
+use App\CategoriaCuestionario;
 use Laracasts\Flash\Flash;
 
 class CuestionarioController extends Controller
@@ -44,18 +45,22 @@ class CuestionarioController extends Controller
             if($coor->materiaImpartida->IDCICLO == $ciclo->id){
                 //Materia que Coordina el Docente
                 $matImp = MateriaImpartida::find($coor->materiaImpartida->id);
+                $categorias = Categoria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
             }
         }
+        
         
         $cuestionariomateria = CuestionarioMateria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
         
         if(count($cuestionariomateria) > 0){
             foreach($cuestionariomateria as $cuesMat){
                 $cuesMat->cuestionario = Cuestionario::where('id', $cuesMat->IDCUESTIONARIO)->first();
+                //Para Averiguar cuales ya estan en uso por este cuestionario
+                //$cuesMat->cuestionario->categoriasEnUso = CategoriaCuestionario::where('IDCUESTIONARIO', $cuesMat->IDCUESTIONARIO)->get();
             }
         }
         //dd($cuestionariomateria);
-        return view('cuestionario.index')->with('cuestionariomateria', $cuestionariomateria);
+        return view('cuestionario.index')->with('cuestionariomateria', $cuestionariomateria)->with('categorias',$categorias);
 
     }
 
@@ -170,10 +175,32 @@ class CuestionarioController extends Controller
     }
 
     public function asignarCategorias($id){
+
         return view('cuestionario.asignarCategoria');
     }
 
-    public function guardarCategorias($id){
-        dd('guarda categoria');
+    public function guardarCategorias(Request $request){
+
+        //dd($request->all());
+
+        foreach($request->categoriasSeleccionadas as $idCatSel){
+            //dd($idCatSel);
+            //Buscamos si ya esta asignado 
+            $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatSel)->first();
+            //Si no ha sido asignado entonces crear relacion
+            if( ! (count($existe)>0)  ){
+                $categoriaCuestionario = new CategoriaCuestionario();
+                $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
+                $categoriaCuestionario->IDCATEGORIA = $idCatSel;
+                $categoriaCuestionario->save();
+            }
+            
+        }
+
+        Flash::info("Categorias asignadas con Exito");
+        return redirect()->route('cuestionarios.index');
+        
     }
+
+    
 }

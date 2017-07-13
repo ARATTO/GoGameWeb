@@ -56,8 +56,9 @@
 														<a href="#" class="btn btn-success" onclick="mostrarModalAsignarCategoria{{$cuesMat->cuestionario->id}}();" title="Asignar Categorias">
 															<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 														</a>
+														
 														<!-- MODAL -->
-														@include('layouts.partials.modalAsignarCategoria', ['cuesMat' => $cuesMat])
+														@include('layouts.partials.modalAsignarCategoria', ['cuesMat' => $cuesMat, 'categorias' => $categorias])
 														<!-- FIN MODAL -->
 														<a href="{{ route('cuestionarios.asignarCategoriaPorcentaje', $cuesMat->cuestionario->id) }}" class="btn btn-warning" title="Asignar Porcentajes a Categorias">
 															<span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>

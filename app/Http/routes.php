@@ -123,7 +123,7 @@ Route::get('/', function () {
         ]);
         Route::post('cuestionarios/guardarcategorias/{id}', [
                 'as' => 'cuestionarios.guardarCategorias',
-                'uses' => 'cuestionarios@guardarCategorias'
+                'uses' => 'CuestionarioController@guardarCategorias'
         ]);
         /*
         * Fin Rutas para Cuestionario
