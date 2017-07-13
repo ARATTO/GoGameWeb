@@ -165,7 +165,15 @@ class CuestionarioController extends Controller
         //
     }
 
+    public function asignarCategoriaPorcentaje($id){
+        return view('cuestionario.asignarCategoriaPorcentaje');
+    }
+
     public function asignarCategorias($id){
-        dd('entra');
+        return view('cuestionario.asignarCategoria');
+    }
+
+    public function guardarCategorias($id){
+        dd('guarda categoria');
     }
 }
