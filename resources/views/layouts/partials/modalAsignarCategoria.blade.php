@@ -10,22 +10,29 @@
                 {!! Form::open(['route' => ['cuestionarios.guardarCategorias', $cuesMat->cuestionario->id], 'method' => 'POST']) !!}
                 
                 <div class="form-group" >
-                    <h4><span  for="chosen-select" class="label label-info">Categorias para Asignar</span></h4>
+                    <h4><span  for="chosen-select" class="label label-info">Asignar Categorias</span></h4>
                     <select class="chosen-select" name="categoriasSeleccionadas[]" id="chosenCategoria_{!! $cuesMat->cuestionario->id !!}" multiple data-placeholder="Seleccione las categorias necesarias...">
-                        @foreach ($categorias as $cat)
-                           <option value="{{ $cat->id }}">{{$cat->NOMBRECATEGORIA}}</option>
-                        @endforeach
+                        <!-- Si no tiene Categorias Asignadas-->
+                        @if($cuesMat->cuestionario->categoria_SinAsignar)
+                            <!-- Ya asignadas -->
+                            @foreach ($cuesMat->cuestionario->categoria_Uso as $cat)
+                                <option value="{{ $cat->id }}" selected>{{$cat->NOMBRECATEGORIA}}</option>                          
+                            @endforeach
+                            <!-- Aun sin Asignar-->
+                            @foreach ($cuesMat->cuestionario->categoria_SinAsignar as $cat)
+                                <option value="{{ $cat->id }}">{{$cat->NOMBRECATEGORIA}}</option>                          
+                            @endforeach
+                        @else
+                            <!-- Todas se pueden Asignar-->
+                            @foreach ($categorias as $cat)
+                                <option value="{{ $cat->id }}">{{$cat->NOMBRECATEGORIA}}</option>                          
+                            @endforeach
+                        @endif
+                        
                     </select>
                 </div>
                 <hr>
-                <div class="form-group" >
-                    <h4><span  for="chosen-select" class="label label-danger">Categorias para Eliminar</span></h4>
-                    <select class="chosen-select" name="categoriasEliminar[]" id="chosenCategoriaEliminar_{!! $cuesMat->cuestionario->id !!}" multiple data-placeholder="Seleccione las categorias a Eliminar...">
-                        @foreach ($categorias as $cat)
-                           <option value="{{ $cat->id }}">{{$cat->NOMBRECATEGORIA}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                
                 <input type="hidden" name="idCuestionario" value="{!! $cuesMat->cuestionario->id !!}">
 				
                 <div class="box-footer">

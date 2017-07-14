@@ -15,6 +15,7 @@ use App\MedallaGanada;
 use App\Cuestionario;
 use App\CuestionarioMateria;
 use App\CategoriaCuestionario;
+use Illuminate\Support\Collection;
 use Laracasts\Flash\Flash;
 
 class CuestionarioController extends Controller
@@ -56,9 +57,26 @@ class CuestionarioController extends Controller
             foreach($cuestionariomateria as $cuesMat){
                 $cuesMat->cuestionario = Cuestionario::where('id', $cuesMat->IDCUESTIONARIO)->first();
                 //Para Averiguar cuales ya estan en uso por este cuestionario
-                //$cuesMat->cuestionario->categoriasEnUso = CategoriaCuestionario::where('IDCUESTIONARIO', $cuesMat->IDCUESTIONARIO)->get();
+                $cuesMat->cuestionario->categoriasCuestionarioEnUso = CategoriaCuestionario::where('IDCUESTIONARIO', $cuesMat->IDCUESTIONARIO)->get();
+                //dd($cuesMat);
+                if( count($cuesMat->cuestionario->categoriasCuestionarioEnUso) > 0 ){
+                    $categoria_Uso = new Collection();
+                    foreach($cuesMat->cuestionario->categoriasCuestionarioEnUso as $catCue){
+                        $categoria_Uso->push(Categoria::find($catCue->IDCATEGORIA));
+                    }
+                    //Categorias que estan Asignadas
+                    $cuesMat->cuestionario->categoria_Uso = $categoria_Uso;
+                    //Categorias que no estan asignadas
+                    $categoria_SinAsignar = new Collection();
+                    $categoria_SinAsignar = $categorias->diff($cuesMat->cuestionario->categoria_Uso);
+                    //dd($categoria_SinAsignar);
+                    $cuesMat->cuestionario->categoria_SinAsignar = $categoria_SinAsignar;
+                }
+                
             }
+            
         }
+        
         //dd($cuestionariomateria);
         return view('cuestionario.index')->with('cuestionariomateria', $cuestionariomateria)->with('categorias',$categorias);
 
@@ -181,26 +199,86 @@ class CuestionarioController extends Controller
 
     public function guardarCategorias(Request $request){
 
-        //dd($request->all());
+        $categoriasEnviadas = new Collection();
+        $categoriasYaSeleccionada = new Collection();
+        //Eliminar
+        $categoriasEliminar = new Collection();
+        //Agregar
+        $categoriasAgregar = new Collection();
 
-        foreach($request->categoriasSeleccionadas as $idCatSel){
-            //dd($idCatSel);
-            //Buscamos si ya esta asignado 
-            $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatSel)->first();
-            //Si no ha sido asignado entonces crear relacion
-            if( ! (count($existe)>0)  ){
-                $categoriaCuestionario = new CategoriaCuestionario();
-                $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
-                $categoriaCuestionario->IDCATEGORIA = $idCatSel;
-                $categoriaCuestionario->save();
+        $categoriasCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->get();
+        if($categoriasCuestionario){
+            foreach($categoriasCuestionario as $catCue){
+                $categoriasYaSeleccionada->push(Categoria::find($catCue->IDCATEGORIA));
             }
-            
+        }
+        if($request->categoriasSeleccionadas){
+            foreach($request->categoriasSeleccionadas as $idCatSel){
+                $categoriasEnviadas->push(Categoria::find($idCatSel));
+            }
         }
 
-        Flash::info("Categorias asignadas con Exito");
+        $categoriasAgregar = $categoriasEnviadas->diff($categoriasYaSeleccionada);
+        $categoriasEliminar = $categoriasYaSeleccionada->diff($categoriasEnviadas);
+
+        if(count($categoriasAgregar)>0){
+            foreach($categoriasAgregar as $catAgrega){
+                $categoriaCuestionario = new CategoriaCuestionario();
+                $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
+                $categoriaCuestionario->IDCATEGORIA = $catAgrega->id;
+                $categoriaCuestionario->save();
+            }
+            Flash::success("Categorias Agregadas con Exito");
+        }
+        if(count($categoriasEliminar)>0){
+            foreach($categoriasEliminar as $catBorra){
+                //dd($catBorra);
+                $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $catBorra->id)->first();
+                $categoriaCuestionario->delete();
+            }
+            Flash::danger("Categorias Actualizadas con Exito");
+        }
+
+
+        /*
+        //Si selecciono
+        if($request->categoriasSeleccionadas){
+            foreach($request->categoriasSeleccionadas as $idCatSel){
+                //dd($idCatSel);
+                //Buscamos si ya esta asignado 
+                $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatSel)->first();
+                //Si no ha sido asignado entonces crear relacion
+                if( ! (count($existe)>0)  ){
+                    $categoriaCuestionario = new CategoriaCuestionario();
+                    $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
+                    $categoriaCuestionario->IDCATEGORIA = $idCatSel;
+                    $categoriaCuestionario->save();
+                }
+                
+            }
+        }
+        */
+        /*
+        //Si desea borrar
+        if($request->categoriasEliminar){
+            foreach($request->categoriasEliminar as $idCatBorrar){
+                //dd($idCatSel);
+                //Buscamos si ya esta asignado 
+                $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatBorrar)->first();
+                //Si no ha sido asignado entonces crear relacion
+                if(  count($existe) > 0  ){
+                    $categoriaCuestionario = CategoriaCuestionario::find($idCatBorrar);
+                    $categoriaCuestionario->delete();
+                }
+                
+            }
+        }
+        */
+        
         return redirect()->route('cuestionarios.index');
         
     }
+
 
     
 }
