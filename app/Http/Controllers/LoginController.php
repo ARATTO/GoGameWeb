@@ -50,7 +50,6 @@ class LoginController extends Controller
             return $numero;
     
         }
-
         
         
     }
