@@ -10,13 +10,13 @@
             <!-- Your Page Content Here -->
 	<div class="container spark-screen">    
 		<div class="row">
-			<div class="col-md-5 col-md-offset-1">
+			<div class="col-md-8 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">Asignar Categoria Porcentaje</div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
-							{!! Form::open(['route' => 'cuestionarios.store', 'method' => 'POST']) !!}
+							{!! Form::open(['route' => ['cuestionarios.guardarPorcentajes', $idCuestionario], 'method' => 'POST']) !!}
 
                                         <!-- TO DO List -->
                                         <div class="box box-primary">
@@ -28,22 +28,50 @@
                                             <div class="box-body">
                                                 <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
                                                 <ul class="todo-list">
-                                                    <li>            
-                                                        <!-- todo text -->
-                                                        <span class="text">Categoria 1</span>
-                                                        <!-- Emphasis label -->
-                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> 3 preguntas</small>
-                                                        <!-- General tools such as edit or delete-->
-                                                        <div class="tools">
-                                                            <i class="fa fa-trash-o"></i>
-                                                        </div>
-                                                    </li>
+                                                               
+                                                        @foreach($categoriaCuestionario as $catCue)
+                                                            <li> 
+                                                                <!-- todo text -->
+                                                                <span class="text">{{ $catCue->categoria->NOMBRECATEGORIA}}</span>
+                                                                <!-- Emphasis label -->
+                                                                <div class="tools">
+                                                                    <!-- 
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                    ver preguntas-->
+                                                                    <small class="label label-danger"><i class="fa fa-clock-o"></i> 3 preguntas</small>
+                                                                </div>
+                                                                <span class="text">
+                                                                    Preguntas
+                                                                    <input type="number">
+                                                                </span>
+                                                                <span class="text">
+                                                                    Porcentaje
+                                                                    <input type="number">
+                                                                </span>
+                                                            </li>
+                                                            <br>
+                                                        @endforeach
+                                                        <hr>
+                                                        <li> 
+                                                                <!-- todo text -->
+                                                                <span class="text">TOTALES</span>
+                                                                
+                                                                <span class="text">
+                                                                    Preguntas
+                                                                    <input type="number">
+                                                                </span>
+                                                                <span class="text">
+                                                                    Porcentaje
+                                                                    <input type="number">
+                                                                </span>
+                                                        </li>
+                                                    
                                                     
                                                 </ul>
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer clearfix no-border">
-                                                <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                                                <button type="button" class="btn btn-default pull-right"><i class="fa fa-recycle"></i> Limpiar Campos</button>
                                             </div>
                                         </div>
                                         <!-- /.box -->

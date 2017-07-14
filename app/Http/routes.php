@@ -113,10 +113,6 @@ Route::get('/', function () {
         * Inicio Rutas para Cuestionario
         */
         Route::resource('cuestionarios','CuestionarioController');
-        Route::get('cuestionarios/asignarcategorias/{id}', [
-                'as' => 'cuestionarios.asignarCategorias',
-                'uses' => 'CuestionarioController@asignarCategorias'
-        ]);
         Route::get('cuestionarios/asignarcategoriaporcentaje/{id}', [
                 'as' => 'cuestionarios.asignarCategoriaPorcentaje',
                 'uses' => 'CuestionarioController@asignarCategoriaPorcentaje'
@@ -124,6 +120,10 @@ Route::get('/', function () {
         Route::post('cuestionarios/guardarcategorias/{id}', [
                 'as' => 'cuestionarios.guardarCategorias',
                 'uses' => 'CuestionarioController@guardarCategorias'
+        ]);
+        Route::post('cuestionarios/guardarporcentajes/{id}', [
+                'as' => 'cuestionarios.guardarPorcentajes',
+                'uses' => 'CuestionarioController@guardarPorcentajes'
         ]);
         /*
         * Fin Rutas para Cuestionario

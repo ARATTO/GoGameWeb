@@ -189,12 +189,18 @@ class CuestionarioController extends Controller
     }
 
     public function asignarCategoriaPorcentaje($id){
-        return view('cuestionario.asignarCategoriaPorcentaje');
+        $idCuestionario = $id;
+        $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $idCuestionario)->get();
+        foreach($categoriaCuestionario as $catCue){
+            $catCue->categoria = Categoria::find($catCue->IDCATEGORIA);
+        }
+        //dd($categoriaCuestionario);
+        return view('cuestionario.asignarCategoriaPorcentaje')->with('categoriaCuestionario', $categoriaCuestionario)
+                                                              ->with('idCuestionario', $idCuestionario);
     }
 
-    public function asignarCategorias($id){
+    public function guardarPorcentajes(Request $request){
 
-        return view('cuestionario.asignarCategoria');
     }
 
     public function guardarCategorias(Request $request){
@@ -239,42 +245,6 @@ class CuestionarioController extends Controller
             Flash::danger("Categorias Actualizadas con Exito");
         }
 
-
-        /*
-        //Si selecciono
-        if($request->categoriasSeleccionadas){
-            foreach($request->categoriasSeleccionadas as $idCatSel){
-                //dd($idCatSel);
-                //Buscamos si ya esta asignado 
-                $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatSel)->first();
-                //Si no ha sido asignado entonces crear relacion
-                if( ! (count($existe)>0)  ){
-                    $categoriaCuestionario = new CategoriaCuestionario();
-                    $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
-                    $categoriaCuestionario->IDCATEGORIA = $idCatSel;
-                    $categoriaCuestionario->save();
-                }
-                
-            }
-        }
-        */
-        /*
-        //Si desea borrar
-        if($request->categoriasEliminar){
-            foreach($request->categoriasEliminar as $idCatBorrar){
-                //dd($idCatSel);
-                //Buscamos si ya esta asignado 
-                $existe = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $idCatBorrar)->first();
-                //Si no ha sido asignado entonces crear relacion
-                if(  count($existe) > 0  ){
-                    $categoriaCuestionario = CategoriaCuestionario::find($idCatBorrar);
-                    $categoriaCuestionario->delete();
-                }
-                
-            }
-        }
-        */
-        
         return redirect()->route('cuestionarios.index');
         
     }
