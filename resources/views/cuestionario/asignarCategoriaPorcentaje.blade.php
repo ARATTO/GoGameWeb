@@ -52,7 +52,7 @@
                                                             <th>
                                                                 <div class="input-group has-info form-inline">
                                                                     <span class="input-group-addon">%</span>
-                                                                    <input class="form-control" type="text" id="tot_porcentaje" disabled/>
+                                                                    <input class="form-control" type="text" id="tot_porcentaje" disabled required/>
                                                                 </div>
                                                                 @include('cuestionario.scriptTotales', ['categoriaCuestionario' => $categoriaCuestionario, 'ultimo_categoria' => $ultimo_categoria])
                                                             </th>
@@ -68,19 +68,32 @@
                                                                 <td>
                                                                     <div class="input-group has-info form-inline">
                                                                             <span class="input-group-addon">#</span>
-                                                                            <input class="form-control" type="number" onchange="totalesPreguntas()" id="pregunta_{!! $catCue->categoria->id !!}" name="pregunta_{!! $catCue->categoria->id !!}" min="1" max="{{$catCue->categoria->NumeroPregunta}}" step="1" value="0" required/>
+                                                                            @if($catCue->CANTIDADPREGUNTAS )
+                                                                                <input class="form-control" type="number" onchange="totalesPreguntas()" id="pregunta_{!! $catCue->categoria->id !!}" name="pregunta_{!! $catCue->categoria->id !!}" min="1" max="{{$catCue->categoria->NumeroPregunta}}" step="1" value="{{$catCue->CANTIDADPREGUNTAS}}" required/>
+                                                                            @else
+                                                                                <input class="form-control" type="number" onchange="totalesPreguntas()" id="pregunta_{!! $catCue->categoria->id !!}" name="pregunta_{!! $catCue->categoria->id !!}" min="1" max="{{$catCue->categoria->NumeroPregunta}}" step="1" value="0" required/>
+                                                                            @endif
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     @if($catCue->categoria->id == $ultimo_categoria->categoria->id)
                                                                         <div class="input-group has-info form-inline">
                                                                             <span class="input-group-addon">%</span>
-                                                                            <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required readonly/>
+                                                                            @if($catCue->PORCENTAJECATEGORIA)
+                                                                                <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="{{$catCue->PORCENTAJECATEGORIA}}" required readonly/>
+                                                                            @else
+                                                                                <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required readonly/>
+                                                                            @endif
                                                                         </div>
                                                                     @else
                                                                         <div class="input-group has-info form-inline">
                                                                             <span class="input-group-addon">%</span>
-                                                                            <input class="form-control" type="number" onchange="totalesPorcentajes()" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required/>
+                                                                            @if($catCue->PORCENTAJECATEGORIA)
+                                                                                <input class="form-control" type="number" onchange="totalesPorcentajes()" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="{{$catCue->PORCENTAJECATEGORIA}}" required/>
+                                                                            @else
+                                                                                <input class="form-control" type="number" onchange="totalesPorcentajes()" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required/>
+                                                                            @endif
+                                                                            
                                                                         </div>
                                                                     @endif
                                                                 </td>                                       
