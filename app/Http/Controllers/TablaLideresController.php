@@ -35,20 +35,23 @@ class TablaLideresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request  $request)
     {
-        $idmateria=1;//$request->Materia;
-        $idgrupo=1;//$request->Grupo;
-        $cadena1="select perfil.nombreperfil,sum(detallepuntoactividad.puntajeganado) 
-        as puntajeacumulado from detallepuntoactividad inner join perfil on 
-        perfil.id=detallepuntoactividad.idperfil where perfil.id in 
-        (select distinct perfil.id from detallepuntoactividad inner join actividad on 
-        actividad.id=detallepuntoactividad.idactividad   
-        inner join grupo on actividad.idgrupo=grupo.id inner join inscripcion on 
-        inscripcion.idgrupo=grupo.id inner join materiaimpartida on 
-        materiaimpartida.id=grupo.idmateriaimpartida inner join materia on 
-        materiaimpartida.idmateria=materia.id inner join perfil on
-        detallepuntoactividad.idperfil=perfil.id ";
+        //$idmateria=1
+        //$idgrupo=1;       
+        $idmateria=$request->Materia;
+        $idgrupo=$request->Grupo;
+        $cadena1="select estudiante.carnetestudiante,sum(detallepuntoactividad.puntajeganado) 
+        as puntajeacumulado from detallepuntoactividad inner join perfil on
+        perfil.id=detallepuntoactividad.idperfil inner join estudiante on 
+        perfil.idestudiante=estudiante.id where perfil.id in (select distinct perfil.id 
+        from detallepuntoactividad inner join actividad on 
+        actividad.id=detallepuntoactividad.idactividad inner join grupo 
+        on actividad.idgrupo=grupo.id inner join inscripcion on inscripcion.idgrupo=grupo.id
+        inner join materiaimpartida on materiaimpartida.id=grupo.idmateriaimpartida
+        inner join materia on materiaimpartida.idmateria=materia.id inner join perfil 
+        on detallepuntoactividad.idperfil=perfil.id inner join estudiante on 
+        estudiante.id=perfil.idestudiante";
         $cadena2=" where perfil.idestudiante 
         is not null and materia.id=".$idmateria." and grupo.id=".$idgrupo.") 
         group by perfil.nombreperfil order by puntajeacumulado desc;";

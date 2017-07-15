@@ -40,7 +40,7 @@ Route::post('/materiasapp', [
                 'uses' => 'DescripcionMateriaController@store'
         ]);
 
-Route::get('/lideresapp', [
+Route::post('/lideresapp', [
                 'as' => 'lideresapp',
                 'uses' => 'TablaLideresController@store'
         ]);
