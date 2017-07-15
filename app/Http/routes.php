@@ -37,12 +37,12 @@ Route::post('/cuestionariosapp', [
 
 Route::post('/materiasExistentesDocentes', [
                 'as' => 'materiasExistentesDocentes.usuarios',
-                'uses' => 'MateriasExistentesController@store'
+                'uses' => 'MateriasExistentesController@materiasDocente'
         ]);
 
 Route::post('/materiasExistentesEstudiantes', [
                 'as' => 'materiasExistentesEstudiantes.usuarios',
-                'uses' => 'MateriasExistentesController@store2'
+                'uses' => 'MateriasExistentesController@materiasEstudiante'
         ]);
         
 

@@ -10,44 +10,26 @@ use DB;
 
 class MateriasExistentesController extends Controller
 {
-    //
-	public function store(Request $request){
 
+    /*
+    	Metodo que consulta en la base de datos 
+      	las materias impartidas por los docentes
+      	en un ciclo activo
+    */
+
+	public function materiasDocente(Request $request){
+
+		//Recibe los datos del cliente
 	 	$email = $request->email;
 	  	$tipousuario = $request->resultado;
 
-	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, d.NOMBREDOCENTE, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA FROM materia m INNER JOIN materiaimpartida mi on m.id = mi.IDMATERIA INNER JOIN grupo g ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN docente d ON g.IDDOCENTE = d.id INNER JOIN tipogrupo tp ON g.IDTIPOGRUPO = tp.id INNER JOIN perfil p ON p.IDDOCENTE = d.id WHERE p.email = '" . $email . "' AND tp.NOMBRETIPOGRUPO = 'Teorico';";
+	  	//Consulta a la base de datos
+	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, d.NOMBREDOCENTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA FROM materia m INNER JOIN materiaimpartida mi on m.id = mi.IDMATERIA INNER JOIN grupo g ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN docente d ON g.IDDOCENTE = d.id INNER JOIN tipogrupo tp ON g.IDTIPOGRUPO = tp.id INNER JOIN perfil p ON p.IDDOCENTE = d.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tp.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1";
 
 	  
-
-	  
-	  $materiaExistente = DB::select(DB::raw($consulta));
-
-	  foreach($materiaExistente as $me){
-            
-            try{
-                $me->IMAGENMATERIA=  base64_encode( file_get_contents(public_path()."/gogame/FotoMateria/".$me->IMAGENMATERIA));
-            }catch(Exception $e) {
-                error_log('error');
-            }
-
-      }
-      
-      $resultado = json_encode($materiaExistente);
-	  //dd($resultado);
-      return $resultado;     
-
-	}
-
-	public function store2(Request $request){
-
-		$email = $request->email;
-	  	$tipousuario = $request->resultado;
-
-	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, e.NOMBREESTUDIANTE, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA FROM estudiante e INNER JOIN inscripcion i ON e.id = i.IDESTUDIANTE INNER JOIN grupo g ON i.IDGRUPO = g.id INNER JOIN tipogrupo tg ON g.IDTIPOGRUPO = tg.id INNER JOIN materiaimpartida mi ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN materia m ON m.id = mi.IDMATERIA INNER JOIN perfil p ON p.IDESTUDIANTE = e.id WHERE p.email = '" . $email . "' AND tg.NOMBRETIPOGRUPO = 'Teorico';";
-
 	  	$materiaExistente = DB::select(DB::raw($consulta));
 
+	  	//Convierte la imagen a base64
 	  	foreach($materiaExistente as $me){
             
             try{
@@ -58,12 +40,47 @@ class MateriasExistentesController extends Controller
 
       	}
       
+      	//Convierte el resultado de la consulta a formato json
       	$resultado = json_encode($materiaExistente);
-	  	//dd($resultado);
-      	return $resultado;
-
+	  
+      	return $resultado;     
 
 	}
 
+	/*
+    	Metodo que consulta en la base de datos 
+      	las materias inscritas por los estudiantes
+      	en un ciclo activo
+    */
+
+	public function materiasEstudiante(Request $request){
+
+		//Recibe los datos del cliente
+		$email = $request->email;
+	  	$tipousuario = $request->resultado;
+
+	  	//Consulta a la base de datos
+	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, e.NOMBREESTUDIANTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA  FROM estudiante e INNER JOIN inscripcion i ON e.id = i.IDESTUDIANTE INNER JOIN grupo g ON i.IDGRUPO = g.id INNER JOIN tipogrupo tg ON g.IDTIPOGRUPO = tg.id INNER JOIN materiaimpartida mi ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN materia m ON m.id = mi.IDMATERIA INNER JOIN perfil p ON p.IDESTUDIANTE = e.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tg.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1;";
+
+
+	  	$materiaExistente = DB::select(DB::raw($consulta));
+
+	  	//Convierte la imagen a base64
+	  	foreach($materiaExistente as $me){
+            
+            try{
+                $me->IMAGENMATERIA=  base64_encode( file_get_contents(public_path()."/gogame/FotoMateria/".$me->IMAGENMATERIA));
+            }catch(Exception $e) {
+                error_log('error');
+            }
+
+      	}
+      
+      	//Convierte el resultado de la consulta a formato json
+      	$resultado = json_encode($materiaExistente);
+	  	
+      	return $resultado;
+
+	}
 
 }
