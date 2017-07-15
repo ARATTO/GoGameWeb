@@ -27,47 +27,70 @@
                                             <!-- /.box-header -->
                                             <div class="box-body">
                                                 <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                                <ul class="todo-list">
-                                                               
-                                                        @foreach($categoriaCuestionario as $catCue)
-                                                            <li> 
-                                                                <!-- todo text -->
-                                                                <span class="text">{{ $catCue->categoria->NOMBRECATEGORIA}}</span>
-                                                                <!-- Emphasis label -->
-                                                                <div class="tools">
-                                                                    <!-- 
-                                                                    <i class="fa fa-trash-o"></i>
-                                                                    ver preguntas-->
-                                                                    <small class="label label-danger"><i class="fa fa-clock-o"></i> 3 preguntas</small>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr class="success">
+                                                            <th>CATEGORIA</th>
+                                                            <th>PREGUNTA</th>
+                                                            <th>PORCENTAJE</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr class="danger">
+                                                            <th>
+                                                                <div class="input-group has-danger form-inline">
+                                                                   
                                                                 </div>
-                                                                <span class="text">
-                                                                    Preguntas
-                                                                    <input type="number">
-                                                                </span>
-                                                                <span class="text">
-                                                                    Porcentaje
-                                                                    <input type="number">
-                                                                </span>
-                                                            </li>
-                                                            <br>
+                                                            </th>
+                                                            <th>
+                                                                <div class="input-group has-info form-inline">
+                                                                    <span class="input-group-addon">#</span>
+                                                                    <input class="form-control" type="text" id="tot_preguntas" disabled/>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="input-group has-info form-inline">
+                                                                    <span class="input-group-addon">%</span>
+                                                                    <input class="form-control" type="text" id="tot_porcentaje" disabled/>
+                                                                </div>
+                                                                @include('cuestionario.scriptTotales', ['categoriaCuestionario' => $categoriaCuestionario, 'ultimo_categoria' => $ultimo_categoria])
+                                                            </th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        @foreach($categoriaCuestionario as $catCue)
+                                                            <tr>
+                                                                <td>
+                                                                    {{ $catCue->categoria->NOMBRECATEGORIA}}
+                                                                    <small class="pull-right label label-success"><i class="fa fa-clock-o"></i> {{$catCue->categoria->NumeroPregunta}} preguntas</small>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="input-group has-info form-inline">
+                                                                            <span class="input-group-addon">#</span>
+                                                                            <input class="form-control" type="number" onchange="totalesPreguntas()" id="pregunta_{!! $catCue->categoria->id !!}" name="pregunta_{!! $catCue->categoria->id !!}" min="1" max="{{$catCue->categoria->NumeroPregunta}}" step="1" value="0" required/>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    @if($catCue->categoria->id == $ultimo_categoria->categoria->id)
+                                                                        <div class="input-group has-info form-inline">
+                                                                            <span class="input-group-addon">%</span>
+                                                                            <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required disabled/>
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="input-group has-info form-inline">
+                                                                            <span class="input-group-addon">%</span>
+                                                                            <input class="form-control" type="number" onchange="totalesPorcentajes()" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required/>
+                                                                        </div>
+                                                                    @endif
+                                                                </td>                                       
+                                                            </tr>
+                                                            
                                                         @endforeach
-                                                        <hr>
-                                                        <li> 
-                                                                <!-- todo text -->
-                                                                <span class="text">TOTALES</span>
-                                                                
-                                                                <span class="text">
-                                                                    Preguntas
-                                                                    <input type="number">
-                                                                </span>
-                                                                <span class="text">
-                                                                    Porcentaje
-                                                                    <input type="number">
-                                                                </span>
-                                                        </li>
-                                                    
-                                                    
-                                                </ul>
+                                                    </tbody>
+                                                    </table>
+                                                </div>
+                                                
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer clearfix no-border">
@@ -77,7 +100,7 @@
                                         <!-- /.box -->
                                         
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-lg btn-success"> ACEPTAR</button>
+                                            <button type="submit" class="btn btn-lg btn-success"> GUARDAR</button>
                                         </div>
                             {!! Form::close() !!}  
 					</div>

@@ -131,6 +131,7 @@
       $('#numeros').maskNumber({
             integer: true,
       });
+      //$('#fraccion').mask("99.99");
 </script>
 
 <!-- Include Plugin TimePiker -->

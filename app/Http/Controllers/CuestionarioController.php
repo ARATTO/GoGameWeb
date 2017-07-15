@@ -15,6 +15,7 @@ use App\MedallaGanada;
 use App\Cuestionario;
 use App\CuestionarioMateria;
 use App\CategoriaCuestionario;
+use App\Pregunta;
 use Illuminate\Support\Collection;
 use Laracasts\Flash\Flash;
 
@@ -193,10 +194,19 @@ class CuestionarioController extends Controller
         $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $idCuestionario)->get();
         foreach($categoriaCuestionario as $catCue){
             $catCue->categoria = Categoria::find($catCue->IDCATEGORIA);
+            $preguntas = Pregunta::where('IDCATEGORIA', $catCue->categoria->id)->get();
+            $catCue->categoria->NumeroPregunta = count($preguntas);
         }
+        $cuantos = count($categoriaCuestionario);
+        $ultimo_categoria = $categoriaCuestionario->last();
+        
+
         //dd($categoriaCuestionario);
+
         return view('cuestionario.asignarCategoriaPorcentaje')->with('categoriaCuestionario', $categoriaCuestionario)
-                                                              ->with('idCuestionario', $idCuestionario);
+                                                              ->with('idCuestionario', $idCuestionario)
+                                                              ->with('cuantos', $cuantos)
+                                                              ->with('ultimo_categoria', $ultimo_categoria);
     }
 
     public function guardarPorcentajes(Request $request){
