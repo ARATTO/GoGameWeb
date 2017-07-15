@@ -210,7 +210,25 @@ class CuestionarioController extends Controller
     }
 
     public function guardarPorcentajes(Request $request){
+        //dd($request->all());
+        $idCuestionario = $request->idCuestionario;
+        $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $idCuestionario)->get();
+        foreach($categoriaCuestionario as $catCue){
+            $categoria = Categoria::find($catCue->IDCATEGORIA);   
+            
+            //Armar String para Variable dinamica de pregunta
+            $string_pregunta = "pregunta_" . $categoria->id;
+            //Armar String para Variable dinamica de porcentaje
+            $string_porcentaje = "porcentaje_" . $categoria->id;
 
+            //Guardar en Objeto
+            $catCue->CANTIDADPREGUNTAS = $request->$string_pregunta;
+            //Guardar en Objeto
+            $catCue->PORCENTAJECATEGORIA = $request->$string_porcentaje;
+            $catCue->save();
+
+        }
+        return redirect()->route('cuestionarios.index');
     }
 
     public function guardarCategorias(Request $request){

@@ -75,7 +75,7 @@
                                                                     @if($catCue->categoria->id == $ultimo_categoria->categoria->id)
                                                                         <div class="input-group has-info form-inline">
                                                                             <span class="input-group-addon">%</span>
-                                                                            <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required disabled/>
+                                                                            <input class="form-control" type="number" id="porcentaje_{!! $catCue->categoria->id !!}" name="porcentaje_{!! $catCue->categoria->id !!}" min="0" max="100" step="0.1" value="0.0" required readonly/>
                                                                         </div>
                                                                     @else
                                                                         <div class="input-group has-info form-inline">
@@ -87,6 +87,7 @@
                                                             </tr>
                                                             
                                                         @endforeach
+                                                        <input type="hidden" name="idCuestionario" value="{{$idCuestionario}}">
                                                     </tbody>
                                                     </table>
                                                 </div>
@@ -94,7 +95,7 @@
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer clearfix no-border">
-                                                <button type="button" class="btn btn-default pull-right"><i class="fa fa-recycle"></i> Limpiar Campos</button>
+                                                <button type="button" onclick="limpiar()" class="btn btn-default pull-right"><i class="fa fa-recycle"></i> Limpiar Campos</button>
                                             </div>
                                         </div>
                                         <!-- /.box -->

@@ -34,5 +34,13 @@
 
       $("#tot_porcentaje").val(suma);
    }
-  
+
+    function limpiar(){
+        @foreach($categoriaCuestionario as $catCue)
+            $("#porcentaje_{!! $catCue->categoria->id !!}").val("0.0");
+            $("#pregunta_{!! $catCue->categoria->id !!}").val("0");
+            $("#tot_preguntas").val("");
+            $("#tot_porcentaje").val("");
+        @endforeach
+    }
 </script>
