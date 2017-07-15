@@ -21,7 +21,9 @@ class VerifyCsrfToken extends BaseVerifier
         'actividadesapp*',
         'cuestionariosapp*',
         'materiasExistentes*',
-        'perfil*'
+        'perfil*',
+        'materiasapp*',
+        'lideresapp'
 
     ];
 }

@@ -34,9 +34,25 @@ Route::post('/cuestionariosapp', [
                 'as' => 'cuestionarios.materias.grupo',
                 'uses' => 'CuestionariosController@store'
         ]);
+
+Route::post('/materiasapp', [
+                'as' => 'materiasapp',
+                'uses' => 'DescripcionMateriaController@store'
+        ]);
+
+Route::get('/lideresapp', [
+                'as' => 'lideresapp',
+                'uses' => 'TablaLideresController@store'
+        ]);
+
 Route::post('/materiasExistentes', [
                 'as' => 'materiasExistentes.usuarios',
                 'uses' => 'MateriasExistentesController@store'
+        ]);
+
+Route::get('tipoActividad',[
+        'as' => 'perfil',
+        'uses' => 'TipoActividadController@index'
         ]);
         
 
