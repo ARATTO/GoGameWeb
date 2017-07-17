@@ -13,7 +13,7 @@ class ActividadesController extends Controller
     {
     	$idmateria=$request->Materia;
     	$idgrupo=$request->Grupo;
-    	$cadena1="select actividad.nombreactividad,detallepunto.puntosactividad from detallepunto inner join actividad on actividad.iddetallepunto=detallepunto.id inner join grupo on actividad.idgrupo=grupo.id inner join materiaimpartida on materiaimpartida.id=detallepunto.idmateriaimpartida inner join materia on materiaimpartida.idmateria=materia.id ";
+    	$cadena1="select actividad.id,actividad.nombreactividad,detallepunto.puntosactividad from detallepunto inner join actividad on actividad.iddetallepunto=detallepunto.id inner join grupo on actividad.idgrupo=grupo.id inner join materiaimpartida on materiaimpartida.id=detallepunto.idmateriaimpartida inner join materia on materiaimpartida.idmateria=materia.id ";
         $cadena2=" where materia.id=".$idmateria." and grupo.id=".$idgrupo.";";
         $resultado=$cadena1.$cadena2;
         //dd($resultado);
