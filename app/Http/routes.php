@@ -234,7 +234,7 @@ Route::get('/', function () {
         'uses' => 'perfilController@obtenerMedallasPerfil'
         ]);
 
-    Route::get('puntosPerfil/',[
+    Route::post('puntosPerfil/',[
         'as' => 'puntosPerfil',
         'uses' => 'PuntosController@asignarPuntos'
         ]);

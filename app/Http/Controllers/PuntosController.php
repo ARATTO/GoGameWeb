@@ -18,12 +18,14 @@ class PuntosController extends Controller
 {
 
 	/*metodo que asigna puntos a un perfil y medallas*/
-    public function asignarPuntos(){
-		$variableRequestActividad =-1;
-		$variableRequestidGrupo = 1;
+    public function asignarPuntos(Request $request){
+
+
+		$variableRequestActividad =$request->actividad;
+		$variableRequestidGrupo = $request->grupo;
 		//elias_barrera@hotmail.com
 
-    	$correo = "elias_barrera@hotmail.com";
+    	$correo = $request->email;
     	$idActividad =0;
 
 
@@ -70,7 +72,7 @@ class PuntosController extends Controller
 
     	$actividad =  Actividad::where('id',$idActividad)->get();
 
-    	/*comienzan las validaciones*/
+    	//comienzan las validaciones
 
     	if (count($actividad)>0) {//si la actividad existe pasa al siguiente nivel
 
@@ -187,8 +189,7 @@ class PuntosController extends Controller
 
 		}//fin de if-else actividad
     	
-    	
+	
 	}
-
 
 }
