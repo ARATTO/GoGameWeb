@@ -14,10 +14,10 @@ class Cuestionario extends Model
      */
     protected $fillable = [
         'id',
+        'NOMBRECUESTIONARIO',
         'IDDOCENTE',
-        'FECHACUESTIONARIO',
-        'HORAINICIOCUESTIONARIO',
-        'HORAFINCUESTIONARIO',
+        'FECHAINICIOCUESTIONARIO',
+        'FECHAFINCUESTIONARIO',
         'DURACIONCUESTIONARIO',
         
     ];

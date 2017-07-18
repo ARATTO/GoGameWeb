@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\User;
+
+use App\Categoria;
+use App\Coordinador;
+use App\Materia;
+use App\Ciclo;
+use App\MateriaImpartida;
+use App\MedallaGanada;
+use App\Pregunta;
+use App\Respuesta;
+use App\TipoPregunta;
+
+use Laracasts\Flash\Flash;
 use DB;
 
-class perfilController extends Controller
+class PreguntaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +28,7 @@ class perfilController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -86,50 +97,18 @@ class perfilController extends Controller
         //
     }
 
-    public function buscarPerfil($correo){
-
-
-        $perfil = User::where('email',$correo)->get()->toJson();
-
-        $vector =  json_decode($perfil);
-
-
-        foreach($vector as $v){
-            
-            try{
-                $v->IMAGENPERFIL=  base64_encode( file_get_contents(public_path()."/gogame/FotoPerfil/".$v->IMAGENPERFIL));
-            }catch(Exception $e) {
-                error_log('error');
-            }
+    public function verPreguntas($id){
         
-           
-        }
-          
+        $categoria = Categoria::find($id);
 
-        return $vector;
+        $preguntasCategoria = DB::table('CATEGORIA')
+                            ->join('PREGUNTA', 'PREGUNTA.IDCATEGORIA', '=', 'CATEGORIA.id')
+                            ->where('CATEGORIA.id', $id)
+                            ->select('PREGUNTA.PREGUNTA')
+                            ->get();
+        
+
+        return view('pregunta.verPreguntas')->with('preguntasCategoria', $preguntasCategoria)
+                                            ->with('categoria', $categoria);
     }
-
-    public function obtenerMedallasPerfil($correo){
-        $perfil = User::where('email',$correo)
-        ->join('medallaganada','perfil.id','=','medallaganada.idperfil')
-        ->join('detallemedalla','detallemedalla.id','=','medallaganada.iddetallemedalla')
-        ->join('medalla','medalla.id','=','detallemedalla.idmedalla')
-        ->get()->toJson();
-
-        $vector = json_decode($perfil);
-
-        foreach ($vector as $medalla) {
-            
-            $medalla->IMAGENMEDALLA = base64_encode(file_get_contents(public_path()."/gogame/FotoMedalla/".$medalla->IMAGENMEDALLA));
-
-
-        }
-
-        $medallas = json_encode($vector);
-
-
-        return $medallas;
-    }
-
-
 }

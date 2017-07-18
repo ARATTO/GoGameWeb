@@ -10,6 +10,52 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::post('/loginapp', [
+                'as' => 'loginapp.usuarios',
+                'uses' => 'LoginController@store'
+        ]);
+
+Route::post('/alumnos', [
+                'as' => 'alumnos.materias.grupo',
+                'uses' => 'AlumnosController@store'
+        ]);
+
+Route::post('/medallasapp', [
+                'as' => 'medallasapp.materias',
+                'uses' => 'MedallasController@store'
+        ]);
+
+Route::post('/actividadesapp', [
+                'as' => 'actividades.materias.grupo',
+                'uses' => 'ActividadesController@store'
+        ]);
+
+Route::post('/cuestionariosapp', [
+                'as' => 'cuestionarios.materias.grupo',
+                'uses' => 'CuestionariosController@store'
+        ]);
+
+Route::post('/materiasapp', [
+                'as' => 'materiasapp',
+                'uses' => 'DescripcionMateriaController@store'
+        ]);
+
+Route::post('/lideresapp', [
+                'as' => 'lideresapp',
+                'uses' => 'TablaLideresController@store'
+        ]);
+
+Route::post('/materiasExistentes', [
+                'as' => 'materiasExistentes.usuarios',
+                'uses' => 'MateriasExistentesController@store'
+        ]);
+
+Route::get('tipoActividad',[
+        'as' => 'perfil',
+        'uses' => 'TipoActividadController@index'
+        ]);
+        
+
 
 Route::get('/', function () {
     //return bcrypt('dariomotto');
@@ -106,6 +152,45 @@ Route::get('/', function () {
         /*
         * Fin Rutas para Medalla
         */
+
+        //////////////////////////////////////
+        //////////CUESTIONARIO
+        //////////////////////////////////////
+        /*
+        * Inicio Rutas para Cuestionario
+        */
+        Route::resource('cuestionarios','CuestionarioController');
+        /*
+        * Fin Rutas para Cuestionario
+        */
+
+        /*
+        * Inicio Rutas para Categoria
+        */
+        Route::resource('categorias','CategoriaController');
+
+        Route::post('categorias/pregunta/{id}', [
+                'as' => 'categoria.importarPreguntas',
+                'uses' => 'CategoriaController@importarPreguntas'
+        ]);
+        /*
+        * Fin Rutas para Categoria
+        */
+
+        /*
+        * Inicio Rutas para Preguntas
+        */
+        Route::resource('preguntas','PreguntaController');
+        Route::get('preguntas/verpreguntas/{id}', [
+                'as' => 'preguntas.verPreguntas',
+                'uses' => 'PreguntaController@verPreguntas'
+        ]);
+        /*
+        * Fin Rutas para Preguntas
+        */
+        //////////////////////////////////////
+        //////////FIN CUESTIONARIO
+        //////////////////////////////////////
    });
         
     //MddWARE DOCENTE
@@ -136,6 +221,7 @@ Route::get('/', function () {
         * Fin Rutas para Inscripcion
         */
     });
+
         
 /*RUTAS RODRIGO APP*/
     Route::get('perfil/{id}',[
@@ -148,6 +234,6 @@ Route::get('/', function () {
         'uses' => 'perfilController@obtenerMedallasPerfil'
         ]);
 /*RUTAS RODRIGO APP*/
-    
+   
 
 

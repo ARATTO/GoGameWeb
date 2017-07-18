@@ -107,7 +107,7 @@ class MedallaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         //Imagen
         if($request->file('imgMedalla'))
         {

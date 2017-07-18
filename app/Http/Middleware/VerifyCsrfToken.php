@@ -13,6 +13,18 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'perfil*',
-        'medallasPerfil*'
+        'medallasPerfil*',
+        'loginapp*',
+        'logapp*',
+        'perfil*',
+        'alumnos*',
+        'medallasapp*',
+        'actividadesapp*',
+        'cuestionariosapp*',
+        'materiasExistentes*',
+        'perfil*',
+        'materiasapp*',
+        'lideresapp'
+
     ];
 }

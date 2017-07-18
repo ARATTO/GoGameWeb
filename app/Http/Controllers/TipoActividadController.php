@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\User;
-use DB;
+use App\TipoActividad;
 
-class perfilController extends Controller
+class TipoActividadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,9 @@ class perfilController extends Controller
      */
     public function index()
     {
+        $TipoActividad = TipoActividad::all()->toJson();
 
+        return $TipoActividad;
     }
 
     /**
@@ -85,51 +86,4 @@ class perfilController extends Controller
     {
         //
     }
-
-    public function buscarPerfil($correo){
-
-
-        $perfil = User::where('email',$correo)->get()->toJson();
-
-        $vector =  json_decode($perfil);
-
-
-        foreach($vector as $v){
-            
-            try{
-                $v->IMAGENPERFIL=  base64_encode( file_get_contents(public_path()."/gogame/FotoPerfil/".$v->IMAGENPERFIL));
-            }catch(Exception $e) {
-                error_log('error');
-            }
-        
-           
-        }
-          
-
-        return $vector;
-    }
-
-    public function obtenerMedallasPerfil($correo){
-        $perfil = User::where('email',$correo)
-        ->join('medallaganada','perfil.id','=','medallaganada.idperfil')
-        ->join('detallemedalla','detallemedalla.id','=','medallaganada.iddetallemedalla')
-        ->join('medalla','medalla.id','=','detallemedalla.idmedalla')
-        ->get()->toJson();
-
-        $vector = json_decode($perfil);
-
-        foreach ($vector as $medalla) {
-            
-            $medalla->IMAGENMEDALLA = base64_encode(file_get_contents(public_path()."/gogame/FotoMedalla/".$medalla->IMAGENMEDALLA));
-
-
-        }
-
-        $medallas = json_encode($vector);
-
-
-        return $medallas;
-    }
-
-
 }
