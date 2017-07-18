@@ -233,6 +233,11 @@ Route::get('/', function () {
         'as' => 'medallasPerfil',
         'uses' => 'perfilController@obtenerMedallasPerfil'
         ]);
+
+    Route::get('puntosPerfil/',[
+        'as' => 'puntosPerfil',
+        'uses' => 'PuntosController@asignarPuntos'
+        ]);
 /*RUTAS RODRIGO APP*/
    
 
