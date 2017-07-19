@@ -24,7 +24,7 @@ class MateriasExistentesController extends Controller
 	  	$tipousuario = $request->resultado;
 
 	  	//Consulta a la base de datos
-	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, d.NOMBREDOCENTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA FROM materia m INNER JOIN materiaimpartida mi on m.id = mi.IDMATERIA INNER JOIN grupo g ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN docente d ON g.IDDOCENTE = d.id INNER JOIN tipogrupo tp ON g.IDTIPOGRUPO = tp.id INNER JOIN perfil p ON p.IDDOCENTE = d.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tp.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1";
+	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, p.id IDPERFIL, d.NOMBREDOCENTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA FROM materia m INNER JOIN materiaimpartida mi on m.id = mi.IDMATERIA INNER JOIN grupo g ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN docente d ON g.IDDOCENTE = d.id INNER JOIN tipogrupo tp ON g.IDTIPOGRUPO = tp.id INNER JOIN perfil p ON p.IDDOCENTE = d.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tp.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1";
 
 	  
 	  	$materiaExistente = DB::select(DB::raw($consulta));
@@ -60,7 +60,7 @@ class MateriasExistentesController extends Controller
 	  	$tipousuario = $request->resultado;
 
 	  	//Consulta a la base de datos
-	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, e.NOMBREESTUDIANTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA  FROM estudiante e INNER JOIN inscripcion i ON e.id = i.IDESTUDIANTE INNER JOIN grupo g ON i.IDGRUPO = g.id INNER JOIN tipogrupo tg ON g.IDTIPOGRUPO = tg.id INNER JOIN materiaimpartida mi ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN materia m ON m.id = mi.IDMATERIA INNER JOIN perfil p ON p.IDESTUDIANTE = e.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tg.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1;";
+	  	$consulta = "SELECT m.id IDMATERIA, g.id IDGRUPO, p.id IDPERFIL, e.NOMBREESTUDIANTE, c.CODIGOCICLO, m.NOMBREMATERIA, m.CODIGOMATERIA, g.CODIGOGRUPO, m.IMAGENMATERIA  FROM estudiante e INNER JOIN inscripcion i ON e.id = i.IDESTUDIANTE INNER JOIN grupo g ON i.IDGRUPO = g.id INNER JOIN tipogrupo tg ON g.IDTIPOGRUPO = tg.id INNER JOIN materiaimpartida mi ON mi.id = g.IDMATERIAIMPARTIDA INNER JOIN materia m ON m.id = mi.IDMATERIA INNER JOIN perfil p ON p.IDESTUDIANTE = e.id INNER JOIN ciclo c ON c.id = mi.IDCICLO WHERE p.email = '" . $email . "' AND tg.NOMBRETIPOGRUPO = 'Teorico' AND c.ESTAACTIVOCICLO = 1;";
 
 
 	  	$materiaExistente = DB::select(DB::raw($consulta));
