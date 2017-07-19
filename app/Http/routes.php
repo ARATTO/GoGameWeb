@@ -15,6 +15,16 @@ Route::post('/loginapp', [
                 'uses' => 'LoginController@store'
         ]);
 
+Route::post('/preguntasCuestionario', [
+                'as' => 'preguntasCuestionario.usuarios',
+                'uses' => 'PreguntasController@consultaPregunta'
+        ]);
+
+Route::post('/respuestasCuestionario', [
+                'as' => 'respuestasCuestionario.usuarios',
+                'uses' => 'PreguntasController@consultaRespuesta'
+        ]);
+
 Route::post('/alumnos', [
                 'as' => 'alumnos.materias.grupo',
                 'uses' => 'AlumnosController@store'
