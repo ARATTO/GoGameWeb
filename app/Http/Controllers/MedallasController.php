@@ -13,7 +13,7 @@ class MedallasController extends Controller
     {
     	$idmateria=$request->Materia;
     	$idgrupo=$request->Grupo;
-    	$cadena1="select medalla.nombremedalla,medalla.imagenmedalla from detallemedalla inner join materiaimpartida on detallemedalla.idmateriaimpartida=materiaimpartida.id inner join materia on materiaimpartida.id=materia.id inner join medalla on detallemedalla.IDMEDALLA=medalla.id";
+    	$cadena1="select medalla.nombremedalla,medalla.imagenmedalla,detallemedalla.cantidadminimapuntos from detallemedalla inner join materiaimpartida on detallemedalla.idmateriaimpartida=materiaimpartida.id inner join materia on materiaimpartida.id=materia.id inner join medalla on detallemedalla.IDMEDALLA=medalla.id";
         $cadena2=" where materia.id=".$idmateria.";";
         $resultado=$cadena1.$cadena2;
         //dd($resultado);
