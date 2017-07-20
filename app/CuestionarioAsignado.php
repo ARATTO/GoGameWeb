@@ -16,6 +16,7 @@ class CuestionarioAsignado extends Model
         'id',
         'IDPERFIL',
         'IDCUESTIONARIO',
+        'NOTAFINAL',
         
     ];
 

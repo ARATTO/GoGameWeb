@@ -54,6 +54,11 @@ Route::post('/materiasExistentesEstudiantes', [
                 'as' => 'materiasExistentesEstudiantes.usuarios',
                 'uses' => 'MateriasExistentesController@materiasEstudiante'
         ]);
+
+Route::post('/guardarNotasCuestionario', [
+                'as' => 'guardarNotasCuestionario.usuarios',
+                'uses' => 'GuardarNotaFinalController@guardarNota'
+        ]);
         
 
 
