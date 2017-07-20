@@ -122,6 +122,7 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      
 </script>
 
 <!-- Include Plugin MaskNumber -->
@@ -130,6 +131,7 @@
       $('#numeros').maskNumber({
             integer: true,
       });
+      //$('#fraccion').mask("99.99");
 </script>
 
 <!-- Include Plugin TimePiker -->

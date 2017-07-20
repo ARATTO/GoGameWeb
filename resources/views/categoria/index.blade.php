@@ -13,8 +13,13 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 
-					<div class="panel-heading">{{ trans('gogamessage.Categoria') }} : {{$materia}}</div>
-
+					<div class="panel-heading">{{ trans('gogamessage.Categoria') }} : {{$materia}}  
+						<div class="pull-right">
+							<a href="{{ route('categorias.create') }}" class="btn btn-success" title="Nueva Categoria">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
@@ -48,13 +53,14 @@
 															<a href="#" class="btn btn-warning" disabled="disabled">
 																EDITAR CATEGORIA
 															</a>
-															<a href="#" class="btn btn-danger" title="Eliminar Categoria">
-																<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-															</a>
-															<a href="#" class="btn btn-danger" disabled="disabled">
-																ELIMINAR CATEGORIA
-															</a>
-															
+															@if($cat->EnUso == 0)
+																<a href="{{ route('categorias.eliminarCategoria', $cat->id) }}" class="btn btn-danger" title="Eliminar Categoria" onclick="return confirm('¿Deseas Eliminar esta categoria de Forma Permanente?')">
+																	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+																</a>
+																<a href="#" class="btn btn-danger" disabled="disabled">
+																	ELIMINAR CATEGORIA
+																</a>
+															@endif
 													</div>
 												</td>
 												<td>

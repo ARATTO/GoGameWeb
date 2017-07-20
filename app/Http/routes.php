@@ -182,6 +182,18 @@ Route::get('/', function () {
         * Inicio Rutas para Cuestionario
         */
         Route::resource('cuestionarios','CuestionarioController');
+        Route::get('cuestionarios/asignarcategoriaporcentaje/{id}', [
+                'as' => 'cuestionarios.asignarCategoriaPorcentaje',
+                'uses' => 'CuestionarioController@asignarCategoriaPorcentaje'
+        ]);
+        Route::post('cuestionarios/guardarcategorias/{id}', [
+                'as' => 'cuestionarios.guardarCategorias',
+                'uses' => 'CuestionarioController@guardarCategorias'
+        ]);
+        Route::post('cuestionarios/guardarporcentajes/{id}', [
+                'as' => 'cuestionarios.guardarPorcentajes',
+                'uses' => 'CuestionarioController@guardarPorcentajes'
+        ]);
         /*
         * Fin Rutas para Cuestionario
         */
@@ -195,6 +207,12 @@ Route::get('/', function () {
                 'as' => 'categoria.importarPreguntas',
                 'uses' => 'CategoriaController@importarPreguntas'
         ]);
+        Route::get('categorias/eliminarcategoria/{id}', [
+                'as' => 'categorias.eliminarCategoria',
+                'uses' => 'CategoriaController@eliminarCategoria'
+        ]);
+        
+        
         /*
         * Fin Rutas para Categoria
         */
@@ -206,6 +224,10 @@ Route::get('/', function () {
         Route::get('preguntas/verpreguntas/{id}', [
                 'as' => 'preguntas.verPreguntas',
                 'uses' => 'PreguntaController@verPreguntas'
+        ]);
+        Route::get('preguntas/borrarpregunta/{id}', [
+                'as' => 'preguntas.borrarPregunta',
+                'uses' => 'PreguntaController@borrarPregunta'
         ]);
         /*
         * Fin Rutas para Preguntas

@@ -15,6 +15,7 @@ use App\MedallaGanada;
 use App\Pregunta;
 use App\Respuesta;
 use App\TipoPregunta;
+use App\CategoriaCuestionario;
 
 use Illuminate\Support\Facades\Cache;
 use Laracasts\Flash\Flash;
@@ -36,6 +37,16 @@ class CategoriaController extends Controller
 
         $categorias = Categoria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
 
+
+        foreach($categorias as $cat){
+            $categoriaCuestionario = CategoriaCuestionario::where('IDCATEGORIA', $cat->id)->first();
+            if(count($categoriaCuestionario) > 0){
+                $cat->EnUso = 1;
+            }else{
+                $cat->EnUso = 0;
+            }
+        }
+        
 
         return view('categoria.index')->with('categorias', $categorias)->with('materia', $matImp->materia->NOMBREMATERIA);
     }
@@ -92,7 +103,9 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        return view('categoria.editar')->with(['categoria'=>$categoria]);
     }
 
     /**
@@ -104,7 +117,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->fill($request->all());
+        $categoria->save();
+        Flash::warning("Se ha EDITADO ".$categoria->NOMBRECATEGORIA." de forma exitosa");
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -116,6 +133,23 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function eliminarCategoria($id)
+    {
+        $categoria = Categoria::find($id);
+        $preguntas = Pregunta::where('IDCATEGORIA', $categoria->id)->get();
+        foreach($preguntas as $pregunta){
+            $respuestas = Respuesta::where('IDPREGUNTA', $pregunta->id)->get();
+            foreach($respuestas as $respuesta){
+                $respuesta->delete();
+            }
+            $pregunta->delete();
+        }
+        $categoria->delete();
+        
+        Flash::info("Categoria Eliminada de forma exitosa");
+        return redirect()->route('categorias.index');
     }
 
     public function importarPreguntas(Request $request, $id){

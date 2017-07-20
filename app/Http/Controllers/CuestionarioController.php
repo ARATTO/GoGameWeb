@@ -14,6 +14,9 @@ use App\MateriaImpartida;
 use App\MedallaGanada;
 use App\Cuestionario;
 use App\CuestionarioMateria;
+use App\CategoriaCuestionario;
+use App\Pregunta;
+use Illuminate\Support\Collection;
 use Laracasts\Flash\Flash;
 
 class CuestionarioController extends Controller
@@ -44,18 +47,39 @@ class CuestionarioController extends Controller
             if($coor->materiaImpartida->IDCICLO == $ciclo->id){
                 //Materia que Coordina el Docente
                 $matImp = MateriaImpartida::find($coor->materiaImpartida->id);
+                $categorias = Categoria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
             }
         }
+        
         
         $cuestionariomateria = CuestionarioMateria::where('IDMATERIAIMPARTIDA', $matImp->id)->get();
         
         if(count($cuestionariomateria) > 0){
             foreach($cuestionariomateria as $cuesMat){
                 $cuesMat->cuestionario = Cuestionario::where('id', $cuesMat->IDCUESTIONARIO)->first();
+                //Para Averiguar cuales ya estan en uso por este cuestionario
+                $cuesMat->cuestionario->categoriasCuestionarioEnUso = CategoriaCuestionario::where('IDCUESTIONARIO', $cuesMat->IDCUESTIONARIO)->get();
+                //dd($cuesMat);
+                if( count($cuesMat->cuestionario->categoriasCuestionarioEnUso) > 0 ){
+                    $categoria_Uso = new Collection();
+                    foreach($cuesMat->cuestionario->categoriasCuestionarioEnUso as $catCue){
+                        $categoria_Uso->push(Categoria::find($catCue->IDCATEGORIA));
+                    }
+                    //Categorias que estan Asignadas
+                    $cuesMat->cuestionario->categoria_Uso = $categoria_Uso;
+                    //Categorias que no estan asignadas
+                    $categoria_SinAsignar = new Collection();
+                    $categoria_SinAsignar = $categorias->diff($cuesMat->cuestionario->categoria_Uso);
+                    //dd($categoria_SinAsignar);
+                    $cuesMat->cuestionario->categoria_SinAsignar = $categoria_SinAsignar;
+                }
+                
             }
+            
         }
+        
         //dd($cuestionariomateria);
-        return view('cuestionario.index')->with('cuestionariomateria', $cuestionariomateria);
+        return view('cuestionario.index')->with('cuestionariomateria', $cuestionariomateria)->with('categorias',$categorias);
 
     }
 
@@ -164,4 +188,95 @@ class CuestionarioController extends Controller
     {
         //
     }
+
+    public function asignarCategoriaPorcentaje($id){
+        $idCuestionario = $id;
+        $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $idCuestionario)->get();
+        foreach($categoriaCuestionario as $catCue){
+            $catCue->categoria = Categoria::find($catCue->IDCATEGORIA);
+            $preguntas = Pregunta::where('IDCATEGORIA', $catCue->categoria->id)->get();
+            $catCue->categoria->NumeroPregunta = count($preguntas);
+        }
+        $cuantos = count($categoriaCuestionario);
+        $ultimo_categoria = $categoriaCuestionario->last();
+        
+
+        //dd($categoriaCuestionario);
+
+        return view('cuestionario.asignarCategoriaPorcentaje')->with('categoriaCuestionario', $categoriaCuestionario)
+                                                              ->with('idCuestionario', $idCuestionario)
+                                                              ->with('cuantos', $cuantos)
+                                                              ->with('ultimo_categoria', $ultimo_categoria);
+    }
+
+    public function guardarPorcentajes(Request $request){
+        //dd($request->all());
+        $idCuestionario = $request->idCuestionario;
+        $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $idCuestionario)->get();
+        foreach($categoriaCuestionario as $catCue){
+            $categoria = Categoria::find($catCue->IDCATEGORIA);   
+            
+            //Armar String para Variable dinamica de pregunta
+            $string_pregunta = "pregunta_" . $categoria->id;
+            //Armar String para Variable dinamica de porcentaje
+            $string_porcentaje = "porcentaje_" . $categoria->id;
+
+            //Guardar en Objeto
+            $catCue->CANTIDADPREGUNTAS = $request->$string_pregunta;
+            //Guardar en Objeto
+            $catCue->PORCENTAJECATEGORIA = $request->$string_porcentaje;
+            $catCue->save();
+
+        }
+        return redirect()->route('cuestionarios.index');
+    }
+
+    public function guardarCategorias(Request $request){
+
+        $categoriasEnviadas = new Collection();
+        $categoriasYaSeleccionada = new Collection();
+        //Eliminar
+        $categoriasEliminar = new Collection();
+        //Agregar
+        $categoriasAgregar = new Collection();
+
+        $categoriasCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->get();
+        if($categoriasCuestionario){
+            foreach($categoriasCuestionario as $catCue){
+                $categoriasYaSeleccionada->push(Categoria::find($catCue->IDCATEGORIA));
+            }
+        }
+        if($request->categoriasSeleccionadas){
+            foreach($request->categoriasSeleccionadas as $idCatSel){
+                $categoriasEnviadas->push(Categoria::find($idCatSel));
+            }
+        }
+
+        $categoriasAgregar = $categoriasEnviadas->diff($categoriasYaSeleccionada);
+        $categoriasEliminar = $categoriasYaSeleccionada->diff($categoriasEnviadas);
+
+        if(count($categoriasAgregar)>0){
+            foreach($categoriasAgregar as $catAgrega){
+                $categoriaCuestionario = new CategoriaCuestionario();
+                $categoriaCuestionario->IDCUESTIONARIO = $request->idCuestionario;
+                $categoriaCuestionario->IDCATEGORIA = $catAgrega->id;
+                $categoriaCuestionario->save();
+            }
+            Flash::success("Categorias Agregadas con Exito");
+        }
+        if(count($categoriasEliminar)>0){
+            foreach($categoriasEliminar as $catBorra){
+                //dd($catBorra);
+                $categoriaCuestionario = CategoriaCuestionario::where('IDCUESTIONARIO', $request->idCuestionario)->where('IDCATEGORIA', $catBorra->id)->first();
+                $categoriaCuestionario->delete();
+            }
+            Flash::danger("Categorias Actualizadas con Exito");
+        }
+
+        return redirect()->route('cuestionarios.index');
+        
+    }
+
+
+    
 }
