@@ -14,7 +14,7 @@ class AlumnosController extends Controller
     {
     	$idmateria=$request->Materia;
     	$idgrupo=$request->Grupo;
-    	$cadena1="select estudiante.nombreestudiante,estudiante.carnetestudiante,perfil.imagenperfil 
+    	$cadena1="select estudiante.nombreestudiante,perfil.email,perfil.imagenperfil 
     	from estudiante inner join perfil on perfil.idestudiante=estudiante.id inner join inscripcion on estudiante.id=inscripcion.IDESTUDIANTE 
     	inner join grupo on inscripcion.IDGRUPO=grupo.id inner join materiaimpartida 
     	on materiaimpartida.id= grupo.IDMATERIAIMPARTIDA inner join materia on 

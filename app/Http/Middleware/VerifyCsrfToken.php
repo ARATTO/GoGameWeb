@@ -12,10 +12,10 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-
+        'perfil*',
+        'medallasPerfil*',
         'loginapp*',
         'logapp*',
-        'perfil*',
         'alumnos*',
         'medallasapp*',
         'actividadesapp*',
@@ -23,8 +23,11 @@ class VerifyCsrfToken extends BaseVerifier
         'materiasExistentes*',
         'preguntasCuestionario*',
         'respuestasCuestionario*',
-        'guardarNotasCuestionario',
-        'perfil*'
+        'guardarNotasCuestionario*',
+        'perfil*',
+        'materiasapp*',
+        'lideresapp*',
+        'puntosPerfil*'
 
     ];
 }

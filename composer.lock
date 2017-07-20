@@ -390,7 +390,9 @@
                 "thumbnail",
                 "watermark"
             ],
+
             "time": "2017-07-03T15:50:40+00:00"
+
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -762,7 +764,11 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
+<<<<<<< HEAD
             "time": "2017-05-21T18:02:21+00:00"
+=======
+            "time": "2017-05-21 18:02:21"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "league/flysystem",
@@ -845,7 +851,11 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
             "time": "2017-04-28T10:15:08+00:00"
+=======
+            "time": "2017-04-28 10:15:08"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "maatwebsite/excel",
@@ -923,7 +933,11 @@
                 "import",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-07-02T07:00:56+00:00"
+=======
+            "time": "2017-07-02 07:00:56"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "monolog/monolog",
@@ -1001,7 +1015,11 @@
                 "logging",
                 "psr-3"
             ],
+<<<<<<< HEAD
             "time": "2017-06-19T01:22:40+00:00"
+=======
+            "time": "2017-06-19 01:22:40"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1477,7 +1495,11 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< HEAD
             "time": "2017-05-01T15:54:03+00:00"
+=======
+            "time": "2017-05-01 15:54:03"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "symfony/console",
@@ -1710,7 +1732,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-06-09T14:53:08+00:00"
+=======
+            "time": "2017-06-09 14:53:08"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "symfony/finder",
@@ -1953,7 +1979,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09T14:24:12+00:00"
+=======
+            "time": "2017-06-09 14:24:12"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2009,7 +2039,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09T08:25:21+00:00"
+=======
+            "time": "2017-06-09 08:25:21"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "symfony/polyfill-util",
@@ -2061,7 +2095,11 @@
                 "polyfill",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09T08:25:21+00:00"
+=======
+            "time": "2017-06-09 08:25:21"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "symfony/process",
@@ -3152,7 +3190,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-06-21T08:07:12+00:00"
+=======
+            "time": "2017-06-21 08:07:12"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3324,7 +3366,11 @@
             "keywords": [
                 "diff"
             ],
+<<<<<<< HEAD
             "time": "2017-05-22T07:24:03+00:00"
+=======
+            "time": "2017-05-22 07:24:03"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "sebastian/environment",
@@ -3691,7 +3737,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-06-15T12:58:50+00:00"
+=======
+            "time": "2017-06-15 12:58:50"
+>>>>>>> 5963da306301572a2c4b4e37cfc1fe1185d71bbb
         },
         {
             "name": "webmozart/assert",

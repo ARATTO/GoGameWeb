@@ -43,7 +43,7 @@ Route::post('/actividadesapp', [
 Route::post('/cuestionariosapp', [
                 'as' => 'cuestionarios.materias.grupo',
                 'uses' => 'CuestionariosController@store'
-                ]);
+            ]);
 
 Route::post('/materiasExistentesDocentes', [
                 'as' => 'materiasExistentesDocentes.usuarios',
@@ -53,11 +53,28 @@ Route::post('/materiasExistentesDocentes', [
 Route::post('/materiasExistentesEstudiantes', [
                 'as' => 'materiasExistentesEstudiantes.usuarios',
                 'uses' => 'MateriasExistentesController@materiasEstudiante'
+
+        ]);
+
+Route::post('/materiasapp', [
+                'as' => 'materiasapp',
+                'uses' => 'DescripcionMateriaController@store'
+        ]);
+
+Route::post('/lideresapp', [
+                'as' => 'lideresapp',
+                'uses' => 'TablaLideresController@store'
+
         ]);
 
 Route::post('/guardarNotasCuestionario', [
                 'as' => 'guardarNotasCuestionario.usuarios',
                 'uses' => 'GuardarNotaFinalController@guardarNota'
+        ]);
+
+Route::get('tipoActividad',[
+        'as' => 'perfil',
+        'uses' => 'TipoActividadController@index'
         ]);
         
 
@@ -232,6 +249,16 @@ Route::get('/', function () {
     Route::get('perfil/{id}',[
         'as' => 'perfil',
         'uses' => 'perfilController@buscarPerfil'
+        ]);
+
+    Route::get('medallasPerfil/{id}',[
+        'as' => 'medallasPerfil',
+        'uses' => 'perfilController@obtenerMedallasPerfil'
+        ]);
+
+    Route::post('puntosPerfil/',[
+        'as' => 'puntosPerfil',
+        'uses' => 'PuntosController@asignarPuntos'
         ]);
 /*RUTAS RODRIGO APP*/
    
