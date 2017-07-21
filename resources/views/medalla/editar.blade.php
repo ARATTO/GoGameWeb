@@ -16,7 +16,7 @@
                                     @include('layouts.partials.flash')
 
                                     {!! Form::open(['route' => ['medallas.update', $detalleMedalla], 'method' => 'PUT', 'files' => true]) !!}
-
+                                        
                                        <div class="form-group">
                                             {!! form::label('NOMBREMEDALLA','Nombre de Medalla') !!}
                                             {!! form::text('NOMBREMEDALLA', $detalleMedalla->medalla->NOMBREMEDALLA , ['class' => 'form-control', 'placeholder'=> 'Medalla GG', 'required']) !!}
@@ -40,6 +40,10 @@
                                                 {!! form::label('CANTIDADMINIMAPUNTOS',' Puntos Necesarios') !!}
                                                 <input class="form-control" type="number" id="numeros" name="CANTIDADMINIMAPUNTOS" min="1" step="1" placeholder="Puntos Minimos" value="{{$detalleMedalla->CANTIDADMINIMAPUNTOS}}"/>
                                         </div>
+                                        <div class="form-group">
+                                                {!! form::label('PUNTOSACTIVIDAD',' Puntos Ganados por Actividad') !!}
+                                                <input class="form-control" type="number" id="numeros_" name="PUNTOSACTIVIDAD" min="1" step="1" placeholder="Puntos Ganados por Actividad" value="{{$detallePunto->PUNTOSACTIVIDAD}}"/>
+                                        </div>
                                         <input type="hidden" name="IDMATERIAIMPARTIDA" value="{{ $detalleMedalla->IDMATERIAIMPARTIDA }}">
                                         <div class="form-group">
                                             {!! form::label('#','Actualizar Imagen de Medalla') !!}    
@@ -51,6 +55,7 @@
                                              <img src="{{ asset('/gogame/FotoMedalla')}}/{{ $detalleMedalla->medalla->IMAGENMEDALLA }}" class="img-user">
                                           </a>    
                                         </div>
+                                        <input type="hidden" name="IDMATERIAIMPARTIDA" value="{{ $matImp->id }}">
                                         <div class="form-group col-xs-6 col-md-12">
                                             <button type="submit" class="btn btn-warning"> {{trans('gogamessage.Actualizar')}} </button>
                                         </div>

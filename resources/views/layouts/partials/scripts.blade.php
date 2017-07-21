@@ -131,6 +131,9 @@
       $('#numeros').maskNumber({
             integer: true,
       });
+      $('#numeros_').maskNumber({
+            integer: true,
+      });
       //$('#fraccion').mask("99.99");
 </script>
 
