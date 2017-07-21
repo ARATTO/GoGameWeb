@@ -763,7 +763,11 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
+<<<<<<< HEAD
             "time": "2017-05-21 18:02:21"
+=======
+            "time": "2017-05-21T18:02:21+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "league/flysystem",
@@ -846,7 +850,11 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
             "time": "2017-04-28 10:15:08"
+=======
+            "time": "2017-04-28T10:15:08+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "maatwebsite/excel",
@@ -924,7 +932,11 @@
                 "import",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-07-02 07:00:56"
+=======
+            "time": "2017-07-02T07:00:56+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "monolog/monolog",
@@ -1002,7 +1014,11 @@
                 "logging",
                 "psr-3"
             ],
+<<<<<<< HEAD
             "time": "2017-06-19 01:22:40"
+=======
+            "time": "2017-06-19T01:22:40+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1478,7 +1494,11 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< HEAD
             "time": "2017-05-01 15:54:03"
+=======
+            "time": "2017-05-01T15:54:03+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "symfony/console",
@@ -1711,7 +1731,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-06-09 14:53:08"
+=======
+            "time": "2017-06-09T14:53:08+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "symfony/finder",
@@ -1954,7 +1978,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09 14:24:12"
+=======
+            "time": "2017-06-09T14:24:12+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2010,7 +2038,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09 08:25:21"
+=======
+            "time": "2017-06-09T08:25:21+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "symfony/polyfill-util",
@@ -2062,7 +2094,11 @@
                 "polyfill",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2017-06-09 08:25:21"
+=======
+            "time": "2017-06-09T08:25:21+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "symfony/process",
@@ -2723,7 +2759,11 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
+<<<<<<< HEAD
             "time": "2017-07-15 11:38:20"
+=======
+            "time": "2017-07-15T11:38:20+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2770,7 +2810,11 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
+<<<<<<< HEAD
             "time": "2017-07-14 14:27:02"
+=======
+            "time": "2017-07-14T14:27:02+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "phpspec/prophecy",
@@ -3153,7 +3197,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-06-21 08:07:12"
+=======
+            "time": "2017-06-21T08:07:12+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3325,7 +3373,11 @@
             "keywords": [
                 "diff"
             ],
+<<<<<<< HEAD
             "time": "2017-05-22 07:24:03"
+=======
+            "time": "2017-05-22T07:24:03+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "sebastian/environment",
@@ -3692,7 +3744,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-06-15 12:58:50"
+=======
+            "time": "2017-06-15T12:58:50+00:00"
+>>>>>>> 14711ef9fabe737a8d2168e33f178c9c6d3b2c7a
         },
         {
             "name": "webmozart/assert",
