@@ -33,6 +33,10 @@
                                                 {!! form::label('CANTIDADMINIMAPUNTOS',' Puntos Necesarios') !!}
                                                 <input class="form-control" type="number" id="numeros" name="CANTIDADMINIMAPUNTOS" min="1" step="1" placeholder="Puntos Minimos"/>
                                         </div>
+                                        <div class="form-group">
+                                                {!! form::label('PUNTOSACTIVIDAD',' Puntos Ganados por Actividad') !!}
+                                                <input class="form-control" type="number" id="numeros_" name="PUNTOSACTIVIDAD" min="1" step="1" placeholder="Puntos Ganados por Actividad"/>
+                                        </div>
                                         <input type="hidden" name="IDMATERIAIMPARTIDA" value="{{ $matImp->id }}">
                                         <div class="form-group">
                                             {!! form::label('#','Imagen de Medalla') !!}    
