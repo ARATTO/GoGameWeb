@@ -15,7 +15,7 @@ class CuestionariosController extends Controller
         $fechaactual=Carbon::now();
     	$idmateria=$request->Materia;
     	$idgrupo=$request->Grupo;
-    	$cadena1="select cuestionario.nombrecuestionario,cuestionario.duracioncuestionario from cuestionariomateria inner join cuestionario on cuestionariomateria.idcuestionario=cuestionario.id inner join grupo on cuestionariomateria.idmateriaimpartida=grupo.idmateriaimpartida inner join materiaimpartida inner join materia on materiaimpartida.idmateria=materia.id";
+    	$cadena1="select cuestionario.id, cuestionario.nombrecuestionario,cuestionario.duracioncuestionario from cuestionariomateria inner join cuestionario on cuestionariomateria.idcuestionario=cuestionario.id inner join grupo on cuestionariomateria.idmateriaimpartida=grupo.idmateriaimpartida inner join materiaimpartida inner join materia on materiaimpartida.idmateria=materia.id";
         $cadena2=" where materia.id=".$idmateria." and grupo.id=".$idgrupo." and fechainiciocuestionario<'".$fechaactual."' and fechafincuestionario>'".$fechaactual."';";
         $resultado=$cadena1.$cadena2;
         //dd($resultado);

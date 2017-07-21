@@ -39,6 +39,7 @@ class MedallaController extends Controller
         });
         $Existe = false;
         foreach($coordinador as $coor){
+            //dd($coor);
             if($coor->materiaImpartida->IDCICLO == $ciclo->id){
                 //Materia que Coordina el Docente
                 $matImp = MateriaImpartida::find($coor->materiaImpartida->id);
